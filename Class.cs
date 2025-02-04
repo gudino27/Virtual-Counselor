@@ -17,6 +17,7 @@ partial class Program
         options.AddArgument("--disable-usb");
         options.AddArgument("--disable-usb-discovery");
         options.AddArgument("--headless");  // Run in headless mode (without opening a browser window)
+        options.AddArgument("--log-level=3");
         var service = ChromeDriverService.CreateDefaultService();
         service.SuppressInitialDiagnosticInformation = true;
         service.EnableVerboseLogging = false;
