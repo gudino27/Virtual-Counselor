@@ -1,157 +1,139 @@
 #include "Source.h"
 
-// Global variables for filesystem structure
-NODE* root;  // Root directory node
-NODE* cwd;   // Current working directory node
+// Global variables
+NODE* root;
+NODE* cwd;
 const char* cmd[] = { "mkdir", "rmdir", "cd", "ls", "pwd", "creat", "rm", "save", "reload", "quit", NULL };
-
-// Function to initialize the filesystem by creating the root directory
 void initialize() {
-	root = (NODE*)malloc(sizeof(NODE)); // Allocate memory for root node
-	strcpy(root->name, "/"); // Set root directory name
-	root->parent = root; // Root is its own parent
-	root->sibling = NULL;
-	root->child = NULL;
-	root->type = 'D'; // 'D' represents a directory
-	cwd = root; // Set current directory to root
-	printf("Filesystem initialized!\n");
+    root = (NODE*)malloc(sizeof(NODE));
+    strcpy(root->name, "/");
+    root->parent = root;
+    root->sibling = NULL;
+    root->child = NULL;
+    root->type = 'D';
+    cwd = root;
+    printf("Filesystem initialized!\n");
 }
-
-// Function to find a command index from the predefined list
 int find_command(char* user_command) {
-	for (int i = 0; cmd[i] != NULL; i++) {
-		if (strcmp(user_command, cmd[i]) == 0) { // Compare user input with known commands
-			return i; // Return the index if command is found
-		}
-	}
-	return -1; // Return -1 if command is not found
+    for (int i = 0; cmd[i] != NULL; i++) {
+        if (strcmp(user_command, cmd[i]) == 0) {
+            return i;
+        }
+    }
+    return -1; 
 }
-
-// Function to split a given pathname into its components
 void tokenize_path(char* pathname, char components[][64], int* count) {
-	if (!pathname || pathname[0] == '\0') { // Check if the pathname is empty
+	if (!pathname || pathname[0] == '\0') {
 		*count = 0;
 		return;
 	}
-	char* token = strtok(pathname, "/"); // Split by "/"
+	char* token = strtok(pathname, "/");
 	*count = 0;
 	while (token) {
-		strcpy(components[(*count)++], token); // Store each component in the array
+		strcpy(components[(*count)++], token);
 		token = strtok(NULL, "/");
 	}
 }
-
-// Function to find a node in the filesystem based on its pathname
 NODE* find_node(char* pathname) {
-	if (strcmp(pathname, "/") == 0) return root; // If pathname is "/", return root
-	if (strcmp(pathname, ".") == 0 || pathname[0] == '\0') return cwd; // If ".", return current directory
+	if (strcmp(pathname, "/") == 0) return root;
+	if (strcmp(pathname, ".") == 0 || pathname[0] == '\0') return cwd;
 
 	char components[64][64];
 	int count = 0;
-	tokenize_path(pathname, components, &count); // Tokenize the path
+	tokenize_path(pathname, components, &count);
 
-	NODE* current = (pathname[0] == '/') ? root : cwd; // Start from root or cwd
+	NODE* current = (pathname[0] == '/') ? root : cwd;
 	for (int i = 0; i < count; i++) {
 		NODE* child = current->child;
 		while (child && strcmp(child->name, components[i]) != 0) {
-			child = child->sibling; // Traverse sibling nodes
+			child = child->sibling;
 		}
-		if (!child) return NULL; // If not found, return NULL
+		if (!child) return NULL; 
 		current = child;
 	}
-	return current; // Return the found node
+	return current;
 }
-
-// Function to create a new directory
 void mkdir(char* pathname) {
 	if (strcmp(pathname, "/") == 0) {
 		printf("Error: Cannot create root directory again!\n");
 		return;
 	}
-	char dirname[64], basename[64];
-	strcpy(dirname, pathname);
-	strcpy(basename, pathname);
+    char dirname[64], basename[64];
+    strcpy(dirname, pathname);
+    strcpy(basename, pathname);
 
-	char* last_slash = strrchr(dirname, '/'); // Find last occurrence of "/"
-	if (last_slash) {
-		*last_slash = '\0';
-		strcpy(basename, last_slash + 1);
-	}
-	else {
-		strcpy(dirname, ".");
-	}
+    char* last_slash = strrchr(dirname, '/');
+    if (last_slash) {
+        *last_slash = '\0';
+        strcpy(basename, last_slash + 1);
+    }
+    else {
+        strcpy(dirname, ".");
+    }
 
-	NODE* parent = find_node(dirname); // Locate the parent directory
-	if (!parent || parent->type != 'D') {
-		printf("Error: Invalid parent directory!\n");
-		return;
-	}
+    NODE* parent = find_node(dirname);
+    if (!parent || parent->type != 'D') {
+        printf("Error: Invalid parent directory!\n");
+        return;
+    }
 
-	NODE* child = parent->child;
-	while (child) { // Check if directory already exists
-		if (strcmp(child->name, basename) == 0) {
-			printf("Error: Directory already exists!\n");
-			return;
-		}
-		child = child->sibling;
-	}
+    NODE* child = parent->child;
+    while (child) {
+        if (strcmp(child->name, basename) == 0) {
+            printf("Error: Directory already exists!\n");
+            return;
+        }
+        child = child->sibling;
+    }
 
-	NODE* new_node = (NODE*)malloc(sizeof(NODE)); // Allocate memory for new directory
-	strcpy(new_node->name, basename);
-	new_node->type = 'D';
-	new_node->child = NULL;
-	new_node->sibling = parent->child;
-	new_node->parent = parent;
-	parent->child = new_node; // Attach new directory to the parent
+    NODE* new_node = (NODE*)malloc(sizeof(NODE));
+    strcpy(new_node->name, basename);
+    new_node->type = 'D';
+    new_node->child = NULL;
+    new_node->sibling = parent->child;
+    new_node->parent = parent;
+    parent->child = new_node;
 }
-
-// Helper function to print the full path of the current directory
 void pwd_helper(NODE* node) {
-	if (node == root) { // If at root, print "/"
-		printf("/");
-		return;
-	}
-	pwd_helper(node->parent); // Recursively print parent directories
-	printf("%s/", node->name);
+    if (node == root) {
+        printf("/");
+        return;
+    }
+    pwd_helper(node->parent);
+    printf("%s/", node->name);
 }
-
-// Function to display the current working directory
 void pwd() {
-	pwd_helper(cwd);
-	printf("\n");
+    pwd_helper(cwd);
+    printf("\n");
 }
-
-// Function to remove a directory
 void rmdir(char* pathname) {
-	NODE* target = find_node(pathname); // Locate directory
-	if (!target || target->type != 'D') {
+    NODE* target = find_node(pathname);
+    if (!target || target->type != 'D') {
 		printf("Error, Directory not found\n");
-		return;
-	}
-	if (target->child) { // Check if directory is empty
-		printf("Cannot remove directory with contents.\n");
-		return;
-	}
+        return;
+    }
+    if (target->child) {
+        printf("can not remove directory\n");
+        return;
+    }
 	NODE* parent = target->parent;
-	if (parent->child == target) { // If target is the first child
+	if (parent->child == target) {
 		parent->child = target->sibling;
 	}
-	else { // Traverse siblings to remove target
+	else {
 		NODE* sibling = parent->child;
 		while (sibling->sibling != target) {
 			sibling = sibling->sibling;
 		}
 		sibling->sibling = target->sibling;
 	}
-	free(target); // Free memory
+	free(target);
 }
-
-// Function to list the contents of a directory
 void ls(char* pathname) {
-	NODE* node = pathname ? find_node(pathname) : cwd;
+	NODE* node = pathname ? find_node(pathname) : cwd; 
 
 	if (!node) {
-		printf("Error: Unable to resolve directory!\n");
+		printf("Error: Unable to resolve directory!");
 		return;
 	}
 	if (node->type != 'D') {
@@ -159,17 +141,19 @@ void ls(char* pathname) {
 		return;
 	}
 	NODE* child = node->child;
+	if (!child) {
+		return;
+	}
 	while (child) {
 		printf("%c %s\n", child->type, child->name);
 		child = child->sibling;
 	}
 }
-
-// Function to change the current directory
 void cd(char* pathname) {
 	NODE* target = find_node(pathname);
 	if (strcmp(pathname, "..") == 0) {
-		if (cwd != root) {
+		if (cwd != root) 
+		{
 			cwd = cwd->parent;
 		}
 		else {
@@ -177,24 +161,70 @@ void cd(char* pathname) {
 		}
 		return;
 	}
-	if (!target || target->type != 'D') {
-		printf("Error: Directory not found!\n");
+		 if (!target || target->type != 'D') {
+			printf("Error: Directory not found!\n");
+			return;
+		}
+		else if (target == cwd) {
+			printf("Error: Already in directory!\n");
+			return;
+		}
+		cwd = target;
+		
+	}
+void creat(char* pathname) {
+	char dirname[64], basename[64];
+	strcpy(dirname, pathname);
+	strcpy(basename, pathname);
+	char* last_slash = strrchr(dirname, '/');
+	if (last_slash) {
+		*last_slash = '\0';
+		strcpy(basename, last_slash + 1);
+	}
+	else {
+		strcpy(dirname, ".");
+	}
+	NODE* parent = find_node(dirname);
+	if (!parent || parent->type != 'D') {
+		printf("Error: Invalid parent directory!\n");
 		return;
 	}
-	cwd = target; // Update current directory
+	NODE* child = parent->child;
+	while (child) {
+		if (strcmp(child->name, basename) == 0) {
+			printf("Error: File already exists!\n");
+			return;
+		}
+		child = child->sibling;
+	}
+	NODE* new_node = (NODE*)malloc(sizeof(NODE));
+	strcpy(new_node->name, basename);
+	new_node->type = 'F';
+	new_node->child = NULL;
+	new_node->sibling = parent->child;
+	new_node->parent = parent;
+	parent->child = new_node;
+	printf("File created: %s\n", pathname);
 }
-
-// Function to create a file
-void creat(char* pathname) {
-	// Similar structure to mkdir but creates a file ('F')
-}
-
-// Function to remove a file
 void rm(char* pathname) {
-	// Similar to rmdir but removes a file ('F')
+	NODE* target = find_node(pathname);
+	if (!target || target->type != 'F') {
+		printf("Error: File not found!\n");
+		return;
+	}
+	NODE* parent = target->parent;
+	if (parent->child == target) {
+		parent->child = target->sibling;
+	}
+	else {
+		NODE* sibling = parent->child;
+		while (sibling->sibling != target) {
+			sibling = sibling->sibling;
+		}
+		sibling->sibling = target->sibling;
+	}
+	free(target);
 }
-
-// Function to save filesystem structure to a file
 void save(char* filename) {
 	FILE* fp = fopen(filename, "w");
 	if (!fp) {
@@ -204,138 +234,104 @@ void save(char* filename) {
 	save_helper(fp, root->child, "/");
 	fclose(fp);
 }
-
-// Recursive helper function to save nodes to file
 void save_helper(FILE* fp, NODE* node, char* path) {
 	if (!node) return;
 	char full_path[128];
-	sprintf(full_path, "%s/%s", path, node->name);
+	if (strcmp(path, "/") == 0) { 
+		sprintf(full_path, "/%s", node->name);
+	}
+	else {
+		sprintf(full_path, "%s/%s", path, node->name);
+	}
 	fprintf(fp, "%c %s\n", node->type, full_path);
 	save_helper(fp, node->child, full_path);
 	save_helper(fp, node->sibling, path);
 }
-
-// Function to reload filesystem from a saved file
+void save_node(NODE* node, FILE* file) {
+	if (!node) return;
+	fprintf(file, "%s\n", node->name);
+	fprintf(file, "%c\n", node->type);
+	if (node->child) {
+		fprintf(file, "child\n");
+		save_node(node->child, file);
+	}
+	if (node->sibling) {
+		fprintf(file, "sibling\n");
+		save_node(node->sibling, file);
+	}
+	if (!node->child && !node->sibling) {
+		fprintf(file, "end\n");
+	}
+}
 void reload(char* filename) {
 	FILE* file = fopen(filename, "r");
 	if (!file) {
 		printf("Error: Unable to open file!\n");
 		return;
 	}
-	// Reads file and reconstructs the filesystem tree
+	char buffer[64];
+	fgets(buffer, 64, file);
+	if (strcmp(buffer, "root\n") != 0) {
+		printf("Error: Invalid file format!\n");
+		fclose(file);
+		return;
+	}
+	fgets(buffer, 64, file);
+	buffer[strlen(buffer) - 1] = '\0';
+	strcpy(root->name, buffer);
+	fgets(buffer, 64, file);
+	root->type = buffer[0];
+	fgets(buffer, 64, file);
+	if (strcmp(buffer, "cwd\n") != 0)
+	{
+		printf("Error: Invalid file format!\n");
+		fclose(file);
+		return;
+	}
+	fgets(buffer, 64, file);
+	buffer[strlen(buffer) - 1] = '\0';
+	cwd = find_node(buffer);
+	if (!cwd) {
+		printf("Error: Invalid file format!\n");
+		fclose(file);
+		return;
+	}
+	fgets(buffer, 64, file);
+	if (strcmp(buffer, "tree\n") != 0) {
+		printf("Error: Invalid file format!\n");
+		fclose(file);
+		return;
+	}
+	NODE* node = root;
+	while (1) {
+		fgets(buffer, 64, file);
+		buffer[strlen(buffer) - 1] = '\0';
+		strcpy(node->name, buffer);
+		fgets(buffer, 64, file);
+		node->type = buffer[0];
+		fgets(buffer, 64, file);
+		if (strcmp(buffer, "child\n") == 0) {
+			NODE* child = (NODE*)malloc(sizeof(NODE));
+			child->parent = node;
+			node->child = child;
+			node = child;
+		}
+		else if (strcmp(buffer, "sibling\n") == 0) {
+			NODE* sibling = (NODE*)malloc(sizeof(NODE));
+			sibling->parent = node->parent;
+			node->sibling = sibling;
+			node = sibling;
+		}
+		else if (strcmp(buffer, "parent\n") == 0) {
+			node = node->parent;
+		}
+		else {
+			break;
+		}
+	}
 	fclose(file);
-}
-
-// Function to quit the program, saving the filesystem before exiting
+}	
 void quit() {
 	save("fssim_Gudino.txt");
 	exit(0);
-}
-void run()
-{
-	char input[128], command[64], pathname[64]; // Buffers for user input, command, and pathname
-	initialize(); // Initialize the filesystem (creates root directory)
-
-	// Infinite loop to continuously accept user commands
-	while (1) {
-		printf("Enter command: ");
-		fgets(input, 128, stdin); // Read user input from standard input
-		input[strcspn(input, "\n")] = 0; // Remove the trailing newline character from input
-
-		int num_args = sscanf(input, "%s %s", command, pathname); // Parse the input into command and pathname
-		int cmd_index = find_command(command); // Find the command index in the predefined command list
-
-		// If command is not found, notify the user and restart the loop
-		if (cmd_index == -1) {
-			printf("Command not found!\n");
-			continue;
-		}
-
-		// Process the command using a switch statement
-		switch (cmd_index) {
-		case 0: // mkdir (Make Directory)
-			if (num_args < 2) {
-				printf("Usage: mkdir <pathname>\n"); // Ensure the user provides a pathname
-			}
-			else {
-				mkdir(pathname); // Call mkdir function to create the directory
-			}
-			break;
-
-		case 1: // rmdir (Remove Directory)
-			if (num_args < 2) {
-				printf("Usage: rmdir <pathname>\n"); // Ensure a pathname is provided
-			}
-			else {
-				rmdir(pathname); // Call rmdir function to remove the directory
-			}
-			break;
-
-		case 2: // cd (Change Directory)
-			if (num_args < 2) {
-				cwd = cwd->parent; // If no pathname is provided, move to the parent directory
-			}
-			else {
-				cd(pathname); // Change the directory to the specified pathname
-			}
-			break;
-
-		case 3: // ls (List Directory Contents)
-			if (num_args < 2) {
-				ls("."); // If no pathname is provided, list contents of the current directory
-			}
-			else {
-				ls(pathname); // List contents of the specified directory
-			}
-			break;
-
-		case 4: // pwd (Print Working Directory)
-			pwd(); // Display the full path of the current directory
-			break;
-
-		case 5: // creat (Create File)
-			if (num_args < 2) {
-				printf("Usage: creat <pathname>\n"); // Ensure the user provides a filename
-			}
-			else {
-				creat(pathname); // Create a new file with the specified pathname
-			}
-			break;
-
-		case 6: // rm (Remove File)
-			if (num_args < 2) {
-				printf("Usage: rm <pathname>\n"); // Ensure the user provides a filename
-			}
-			else {
-				rm(pathname); // Remove the specified file
-			}
-			break;
-
-		case 7: // save (Save Filesystem to File)
-			if (num_args < 2) {
-				printf("Usage: save <filename>\n"); // Ensure the user provides a filename
-			}
-			else {
-				save(pathname); // Save the current filesystem structure to a file
-			}
-			break;
-
-		case 8: // reload (Load Filesystem from File)
-			if (num_args < 2) {
-				printf("Usage: reload <filename>\n"); // Ensure the user provides a filename
-			}
-			else {
-				reload(pathname); // Reload the filesystem structure from a saved file
-			}
-			break;
-
-		case 9: // quit (Exit Program)
-			save(pathname); // Save the filesystem before exiting
-			printf("Exiting filesystem simulator.\n");
-			exit(0); // Terminate the program
-
-		default:
-			printf("Command not implemented yet!\n"); // Handle unimplemented commands
-		}
-	}
 }
