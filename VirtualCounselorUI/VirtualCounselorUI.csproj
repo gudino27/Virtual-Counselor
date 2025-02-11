@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OpenQA.Selenium.Winium" Version="1.0.0.4" />
+  </ItemGroup>
+
 </Project>

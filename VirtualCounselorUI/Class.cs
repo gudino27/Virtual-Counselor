@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-partial class Program
+public static class WebScraper
 {
     static ChromeDriver driver; // Declare driver as a class-level variable
 
-    static void Main(string[] args)
+    public static void init()
     {
         // Initialize Chrome WebDriver (you can use Firefox or other browsers as well)
         var options = new ChromeOptions();
