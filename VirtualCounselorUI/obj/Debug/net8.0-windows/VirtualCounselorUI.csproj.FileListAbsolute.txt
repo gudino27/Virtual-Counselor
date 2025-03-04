@@ -1,4 +1,0 @@
-C:\cpts\322\VirtualCounselorUI\obj\Debug\net8.0-windows\MainWindow.g.cs
-C:\cpts\322\VirtualCounselorUI\obj\Debug\net8.0-windows\App.g.cs
-C:\cpts\322\VirtualCounselorUI\obj\Debug\net8.0-windows\VirtualCounselorUI_MarkupCompile.cache
-C:\cpts\322\VirtualCounselorUI\obj\Debug\net8.0-windows\VirtualCounselorUI_MarkupCompile.lref

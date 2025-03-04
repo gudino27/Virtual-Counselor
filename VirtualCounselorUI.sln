@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualCounselorUI", "VirtualCounselorUI\VirtualCounselorUI.csproj", "{F1CAFFDC-87DB-4697-876E-E7AA61242AD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualCounselor", "VirtualCounselor\VirtualCounselor.csproj", "{0113AE67-BFCA-4B9C-9473-0007B91D3824}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F1CAFFDC-87DB-4697-876E-E7AA61242AD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1CAFFDC-87DB-4697-876E-E7AA61242AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1CAFFDC-87DB-4697-876E-E7AA61242AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1CAFFDC-87DB-4697-876E-E7AA61242AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0113AE67-BFCA-4B9C-9473-0007B91D3824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0113AE67-BFCA-4B9C-9473-0007B91D3824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0113AE67-BFCA-4B9C-9473-0007B91D3824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0113AE67-BFCA-4B9C-9473-0007B91D3824}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
