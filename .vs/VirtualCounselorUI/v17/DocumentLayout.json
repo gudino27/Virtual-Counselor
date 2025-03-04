@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "C:\\cpts\\322\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\webscrapertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\webscrapertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\degreetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\degreetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D44C89A-810E-47A0-8C1A-163301B7C2CE}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D44C89A-810E-47A0-8C1A-163301B7C2CE}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\centralbackendtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\centralbackendtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\coursemanagertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\coursemanagertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreeclasses\\degree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreeclasses\\degree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\degreemanagertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\degreemanagertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreeclasses\\major.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreeclasses\\major.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\coursetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\coursetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|c:\\cpts\\322\\virtualcounselortests\\virtualcounselortests.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{313B31D0-BC44-41E2-98EC-7A8C17EAADA9}|VirtualCounselorTests\\VirtualCounselorTests.csproj|solutionrelative:virtualcounselortests\\virtualcounselortests.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreeclasses\\minor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreeclasses\\minor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,28 +35,12 @@
       "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\centralbackend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreeclasses\\major.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreeclasses\\major.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreeclasses\\degree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreeclasses\\degree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreeclasses\\minor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreeclasses\\minor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\coursemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\coursemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\degreemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|solutionrelative:virtualcounselor\\backend\\degreemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0113AE67-BFCA-4B9C-9473-0007B91D3824}|VirtualCounselor\\VirtualCounselor.csproj|c:\\cpts\\322\\virtualcounselor\\backend\\webscraper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,111 +54,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WebScraperTests.cs",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\WebScraperTests.cs",
-              "RelativeDocumentMoniker": "VirtualCounselorTests\\WebScraperTests.cs",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\WebScraperTests.cs",
-              "RelativeToolTip": "VirtualCounselorTests\\WebScraperTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:30:01.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DegreeManagerTests.cs",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\DegreeManagerTests.cs",
-              "RelativeDocumentMoniker": "VirtualCounselorTests\\DegreeManagerTests.cs",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\DegreeManagerTests.cs",
-              "RelativeToolTip": "VirtualCounselorTests\\DegreeManagerTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:29:46.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CourseManagerTests.cs",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\CourseManagerTests.cs",
-              "RelativeDocumentMoniker": "VirtualCounselorTests\\CourseManagerTests.cs",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\CourseManagerTests.cs",
-              "RelativeToolTip": "VirtualCounselorTests\\CourseManagerTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:29:31.658Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CourseTests.cs",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\CourseTests.cs",
-              "RelativeDocumentMoniker": "VirtualCounselorTests\\CourseTests.cs",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\CourseTests.cs",
-              "RelativeToolTip": "VirtualCounselorTests\\CourseTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:29:21.398Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CentralBackendTests.cs",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\CentralBackendTests.cs",
-              "RelativeDocumentMoniker": "VirtualCounselorTests\\CentralBackendTests.cs",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\CentralBackendTests.cs",
-              "RelativeToolTip": "VirtualCounselorTests\\CentralBackendTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:29:09.837Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DegreeTests.cs",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\DegreeTests.cs",
-              "RelativeDocumentMoniker": "VirtualCounselorTests\\DegreeTests.cs",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\DegreeTests.cs",
-              "RelativeToolTip": "VirtualCounselorTests\\DegreeTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:28:26.498Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "VirtualCounselorTests",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\VirtualCounselorTests.csproj",
-              "RelativeDocumentMoniker": "VirtualCounselorTests\\VirtualCounselorTests.csproj",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\VirtualCounselorTests.csproj",
-              "RelativeToolTip": "VirtualCounselorTests\\VirtualCounselorTests.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-04T07:26:58.339Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Program.cs",
-              "RelativeDocumentMoniker": "VirtualCounselor\\Program.cs",
-              "ToolTip": "C:\\cpts\\322\\VirtualCounselor\\Program.cs",
-              "RelativeToolTip": "VirtualCounselor\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:17:28.012Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -193,7 +70,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "VirtualCounselor\\Components\\Routes.razor",
+              "ToolTip": "C:\\cpts\\322\\VirtualCounselor\\Components\\Routes.razor",
+              "RelativeToolTip": "VirtualCounselor\\Components\\Routes.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-04T07:39:17.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselorTests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "VirtualCounselorTests\\UnitTest1.cs",
+              "ToolTip": "C:\\cpts\\322\\VirtualCounselorTests\\UnitTest1.cs",
+              "RelativeToolTip": "VirtualCounselorTests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T07:38:48.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Program.cs",
+              "RelativeDocumentMoniker": "VirtualCounselor\\Program.cs",
+              "ToolTip": "C:\\cpts\\322\\VirtualCounselor\\Program.cs",
+              "RelativeToolTip": "VirtualCounselor\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T07:17:28.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Minor.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\DegreeClasses\\Minor.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\DegreeClasses\\Minor.cs",
@@ -206,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "Major.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\DegreeClasses\\Major.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\DegreeClasses\\Major.cs",
@@ -219,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "Degree.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\DegreeClasses\\Degree.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\DegreeClasses\\Degree.cs",
@@ -232,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 2,
               "Title": "DegreeManager.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\DegreeManager.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\DegreeManager.cs",
@@ -245,7 +161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 8,
               "Title": "Course.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\Course.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\Course.cs",
@@ -253,12 +169,11 @@
               "RelativeToolTip": "VirtualCounselor\\Backend\\Course.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T06:50:57.029Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T06:50:57.029Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 9,
               "Title": "CourseManager.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\CourseManager.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\CourseManager.cs",
@@ -266,12 +181,11 @@
               "RelativeToolTip": "VirtualCounselor\\Backend\\CourseManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T06:50:45.873Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T06:50:45.873Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 10,
               "Title": "WebScraper.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\WebScraper.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\WebScraper.cs",
@@ -279,12 +193,11 @@
               "RelativeToolTip": "VirtualCounselor\\Backend\\WebScraper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T06:50:31.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T06:50:31.769Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "CentralBackend.cs",
               "DocumentMoniker": "C:\\cpts\\322\\VirtualCounselor\\Backend\\CentralBackend.cs",
               "RelativeDocumentMoniker": "VirtualCounselor\\Backend\\CentralBackend.cs",
@@ -292,8 +205,7 @@
               "RelativeToolTip": "VirtualCounselor\\Backend\\CentralBackend.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T06:49:37.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T06:49:37.556Z"
             }
           ]
         }
