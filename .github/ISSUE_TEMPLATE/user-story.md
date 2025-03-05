@@ -10,13 +10,6 @@ assignees: ''
 ---
 Id:
 ---
-name: User Story
-about: 'user stories template '
-title: ''
-labels: ''
-assignees: ''
-
----
 
 **As a** [role]
 **I need** [function]
