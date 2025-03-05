@@ -8,6 +8,8 @@ assignees: ''
 ---
 
 ---
+Id:
+---
 name: User Story
 about: 'user stories template '
 title: ''
