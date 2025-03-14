@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\cpts\\322\\VirtualCounselorTests\\VirtualCounselorTests.csproj": {}
+    "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselorTests\\VirtualCounselorTests.csproj": {}
   },
   "projects": {
-    "C:\\cpts\\322\\VirtualCounselorTests\\VirtualCounselorTests.csproj": {
+    "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselorTests\\VirtualCounselorTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cpts\\322\\VirtualCounselorTests\\VirtualCounselorTests.csproj",
+        "projectUniqueName": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselorTests\\VirtualCounselorTests.csproj",
         "projectName": "VirtualCounselorTests",
-        "projectPath": "C:\\cpts\\322\\VirtualCounselorTests\\VirtualCounselorTests.csproj",
-        "packagesPath": "C:\\Users\\tyler\\.nuget\\packages\\",
-        "outputPath": "C:\\cpts\\322\\VirtualCounselorTests\\obj\\",
+        "projectPath": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselorTests\\VirtualCounselorTests.csproj",
+        "packagesPath": "C:\\Users\\RCali\\.nuget\\packages\\",
+        "outputPath": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselorTests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\tyler\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\RCali\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,15 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj": {
-                "projectPath": "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj"
+              "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj": {
+                "projectPath": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj"
               }
             }
           }
@@ -48,8 +43,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -92,25 +86,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj": {
+    "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj",
+        "projectUniqueName": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj",
         "projectName": "VirtualCounselor",
-        "projectPath": "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj",
-        "packagesPath": "C:\\Users\\tyler\\.nuget\\packages\\",
-        "outputPath": "C:\\cpts\\322\\VirtualCounselor\\obj\\",
+        "projectPath": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj",
+        "packagesPath": "C:\\Users\\RCali\\.nuget\\packages\\",
+        "outputPath": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\tyler\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\RCali\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -118,7 +108,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -136,12 +125,37 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "DotNetSeleniumExtras.WaitHelpers": {
+              "target": "Package",
+              "version": "[3.11.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.14, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.29.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.29.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[134.0.6998.8800, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -161,7 +175,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
