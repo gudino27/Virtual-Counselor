@@ -27,11 +27,6 @@ namespace VirtualCounselor
             options.AddArgument("--log-level=3");
             options.AddArgument("--disable-gpu");
             options.AddArgument("--disable-logging");
-            options.AddArgument("--ignore-certificate-errors");
-            options.AddArgument("--ignore-ssl-errors=yes");
-            options.AddArgument("--incognito");
-            options.AddArgument("--disable-blink-features=AutomationControlled");
-            options.AddArgument("--allow-insecure-localhost");
             var service = ChromeDriverService.CreateDefaultService();
             service.SuppressInitialDiagnosticInformation = true;
             service.EnableVerboseLogging = false;
@@ -43,7 +38,6 @@ namespace VirtualCounselor
                 Console.Clear();
                 ProcessCourseData();
                 */
-                LoadDegreeWebPage();
                 ProcessDegreeData();
             }
         }
