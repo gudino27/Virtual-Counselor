@@ -1,1 +1,4 @@
 Virtual Counselor
+Finished Degree requirements webscraping, kinda jank, but it works. IDK how the stuff in the main solution runs and it wouldn't run on my laptop so I wrote this seperatly. I wrote it in a seperate solution + project and then copied the whole file into the backend folder to commit it and push it here. This solution will NOT RUN, there are TWO MAINS, one in Webscraper.cs and one in RyansDegreeScraper.cs . RyansDegreeScraper is a self sufficient file atm, copy it into a new solution & asp.net core project with the NuGet packages we need and it will run. Currently just prints all info to the console, can be adapted to save it to a dictionary or something later. 
+
+TLDR: THIS SOLUTION WILL NOT RUN RyansDegreeScraper.cs is the only file that matters. Copying RyansDegreeScraper.cs into its own solution & project (asp.net core empty) will run fine (with all NuGet packages installed)
