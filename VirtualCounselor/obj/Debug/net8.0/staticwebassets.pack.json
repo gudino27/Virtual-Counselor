@@ -1,24 +1,28 @@
 {
   "Files": [
     {
-      "Id": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
-      "PackagePath": "staticwebassets\\VirtualCounselor.bundle.scp.css"
+      "Id": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "PackagePath": "staticwebassets\\VirtualCounselor.5tcnj1wxd5.bundle.scp.css"
     },
     {
-      "Id": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Id": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.VirtualCounselor.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.VirtualCounselor.Microsoft.AspNetCore.StaticWebAssets.props",

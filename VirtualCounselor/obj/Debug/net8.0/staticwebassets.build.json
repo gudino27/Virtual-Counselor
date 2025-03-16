@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1wAbdTg7QP6SSjhF5xxbmCyLf7cZ+ZwH6yXWoHzC8Eg=",
+  "Hash": "lRg6uHrl7cJHFx+M0eQt9XKuteNtOl72dZvqSxMDRYA=",
   "Source": "VirtualCounselor",
   "BasePath": "_content/VirtualCounselor",
   "Mode": "Default",
@@ -10,19 +10,19 @@
     {
       "Name": "VirtualCounselor\\wwwroot",
       "Source": "VirtualCounselor",
-      "ContentRoot": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
+      "Identity": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "VirtualCounselor.styles.css",
+      "RelativePath": "VirtualCounselor#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Primary",
@@ -31,17 +31,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
+      "Fingerprint": "5tcnj1wxd5",
+      "Integrity": "Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css"
+      "OriginalItemSpec": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css"
     },
     {
-      "Identity": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "Identity": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "VirtualCounselor.bundle.scp.css",
+      "RelativePath": "VirtualCounselor#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Primary",
@@ -50,85 +52,589 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
+      "Fingerprint": "5tcnj1wxd5",
+      "Integrity": "Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css"
     },
     {
-      "Identity": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Identity": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "app.css",
+      "RelativePath": "app#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "da95v2qkru",
+      "Integrity": "u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "bootstrap/bootstrap.min.css",
+      "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "6gzpyzhau4",
+      "Integrity": "SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "bootstrap/bootstrap.min.css.map",
+      "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "8inm30yfxf",
+      "Integrity": "gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WSU Stuff\\CPTS 322\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "favicon.png",
+      "RelativePath": "favicon#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ifv42okdf2",
+      "Integrity": "4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "app.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2591"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="
+        }
+      ]
+    },
+    {
+      "Route": "app.da95v2qkru.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2591"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "da95v2qkru"
+        },
+        {
+          "Name": "label",
+          "Value": "app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="
+        }
+      ]
+    },
+    {
+      "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162726"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6gzpyzhau4"
+        },
+        {
+          "Name": "label",
+          "Value": "bootstrap/bootstrap.min.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
+        }
+      ]
+    },
+    {
+      "Route": "bootstrap/bootstrap.min.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162726"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
+        }
+      ]
+    },
+    {
+      "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "449111"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8inm30yfxf"
+        },
+        {
+          "Name": "label",
+          "Value": "bootstrap/bootstrap.min.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+        }
+      ]
+    },
+    {
+      "Route": "bootstrap/bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "449111"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.ifv42okdf2.png",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1148"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ifv42okdf2"
+        },
+        {
+          "Name": "label",
+          "Value": "favicon.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.png",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1148"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:18:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
+    },
+    {
+      "Route": "VirtualCounselor.5tcnj1wxd5.bundle.scp.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5915"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:47:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5tcnj1wxd5"
+        },
+        {
+          "Name": "label",
+          "Value": "VirtualCounselor.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo="
+        }
+      ]
+    },
+    {
+      "Route": "VirtualCounselor.5tcnj1wxd5.styles.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5915"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:47:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5tcnj1wxd5"
+        },
+        {
+          "Name": "label",
+          "Value": "VirtualCounselor.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo="
+        }
+      ]
+    },
+    {
+      "Route": "VirtualCounselor.bundle.scp.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5915"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:47:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo="
+        }
+      ]
+    },
+    {
+      "Route": "VirtualCounselor.styles.css",
+      "AssetFile": "C:\\Users\\modes\\source\\repos\\Github\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5915"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 02:47:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z4hkR2oDgHGm9dHpASgUtaQq8aBgxduXHWT+uupDiAo="
+        }
+      ]
     }
   ]
 }

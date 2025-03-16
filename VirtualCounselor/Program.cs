@@ -8,7 +8,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
-var webScraper = new WebScraper;
+var webScraper = new WebScraper();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
