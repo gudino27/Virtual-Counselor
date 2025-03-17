@@ -1,0 +1,9 @@
+﻿<div class="DegreeSearchResult" @onclick="() => onClick.InvokeAsync(degree)">
+	<h3>@degree.Name</h3>
+	<p>I am temporary! this degrees id is @degree.Id</p>
+</div>
+
+@code {
+	[Parameter] public Degree degree { get; set; }
+	[Parameter] public EventCallback<Degree> onClick { get; set; }
+}

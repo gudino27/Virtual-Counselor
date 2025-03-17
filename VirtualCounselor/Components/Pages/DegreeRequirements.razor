@@ -1,7 +1,45 @@
 ﻿@page "/DegreeRequirements"
 @rendermode InteractiveServer
-<h3>DegreeRequirements</h3>
+<h1>Degree Requirements</h1>
+
+Current major: @degreeName
+
+
+@foreach (var course in degreeCourses){
+	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
+}
+
+Current minor: @minorName
+
+@foreach (var course in minorCourses){
+	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
+}
+
+
 
 @code {
+	// Temporary title for degree. will be replaced with a call to degree manager later
+	private string degreeName = "test degree";
+
+	// This is the list of courses required to be taken for a degree
+	// Temporarily declared here however will get its data from degree manager later
+	// structure is (name,taken?)
+	private List<(string, bool)> degreeCourses = new List<(string, bool)>
+	{
+		("test1",false),
+		("test2",true),
+		("test3",false)
+	};
+
+	// Repeated code for the minor section. will most likely condense into a single looped set of code in order
+	// to allow for as many majors as you'd like
+	private string minorName = "test minor";
+
+	private List<(string, bool)> minorCourses = new List<(string, bool)>
+	{
+		("test1", true),
+		("test4",true),
+		("test5",false)
+	};
 
 }
