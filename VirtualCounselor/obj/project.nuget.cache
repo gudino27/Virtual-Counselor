@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "RZWIl4PspTo=",
+  "dgSpecHash": "uT8TOzLNH8I=",
   "success": true,
   "projectFilePath": "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\tyler\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
+    "C:\\Users\\tyler\\.nuget\\packages\\selenium.support\\4.29.0\\selenium.support.4.29.0.nupkg.sha512",
+    "C:\\Users\\tyler\\.nuget\\packages\\selenium.webdriver\\4.29.0\\selenium.webdriver.4.29.0.nupkg.sha512",
+    "C:\\Users\\tyler\\.nuget\\packages\\selenium.webdriver.chromedriver\\134.0.6998.8800\\selenium.webdriver.chromedriver.134.0.6998.8800.nupkg.sha512"
+  ],
   "logs": []
 }
