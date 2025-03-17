@@ -1,0 +1,79 @@
+﻿@page "/search-results"
+@inject CentralBackend Backend
+
+<div class="container">
+    <h3>Course Search</h3>
+    <div class="search-box">
+        <input @bind="searchTerm"
+               @bind:event="oninput"
+               @onkeyup="@(e => { if (e.Key == "Enter") PerformSearch(); })"
+               placeholder="Enter course name, prefix, or keyword..." />
+        <button class="btn btn-primary" @onclick="PerformSearch" disabled="@isSearching">Search</button>
+    </div>
+
+    @if (hasSearched)
+    {
+        <div class="search-results">
+            <h4>Search Results for "@searchTerm"</h4>
+            @if (isSearching)
+            {
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            }
+            else if (searchResults.Count == 0)
+            {
+                <p>No courses found matching your search.</p>
+            }
+            else
+            {
+                <ul class="list-unstyled">
+                    @foreach (var course in searchResults)
+                    {
+                        <li class="course-item">
+                            <strong>@course.CourseCode</strong> - @course.Title
+                            <small class="text-muted">(@course.Credits credits)</small>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private string searchTerm = string.Empty;
+    private bool hasSearched = false;
+    private bool isSearching = false;
+    private List<Course> searchResults = new();
+
+    private async Task PerformSearch()
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            hasSearched = false;
+            searchResults.Clear();
+            StateHasChanged();
+            return;
+        }
+
+        isSearching = true;
+        hasSearched = true;
+        StateHasChanged();
+
+        try
+        {
+            searchResults = await Task.Run(() => Backend.SearchCourses(searchTerm));
+        }
+        catch (Exception ex)
+        {
+            // Handle errors gracefully (e.g., log, display error message)
+            Console.WriteLine($"Error during search: {ex.Message}");
+        }
+        finally
+        {
+            isSearching = false;
+            StateHasChanged();
+        }
+    }
+    }

@@ -8,16 +8,10 @@
     ".NETCoreApp,Version=v8.0": {
       "VirtualCounselorTests/1.0.0": {
         "dependencies": {
-          "DotNetSeleniumExtras.WaitHelpers": "3.11.0",
-          "Microsoft.AspNetCore.OpenApi": "8.0.14",
           "Microsoft.NET.Test.Sdk": "17.13.0",
           "NUnit": "4.3.2",
           "NUnit.Analyzers": "4.6.0",
           "NUnit3TestAdapter": "5.0.0",
-          "Selenium.Support": "4.29.0",
-          "Selenium.WebDriver": "4.29.0",
-          "Selenium.WebDriver.ChromeDriver": "134.0.6998.8800",
-          "System.Net.Http": "4.3.4",
           "VirtualCounselor": "1.0.0",
           "coverlet.collector": "6.0.4"
         },

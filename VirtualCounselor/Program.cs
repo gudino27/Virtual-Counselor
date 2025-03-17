@@ -7,8 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Register CentralBackend and related services
+builder.Services.AddSingleton<CentralBackend>();
+
 var app = builder.Build();
 var webScraper = new WebScraper();
+
+// Retrieve the backend from the service container. Load mock data after backend is initialized
+var backend = app.Services.GetRequiredService<CentralBackend>();
+
+// Initialize the system and load mock data
+backend.InitializeSystem();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

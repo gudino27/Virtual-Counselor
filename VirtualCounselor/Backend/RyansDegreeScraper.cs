@@ -11,6 +11,7 @@ using System.Collections;
 using System.Diagnostics.Metrics;
 using System.Collections.ObjectModel;
 
+
 public class WebScraper
 {
     static ChromeDriver? driver; // Declare driver as a class-level variable

@@ -5,5 +5,6 @@
     /// </summary>
     public class Major : Degree
     {
+        public int Credits { get; set; } = 120;
     }
 }

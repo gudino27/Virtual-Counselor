@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/modes/source/repos/Github/Virtual-Counselor/VirtualCounselor/Components/Pages/CourseSearch.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3Vyc2VTZWFyY2gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/modes/source/repos/Github/Virtual-Counselor/VirtualCounselor/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
