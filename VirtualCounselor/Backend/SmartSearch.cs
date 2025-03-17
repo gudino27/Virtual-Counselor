@@ -36,7 +36,10 @@ namespace VirtualCounselor.Backend
                 return new List<Course>();
             }
 
-            var keywords = query.ToLower().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            // Escape special characters in the query
+            var searchQuery = System.Text.RegularExpressions.Regex.Escape(query.ToLower());
+            var keywords = searchQuery.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
             Console.WriteLine($"Searching with keywords: {string.Join(", ", keywords)}");
             Console.WriteLine($"Total courses available: {courseManager.GetAllCourses().Count}");
 
@@ -44,7 +47,7 @@ namespace VirtualCounselor.Backend
                 .Where(course => !takenCourses.Contains(course.CourseCode) &&
                     keywords.All(k =>
                         (course.CourseCode?.ToLower().Contains(k) ?? false) ||
-                        (course.Title?.ToLower().Contains(k) ?? false) ||
+                        (course.Title?.ToLower().Contains(k.Replace("\\", "")) ?? false) ||
                         (course.Prefix?.ToLower().Contains(k) ?? false)
                     ))
                 .ToList();

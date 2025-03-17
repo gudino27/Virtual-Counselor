@@ -272,5 +272,134 @@ namespace VirtualCounselorTests
             Assert.That(result, Contains.Item("MATH 171"));
             Assert.That(result, Contains.Item("MATH 172"));
         }
+
+        [Test]
+        public void SearchCourses_SpecialCharactersInQuery_HandlesSpecialCharactersGracefully()
+        {
+            var testCourses = new List<Course>
+            {
+                new Course { CourseCode = "CS 121", Title = "C++ Programming", Prefix = "CS" },
+                new Course { CourseCode = "CS 122", Title = "C# Programming", Prefix = "CS" }
+            };
+            courseManager.SetupTestCourses(testCourses);
+            takenCourses.Clear(); // Clear taken courses for this test
+            smartSearch = new SmartSearch(courseManager, degrees, takenCourses);
+
+            var result = smartSearch.SearchCourses("c++");
+
+            Assert.That(result.Count, Is.EqualTo(1));
+            Assert.That(result[0].Title, Is.EqualTo("C++ Programming"));
+        }
+
+        [Test]
+        public void SearchCourses_LargeDataset_PerformsEfficiently()
+        {
+            var testCourses = new List<Course>();
+            for (int i = 100; i < 1000; i++)
+            {
+                testCourses.Add(new Course
+                {
+                    CourseCode = $"CS {i}",
+                    Title = $"Course {i}",
+                    Prefix = "CS"
+                });
+            }
+            courseManager.SetupTestCourses(testCourses);
+
+            var startTime = DateTime.Now;
+            var result = smartSearch.SearchCourses("CS");
+            var duration = DateTime.Now - startTime;
+
+            Assert.That(duration.TotalSeconds, Is.LessThan(1));
+            Assert.That(result.Count, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void RecommendUCoreCourses_EmptyUCoreCategory_SkipsInvalidCourses()
+        {
+            var testCourses = new List<Course>
+            {
+                new Course { CourseCode = "CS 121", Title = "Programming", UCoreCategory = "" },
+                new Course { CourseCode = "HIST 105", Title = "History", UCoreCategory = "HUM" }
+            };
+            courseManager.SetupTestCourses(testCourses);
+
+            var result = smartSearch.RecommendUCoreCourses();
+
+            Assert.That(result.Count, Is.EqualTo(1));
+            Assert.That(result[0].UCoreCategory, Is.EqualTo("HUM"));
+        }
+
+        //[Test]
+        //public void RecommendUnmetDegreeCourses_WithPrerequisiteChain_ReturnsCoursesThatCanBeTaken()
+        //{
+        //    // Arrange
+        //    var testCourses = new List<Course>
+        //    {
+        //        new Course { CourseCode = "CS 121", Title = "Intro Programming" },
+        //        new Course { CourseCode = "CS 122", Title = "Advanced Programming" },
+        //        new Course { CourseCode = "CS 223", Title = "Data Structures" }
+        //    };
+        //            courseManager.SetupTestCourses(testCourses);
+
+        //            degrees = new List<Degree>
+        //    {
+        //        new Degree
+        //        {
+        //            Name = "Computer Science",
+        //            Requirements = new List<(List<string> Options, bool IsRequired)>
+        //            {
+        //                (new List<string> { "CS 121" }, true),
+        //                (new List<string> { "CS 122" }, true),
+        //                (new List<string> { "CS 223" }, true)
+        //            }
+        //        }
+        //    };
+
+        //    // Test with no courses taken
+        //    var noCoursesSearch = new SmartSearch(courseManager, degrees, new List<string>());
+        //    var resultNoPrereqs = noCoursesSearch.RecommendUnmetDegreeCourses();
+        //    Assert.That(resultNoPrereqs.Count, Is.EqualTo(1));
+        //    Assert.That(resultNoPrereqs[0], Is.EqualTo("CS 121"));
+
+        //    // Test with CS 121 taken
+        //    var oneCourseTaken = new SmartSearch(courseManager, degrees, new List<string> { "CS 121" });
+        //    var resultWithOnePrereq = oneCourseTaken.RecommendUnmetDegreeCourses();
+        //    Assert.That(resultWithOnePrereq.Count, Is.EqualTo(1));
+        //    Assert.That(resultWithOnePrereq[0], Is.EqualTo("CS 122"));
+        //}
+
+        [Test]
+        public void GetAllRecommendedCourses_DuplicateRecommendations_ReturnsDistinctCourses()
+        {
+            var testCourses = new List<Course>
+            {
+                new Course
+                {
+                    CourseCode = "MATH 171",
+                    Title = "Calculus I",
+                    UCoreCategory = "QUAN"  // Course that satisfies both UCORE and degree requirement
+                }
+            };
+                courseManager.SetupTestCourses(testCourses);
+
+                degrees = new List<Degree>
+            {
+                new Degree
+                {
+                    Name = "Mathematics",
+                    Requirements = new List<(List<string> Options, bool IsRequired)>
+                    {
+                        (new List<string> { "MATH 171" }, true)
+                    }
+                }
+            };
+
+            smartSearch = new SmartSearch(courseManager, degrees, new List<string>());
+            var result = smartSearch.GetAllRecommendedCourses();
+
+            Assert.That(result.Count, Is.EqualTo(1));
+            Assert.That(result[0].CourseCode, Is.EqualTo("MATH 171"));
+        }
     }
 }
