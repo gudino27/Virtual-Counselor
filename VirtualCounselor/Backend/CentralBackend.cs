@@ -7,9 +7,6 @@
     /// </summary>
     public class CentralBackend
     {
-        // The virtual conselor will contain the rest of the programs logic in itself so it can communicate with them (via function calls or events)
-        private CourseManager courseManager = new CourseManager();
-        private DegreeManager degreeManager = new DegreeManager();
-        private WebScraper webScraper = new WebScraper();
+
     }
 }

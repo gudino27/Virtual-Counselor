@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\cpts\\322\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "PackagePath": "staticwebassets\\VirtualCounselor.5tcnj1wxd5.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\cpts\\322\\VirtualCounselor\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\cpts\\322\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\cpts\\322\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\cpts\\322\\VirtualCounselor\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.VirtualCounselor.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.VirtualCounselor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.VirtualCounselor.props",
+      "PackagePath": "build\\VirtualCounselor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.VirtualCounselor.props",
+      "PackagePath": "buildMultiTargeting\\VirtualCounselor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.VirtualCounselor.props",
+      "PackagePath": "buildTransitive\\VirtualCounselor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

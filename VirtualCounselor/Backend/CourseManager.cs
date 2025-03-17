@@ -8,5 +8,6 @@
     public class CourseManager
     {
         private List<Course> courses = new List<Course> ();
+
     }
 }

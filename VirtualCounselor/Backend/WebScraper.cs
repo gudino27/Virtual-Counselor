@@ -1,4 +1,14 @@
-﻿namespace VirtualCounselor
+﻿using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Threading;
+using Microsoft.VisualBasic;
+using OpenQA.Selenium.BiDi.Modules.Session;
+
+namespace VirtualCounselor
 {
     /// <summary>
     /// The WebScraper class will read all of the data from the WSU cite.
