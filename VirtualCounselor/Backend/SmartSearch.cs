@@ -36,19 +36,16 @@ namespace VirtualCounselor.Backend
                 return new List<Course>();
             }
 
-            var keywords = query
-                .ToLower()
-                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
+            var keywords = query.ToLower().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             Console.WriteLine($"Searching with keywords: {string.Join(", ", keywords)}");
             Console.WriteLine($"Total courses available: {courseManager.GetAllCourses().Count}");
 
             var results = courseManager.GetAllCourses()
                 .Where(course => !takenCourses.Contains(course.CourseCode) &&
                     keywords.All(k =>
-                        course.CourseCode.ToLower().Contains(k) ||
-                        course.Title.ToLower().Contains(k) ||
-                        course.Prefix.ToLower().Contains(k)
+                        (course.CourseCode?.ToLower().Contains(k) ?? false) ||
+                        (course.Title?.ToLower().Contains(k) ?? false) ||
+                        (course.Prefix?.ToLower().Contains(k) ?? false)
                     ))
                 .ToList();
 

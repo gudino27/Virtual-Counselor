@@ -21,26 +21,13 @@ namespace VirtualCounselorTests
         /// </summary>
         private class TestCourseManager : CourseManager
         {
-            private Dictionary<string, Course> testCourses = new();
-
-            public void SetupTestCourses(List<Course> courses)
+            public void SetupTestCourses(List<Course> testCourses)
             {
-                testCourses.Clear();
-                foreach (var course in courses)
+                Clear();
+                foreach (var course in testCourses)
                 {
-                    testCourses[course.CourseCode] = course;
+                    AddCourse(course);
                 }
-            }
-
-            public new List<Course> GetAllCourses()
-            {
-                return new List<Course>(testCourses.Values);
-            }
-
-            public new Course GetCourse(string courseCode)
-            {
-                testCourses.TryGetValue(courseCode, out var course);
-                return course;
             }
         }
 
@@ -179,6 +166,111 @@ namespace VirtualCounselorTests
             courseManager.SetupTestCourses(new List<Course>());
             var result = smartSearch.SearchCourses("Programming");
             Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void SearchCourses_MultipleKeywords_ReturnsMatchingCourses()
+        {
+            var testCourses = new List<Course>
+        {
+            new Course { CourseCode = "CS 121", Title = "Intro Programming" },
+            new Course { CourseCode = "CS 122", Title = "Advanced Programming" },
+            new Course { CourseCode = "MATH 171", Title = "Calculus Programming" }
+        };
+            courseManager.SetupTestCourses(testCourses);
+
+            var result = smartSearch.SearchCourses("Advanced Programming");
+
+            Assert.That(result.Count, Is.EqualTo(1));
+            Assert.That(result[0].CourseCode, Is.EqualTo("CS 122"));
+        }
+
+        [Test]
+        public void SearchCourses_PrefixOnly_ReturnsAllMatchingCourses()
+        {
+            var testCourses = new List<Course>
+            {
+                new Course { CourseCode = "CS 121", Title = "Intro Programming", Prefix = "CS" },
+                new Course { CourseCode = "CS 122", Title = "Advanced Programming", Prefix = "CS" },
+                new Course { CourseCode = "MATH 171", Title = "Calculus", Prefix = "MATH" }
+            };
+            courseManager.SetupTestCourses(testCourses);
+
+            // Clear taken courses for this test
+            takenCourses.Clear();
+            smartSearch = new SmartSearch(courseManager, degrees, takenCourses);
+
+            var result = smartSearch.SearchCourses("CS");
+
+            Assert.That(result.Count, Is.EqualTo(2));
+            Assert.That(result.Select(c => c.CourseCode), Contains.Item("CS 121"));
+            Assert.That(result.Select(c => c.CourseCode), Contains.Item("CS 122"));
+        }
+
+        [Test]
+        public void RecommendUCoreCourses_MultipleCategories_ReturnsAllUnmetCategories()
+        {
+            var testCourses = new List<Course>
+            {
+                new Course { CourseCode = "WRTG 101", Title = "Writing", UCoreCategory = "WRTG", Prefix = "WRTG" },
+                new Course { CourseCode = "HIST 105", Title = "History", UCoreCategory = "HUM", Prefix = "HIST" },
+                new Course { CourseCode = "MATH 171", Title = "Calculus", UCoreCategory = "QUAN", Prefix = "MATH" }
+            };
+            courseManager.SetupTestCourses(testCourses);
+
+            // Update taken courses to include WRTG 101
+            takenCourses.Add("WRTG 101");
+            smartSearch = new SmartSearch(courseManager, degrees, takenCourses);
+
+            var result = smartSearch.RecommendUCoreCourses();
+
+            Assert.That(result.Count, Is.EqualTo(2));
+            Assert.That(result.Select(c => c.UCoreCategory), Contains.Item("HUM"));
+            Assert.That(result.Select(c => c.UCoreCategory), Contains.Item("QUAN"));
+        }
+
+        [Test]
+        public void RecommendUnmetDegreeCourses_MultipleDegrees_ReturnsAllRequiredCourses()
+        {
+            degrees = new List<Degree>
+            {
+                new Degree
+                {
+                    Name = "Computer Science",
+                    Requirements = new List<(List<string> Options, bool IsRequired)>
+                    {
+                        (new List<string> { "CS 121", "CS 122" }, true),
+                        (new List<string> { "CS 223" }, true)
+                    }
+                },
+                new Degree
+                {
+                    Name = "Mathematics",
+                    Requirements = new List<(List<string> Options, bool IsRequired)>
+                    {
+                        (new List<string> { "MATH 171", "MATH 172" }, true)
+                    }
+                }
+            };
+
+            var testCourses = new List<Course>
+            {
+                new Course { CourseCode = "CS 121", Title = "Intro Programming" },
+                new Course { CourseCode = "CS 122", Title = "Advanced Programming" },
+                new Course { CourseCode = "CS 223", Title = "Advanced Data Structures" },
+                new Course { CourseCode = "MATH 171", Title = "Calculus I" },
+                new Course { CourseCode = "MATH 172", Title = "Calculus II" }
+            };
+            courseManager.SetupTestCourses(testCourses);
+
+            smartSearch = new SmartSearch(courseManager, degrees, new List<string> { "CS 121" });
+            var result = smartSearch.RecommendUnmetDegreeCourses();
+
+            Assert.That(result.Count, Is.EqualTo(4));
+            Assert.That(result, Contains.Item("CS 122"));
+            Assert.That(result, Contains.Item("CS 223"));
+            Assert.That(result, Contains.Item("MATH 171"));
+            Assert.That(result, Contains.Item("MATH 172"));
         }
     }
 }

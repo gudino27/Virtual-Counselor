@@ -18,7 +18,7 @@ namespace VirtualCounselor
         /// </summary>
         private Dictionary<string, Course> courses = new();
 
-        public bool AddCourse(Course course)
+        public virtual bool AddCourse(Course course)
         {
             if (course == null || string.IsNullOrWhiteSpace(course.CourseCode))
                 return false;
@@ -27,18 +27,18 @@ namespace VirtualCounselor
             return true;
         }
 
-        public Course GetCourse(string courseCode)
+        public virtual Course GetCourse(string courseCode)
         {
             courses.TryGetValue(courseCode, out var course);
             return course;
         }
 
-        public List<Course> GetAllCourses()
+        public virtual List<Course> GetAllCourses()
         {
             return courses.Values.ToList();
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             courses.Clear();
         }
