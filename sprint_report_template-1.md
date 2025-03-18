@@ -13,30 +13,24 @@ We did not have much Unfinished work as with this first sprint we wanted to make
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
 
- * URL of issue 1
- * URL of issue 2
- * URL of issue n
+ * URL of issue 1: https://github.com/gudino27/Virtual-Counselor/issues/9
+ * URL of issue 2: https://github.com/gudino27/Virtual-Counselor/issues/4
+ * URL of issue 3: https://github.com/gudino27/Virtual-Counselor/issues/11
+ * URL of issue 4: https://github.com/gudino27/Virtual-Counselor/issues/16
+ * URL of issue 5: https://github.com/gudino27/Virtual-Counselor/issues/15
 
- Desirables (Remove this section when you save the file):
-  * Each issue should be assigned to a milestone
-  * Each completed issue should be assigned to a pull request
-  * Each completed pull request should include a link to a "Before and After" video
-  * All team members who contributed to the issue should be assigned to it on GitHub
-  * Each issue should be assigned story points using a label
-  * Story points contribution of each team member should be indicated in a comment
  
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
  
- * URL of issue 1 <<One sentence explanation of why issue was not completed>>
- * URL of issue 2 <<One sentence explanation of why issue was not completed>>
- * URL of issue n <<One sentence explanation of why issue was not completed>>
- 
- Examples of explanations (Remove this section when you save the file):
-  * "We ran into a complication we did not anticipate (explain briefly)." 
-  * "We decided that the feature did not add sufficient value for us to work on it in this sprint (explain briefly)."
-  * "We could not reproduce the bug" (explain briefly).
-  * "We did not get to this issue because..." (explain briefly)
+ * URL of issue 1: https://github.com/gudino27/Virtual-Counselor/issues/13 <<Working on the other issues such as smart search, parsing and scraping, which are have higher priority by the way took a lot of time than expected so we did not get to this specific issue as soon as we wanted to.>>
+ * URL of issue 2: https://github.com/gudino27/Virtual-Counselor/issues/3 <<We did not get into this issue because it has lower priority compared to the ones we have completed so far.>>
+ * URL of issue 3: https://github.com/gudino27/Virtual-Counselor/issues/5 <<We did not get into this issue because it has lower priority compared to the ones we have completed so far.>>
+ * URL of issue 4: https://github.com/gudino27/Virtual-Counselor/issues/6 <<We did not get into this issue because it has lower priority compared to the ones we have completed so far.>>
+ * URL of issue 5: https://github.com/gudino27/Virtual-Counselor/issues/7 <<We did not get into this issue because it has lower priority compared to the ones we have completed so far.>>
+ * URL of issue 6: https://github.com/gudino27/Virtual-Counselor/issues/8 <<We decided that the feature did not add sufficient value for us to work on it in this sprint since working on it assume all the other features are already implemented and working well, which is not the case.>>
+ * URL of issue 7: https://github.com/gudino27/Virtual-Counselor/issues/10 <<We did not get into this issue because it has lower priority compared to the ones we have completed so far.>>
+ * URL of issue 8: https://github.com/gudino27/Virtual-Counselor/issues/12 <<We did not get into this issue because it has lower priority compared to the ones we have completed so far.>>
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
