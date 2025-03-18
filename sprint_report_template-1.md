@@ -1,4 +1,4 @@
-# Sprint x Report 
+# Sprint 1 Report 
 Video Link: https://youtu.be/LqxLV-oXJNg
 ## What's New (User Facing)
  * CPTS Courses
@@ -6,7 +6,7 @@ Video Link: https://youtu.be/LqxLV-oXJNg
  * UI for degree manager
 
 ## Work Summary (Developer Facing)
-Some of the things we have accomplished are seeing what is possible with webscrapping and how we can optimize it so we don’t have a lot of wait time between loading the info as well as getting it displayed. For the UI it was a working demo of what can be done as we had to change it last minute due to not being able to use WPF and having to learn blazor. Another thing we learned was coding in C# as this was our first time and although there was a learning curve we were able to use our previous knowledge to pick it up pretty quick, the struggle point was with selenium and the wsu websites formatting which we overcame by going step by step until we got both the courses for CPTS as well as the degree for it as well loading in perfectly.
+Some of the things we have accomplished are seeing what is possible with webscrapping and how we can optimize it so we donâ€™t have a lot of wait time between loading the info as well as getting it displayed. For the UI it was a working demo of what can be done as we had to change it last minute due to not being able to use WPF and having to learn blazor. Another thing we learned was coding in C# as this was our first time and although there was a learning curve we were able to use our previous knowledge to pick it up pretty quick, the struggle point was with selenium and the wsu websites formatting which we overcame by going step by step until we got both the courses for CPTS as well as the degree for it as well loading in perfectly.
 ## Unfinished Work
 We did not have much Unfinished work as with this first sprint we wanted to make a proof of concept to see what we can and cant do and build from that point although for the courses it went past us to make a dictionary during the time so it will be implemented into the next sprint. We have also not merged with the code to work together so currently they are all running independently instead of together
   
