@@ -48,6 +48,7 @@ Here's what we'd like to improve:
    * we would like to add more pages to the UI
    * Load in all the courses currently available for pullman spring 2025
    * load in more degrees
+   * For the smart search feature, we want to make it more exhaustive so that it can show the user not just the UCORE classes they may need
   
 Here are changes we plan to implement in the next sprint:
    * we would like to add more pages to the UI
