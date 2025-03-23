@@ -72,7 +72,7 @@ namespace VirtualCounselor
          var options = new ChromeOptions();
          options.AddArgument("--disable-usb");
          options.AddArgument("--disable-usb-discovery");
-         //options.AddArgument("--headless");
+         options.AddArgument("--headless");
          options.AddArgument("--log-level=3");
          options.AddArgument("--disable-gpu");
          options.AddArgument("--disable-logging");
@@ -182,7 +182,7 @@ namespace VirtualCounselor
          previousRowCount = rowCount; // Update for next term check
          Console.WriteLine($"Found {rowCount} rows in the zebra table.");
 
-         int partitionCount = 10;
+         int partitionCount = 15;
          int partitionSize = rowCount / partitionCount;
          int remainder = rowCount % partitionCount;
 
