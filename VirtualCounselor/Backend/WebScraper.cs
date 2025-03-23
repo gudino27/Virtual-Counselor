@@ -1,12 +1,4 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium;
-using System.Collections.Generic;
-using System;
-using System.Linq;
-using System.Threading;
-using Microsoft.VisualBasic;
-using OpenQA.Selenium.BiDi.Modules.Session;
+
 
 namespace VirtualCounselor
 {
@@ -14,122 +6,354 @@ namespace VirtualCounselor
     /// The WebScraper class will read all of the data from the WSU cite.
     /// It'll then parse that data into seperate chunks that it can then pass to the Course and Degree Managers.
     /// </summary>
-    public class WebScraper
-    {
-    static ChromeDriver ? driver; // Declare driver as a class-level variable
+ using OpenQA.Selenium;
+ using OpenQA.Selenium.Chrome;
+ using OpenQA.Selenium.Support.UI;
+ using System;
+ using System.Collections.Concurrent;
+ using System.Collections.Generic;
+ using System.Linq;
+ using System.Text;
+ using System.Threading;
+ using System.Threading.Tasks;
+     public class CourseData
+ {
+     public string? CourseName { get; set; }
+     public string? Title { get; set; }
+     public List<SectionData> Sections { get; set; } = [];
+ }
 
-    static void Main(string[] args)
-    {
-        // Initialize Chrome WebDriver (you can use Firefox or other browsers as well)
-        var options = new ChromeOptions();
-        options.AddArgument("--disable-usb");
-        options.AddArgument("--disable-usb-discovery");
-        options.AddArgument("--headless");  // Run in headless mode (without opening a browser window)
-        var service = ChromeDriverService.CreateDefaultService();
-        service.SuppressInitialDiagnosticInformation = true;
-        service.EnableVerboseLogging = false;
+ public class SectionData
+ {
+     public string? SectionNumber { get; set; }
+     public string? Credits { get; set; }
+     public int ClassNumber { get; set; }
+     public int SpotsLeft { get; set; }
+     public string? Status { get; set; }
+ }
+ public class CampusData
+ {
+     public int Id { get; set; }
+     public string Name { get; set; } = string.Empty;
+ }
 
-        using (driver = new ChromeDriver(service, options))
-        {
-            LoadWebPage();
-            Console.Clear();
-            ProcessCourseData();
-        }
-    }
+ public class TermData
+ {
+     public string Code { get; set; } = string.Empty;
+     public string Description { get; set; } = string.Empty;
+ }
 
-    static void LoadWebPage()
-    {
-        // Navigate to the page
-        driver.Navigate().GoToUrl("https://schedules.wsu.edu/sectionList/&campus=Pullman&term=spring&year=2025&prefix=Cpt%20S");
+ public class StaticDataService
+ {
+     public List<CampusData> Campuses { get; } = new List<CampusData>
+ {
+     new CampusData { Id = 1, Name = "Everett" },
+     new CampusData { Id = 2, Name = "Global" },
+     new CampusData { Id = 3, Name = "Pullman" },
+     new CampusData { Id = 4, Name = "Spokane" },
+     new CampusData { Id = 5, Name = "Tri-Cities" },
+     new CampusData { Id = 6, Name = "Vancouver" }
+ };
 
-        // Wait for the table to load (adjust the wait condition as needed)
-        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        wait.Until(drv => drv.FindElement(By.XPath("//table/tbody/tr")));
-    }
+     public List<TermData> Terms { get; } = new List<TermData>
+ {
+     new TermData { Code = "fall", Description = "Fall 2025" },
+     new TermData { Code = "spring", Description = "Spring 2025" },
+     new TermData { Code = "summer", Description = "Summer 2025" }
+ };
+ }
 
-    static void ProcessCourseData()
-    {
-        // Get all rows from the table body.
-        // We assume that course header rows do NOT have "sectionlistdivider" in their class
-        // while section rows DO have that class.
-        var allRows = driver.FindElements(By.XPath("//table/tbody/tr"));
+ partial class Sprint4
+ {
+     static ChromeDriver? mainDriver;
 
-        // Keep track of the current course header text.
-        string currentCourse = "";
+     static void Main()
+     {
+         var options = new ChromeOptions();
+         options.AddArgument("--disable-usb");
+         options.AddArgument("--disable-usb-discovery");
+         //options.AddArgument("--headless");
+         options.AddArgument("--log-level=3");
+         options.AddArgument("--disable-gpu");
+         options.AddArgument("--disable-logging");
 
-        foreach (var row in allRows)
-        {
-            // Get the row's class attribute.
-            string rowClass = row.GetAttribute("class") ?? "";
+         var service = ChromeDriverService.CreateDefaultService();
+         service.SuppressInitialDiagnosticInformation = true;
+         service.HideCommandPromptWindow = true;
+         service.EnableVerboseLogging = false;
+         var campuses = new Dictionary<int, string>
+         {
+             { 1, "Everett" },
+             { 2, "Global" },
+             { 3, "Pullman" },
+             { 4, "Spokane" },
+             { 5, "Tri-Cities" },
+             { 6, "Vancouver" }
+         };
 
-            // If the row is a course header row (no "sectionlistdivider")
-            if (!rowClass.Contains("sectionlistdivider"))
-            {
-                // Extract the text.
-                string headerText = row.Text.Trim();
-                // Only treat header rows that start with "CPT_S" as valid course headers.
-                if (headerText.StartsWith("CPT_S"))
-                {
-                    currentCourse = headerText;
-                    Console.WriteLine($"Course:{currentCourse}");
-                }
-            }
-            else
-            {
-                // Otherwise, process a section row.
-                try
-                {
-                    // Extract section details from the current section row.
-                    var sectionCell = row.FindElement(By.XPath(".//td[@class='sched_sec']"));
-                    string sectionText = sectionCell.Text.Trim();  // e.g. "01", "01 Lab", "02", etc.
+         var terms = new Dictionary<string, string>
+         {
+             { "fall", "Fall 2025" },
+             { "spring", "Spring 2025" },
+             { "summer", "Summer 2025" }
+         };
 
-                    var numberCell = row.FindElement(By.XPath(".//td[@class='sched_sln']"));
-                    string classNumberText = numberCell.Text.Trim();
+         using (mainDriver = new ChromeDriver(service, options))
+         {
+             mainDriver.Navigate().GoToUrl("https://schedules.wsu.edu");
+             for (int i = 1; i <= 6; i++)
+             {
+                 string selectedTerm = terms["fall"];
+                 string selectedCampus = campuses[i];
+                 Console.WriteLine(campuses[i]);
+                 ClickEvent(selectedCampus, selectedTerm, mainDriver);
+                 CourseLoadParallel(selectedCampus, selectedTerm);
+                 mainDriver.Navigate().Back();
+                 Thread.Sleep(5000);
+                 selectedTerm = terms["spring"];
+                 ClickEvent(selectedCampus, selectedTerm, mainDriver);
+                 CourseLoadParallel(selectedCampus, selectedTerm);
+                 mainDriver.Navigate().Back();
+                 Thread.Sleep(5000);
+                 selectedTerm = terms["summer"];
+                 ClickEvent(selectedCampus, selectedTerm, mainDriver);
+                 CourseLoadParallel(selectedCampus, selectedTerm);
+                 mainDriver.Navigate().Back();
+                 Thread.Sleep(5000);
+             }
+         }
+     }
+     public static void ClickEvent(string campus, string term, ChromeDriver driver)
+     {
+         Console.WriteLine($"Clicking on {campus} and {term}.");
+         try
+         {
+             var campusContainers = driver.FindElements(By.ClassName("header_wrapper"));
+             foreach (var container in campusContainers)
+             {
+                 var cityElement = container.FindElement(By.ClassName("City"));
+                 string cityName = cityElement.Text.Trim();
+                 if (cityName.Equals(campus, StringComparison.OrdinalIgnoreCase))
+                 {
+                     var semesterLinks = container.FindElements(By.ClassName("nav-item"));
+                     foreach (var link in semesterLinks)
+                     {
+                         if (link.Text.Contains(term, StringComparison.OrdinalIgnoreCase))
+                         {
+                             link.FindElement(By.TagName("a")).Click();
+                             Thread.Sleep(8000);
+                             return;
+                         }
+                     }
+                 }
+             }
+             Console.WriteLine("Semester link not found.");
+         }
+         catch (NoSuchElementException ex)
+         {
+             Console.WriteLine("Element not found: " + ex.Message);
+         }
+     }
+     static int previousRowCount = -1;
 
-                    var maxEnrolledCell = row.FindElement(By.XPath(".//td[@class='sched_limit']"));
-                    string maxEnrolledText = maxEnrolledCell.Text.Trim();
+     public static void CourseLoadParallel(string campus, string term)
+     {
+         if (mainDriver == null)
+         {
+             throw new InvalidOperationException("The mainDriver is not initialized.");
+         }
 
-                    var enrolledCell = row.FindElement(By.XPath(".//td[@class='sched_enrl']"));
-                    string enrolledText = enrolledCell.Text.Trim();
+         var wait = new WebDriverWait(mainDriver, TimeSpan.FromSeconds(20));
+         string tableBodyXPath = "/html/body/div[1]/div[3]/div/div[2]/main/div[2]/div/div/div/table/tbody";
+         string rowXPath = tableBodyXPath + "/tr";
 
-                    var creditCell = row.FindElement(By.XPath(".//td[@class='sched_cr']"));
-                    string credit = creditCell.Text.Trim();
+         // Wait until there are rows and they differ from the previous term's count (if available)
+         int rowCount = 0;
+         wait.Until(driver =>
+         {
+             var rows = driver.FindElements(By.XPath(rowXPath));
+             if (rows.Count > 0 && (previousRowCount == -1 || rows.Count != previousRowCount))
+             {
+                 rowCount = rows.Count;
+                 return true;
+             }
+             return false;
+         });
+         previousRowCount = rowCount; // Update for next term check
+         Console.WriteLine($"Found {rowCount} rows in the zebra table.");
 
-                    // Parse the numeric values.
-                    int classNumberInt = 0, maxEnrolledInt = 0, enrolledInt = 0;
-                    int.TryParse(classNumberText, out classNumberInt);
-                    int.TryParse(maxEnrolledText, out maxEnrolledInt);
-                    int.TryParse(enrolledText, out enrolledInt);
+         int partitionCount = 10;
+         int partitionSize = rowCount / partitionCount;
+         int remainder = rowCount % partitionCount;
 
-                    // Calculate available spots.
-                    int spotsLeft = Math.Abs(maxEnrolledInt - enrolledInt);
-                    string status = (maxEnrolledInt == enrolledInt) ? "Full" :
-                                    (maxEnrolledInt > enrolledInt ? "Open" : "Waitlisted");
-                    string spotText = (status == "Waitlisted") ? $"Wait list: {spotsLeft}" : $"Spots Left: {spotsLeft}";
+         var partitions = new List<(int start, int end)>();
+         int startIndex = 1;
 
-                    // Build the section display string using an if/else block.
-                    string secDisplay;
-                    if (sectionText.Contains("Lab"))
-                    {
-                        secDisplay = $"Section Number: {sectionText}";
-                    }
-                    else
-                    {
-                        // Left-align the section text in a 10-character field.
-                        secDisplay = $"Section Number: {sectionText,-10}";
-                    }
+         for (int i = 0; i < partitionCount; i++)
+         {
+             int extraRow = (i < remainder) ? 1 : 0;
+             int endIndex = startIndex + partitionSize + extraRow - 1;
+             partitions.Add((startIndex, endIndex));
+             startIndex = endIndex + 1;
+         }
 
-                    string sectionDetail = $"{secDisplay} ,Credits: {credit}, Class Number: {classNumberInt:D5}, {spotText}";
+         var results = new ConcurrentDictionary<string, List<CourseData>>();
 
-                    Console.WriteLine(sectionDetail);
-                }
-                catch (Exception)
-                {
-                    // Optionally log the error.
-                    // Console.WriteLine($"Error processing section row: {ex.Message}");
-                }
-            }
-        }
-    }
-}
+         var tasks = partitions.Select(partition => Task.Run(() =>
+         {
+             var courseOptions = new ChromeOptions();
+             courseOptions.AddArgument("--disable-usb");
+             courseOptions.AddArgument("--disable-usb-discovery");
+             courseOptions.AddArgument("--headless");
+             courseOptions.AddArgument("--log-level=3");
+             courseOptions.AddArgument("--disable-gpu");
+             courseOptions.AddArgument("--disable-logging");
+
+             var courseService = ChromeDriverService.CreateDefaultService();
+             courseService.SuppressInitialDiagnosticInformation = true;
+             courseService.HideCommandPromptWindow = true;
+             courseService.EnableVerboseLogging = false;
+
+             using var driver = new ChromeDriver(courseService, courseOptions);
+             driver.Navigate().GoToUrl("https://schedules.wsu.edu");
+             Thread.Sleep(8000);
+             ClickEvent(campus, term, driver);
+
+             for (int i = partition.start; i <= partition.end; i++)
+             {
+                 try
+                 {
+                     string currentRowXPath = $"{tableBodyXPath}/tr[{i}]";
+                     var rowElement = driver.FindElement(By.XPath(currentRowXPath));
+                     var subjectElement = rowElement.FindElement(By.XPath($"{currentRowXPath}/td[2]/a"));
+                     string subjectText = subjectElement.Text.Trim();
+                     var subjectTitle = rowElement.FindElement(By.XPath($"{currentRowXPath}/td[3]"));
+                     string subjectTitleText = subjectTitle.Text.Trim();
+
+                     subjectElement.Click();
+                     Thread.Sleep(5000);
+
+                     var courseData = ProcessCourseData(driver, subjectText, subjectTitleText);
+
+                     if (courseData.Count > 0)
+                     {
+                         results[subjectText] = courseData;
+                     }
+
+                     driver.Navigate().Back();
+                     Thread.Sleep(5000);
+                 }
+                 catch (Exception)
+                 {
+                     // Handle errors appropriately
+                 }
+             }
+             driver.Quit();
+         })).ToArray();
+
+         Task.WhenAll(tasks).Wait();
+
+         foreach (var kvp in results.OrderBy(kvp => kvp.Key))
+         {
+             var course = kvp.Value.FirstOrDefault();
+             string title = course?.Title ?? "No Title";
+             Console.WriteLine($"\n======================================================================================\n\t\tTitle: {title} subject: {kvp.Key}\n======================================================================================");
+             foreach (var courseData in kvp.Value)
+             {
+                 Console.WriteLine($"{courseData.CourseName}");
+                 foreach (var section in courseData.Sections)
+                 {
+                     Console.WriteLine($"*Section: {section.SectionNumber}, Credits: {section.Credits}, Class Number: {section.ClassNumber}, Status: {section.Status}, Spots Left: {section.SpotsLeft}");
+                 }
+             }
+         }
+         Console.WriteLine($"\n\n");
+         Thread.Sleep(5000);
+     }
+
+     static List<CourseData> ProcessCourseData(ChromeDriver driverInstance, string degree, string title)
+     {
+         Thread.Sleep(2000);
+         List<CourseData> courses = [];
+         var allRows = driverInstance.FindElements(By.XPath("//table/tbody/tr"));
+
+         if (allRows == null || allRows.Count == 0)
+         {
+             return courses;
+         }
+
+         CourseData? currentCourse = null;
+
+         foreach (var row in allRows)
+         {
+             string rowClass = row.GetAttribute("class") ?? "";
+
+             if (!rowClass.Contains("sectionlistdivider"))
+             {
+                 string headerText = row.Text.Trim();
+                 if (headerText.StartsWith(degree))
+                 {
+                     currentCourse = new CourseData { CourseName = headerText, Title = title }; 
+                     courses.Add(currentCourse);
+                 }
+             }
+             else if (currentCourse != null)
+             {
+                 try
+                 {
+                     var sectionCell = row.FindElement(By.XPath(".//td[@class='sched_sec']"));
+                     string sectionText = sectionCell.Text.Trim();
+                     var numberCell = row.FindElement(By.XPath(".//td[@class='sched_sln']"));
+                     string classNumberText = numberCell.Text.Trim();
+                     var maxEnrolledCell = row.FindElement(By.XPath(".//td[@class='sched_limit']"));
+                     string maxEnrolledText = maxEnrolledCell.Text.Trim();
+                     var enrolledCell = row.FindElement(By.XPath(".//td[@class='sched_enrl']"));
+                     string enrolledText = enrolledCell.Text.Trim();
+                     var creditCell = row.FindElement(By.XPath(".//td[@class='sched_cr']"));
+                     string credit = creditCell.Text.Trim();
+
+                     _ = int.TryParse(classNumberText, out int classNumberInt);
+                     _ = int.TryParse(maxEnrolledText, out int maxEnrolledInt);
+                     _ = int.TryParse(enrolledText, out int enrolledInt);
+                     int spotsLeft = maxEnrolledInt - enrolledInt;
+                     string status = "";
+                     if (spotsLeft>0)
+                     {
+                          status = "Open";
+                     }
+                     else if (spotsLeft == 0)
+                     {
+                          status = "Full";
+                     }
+                     else if (spotsLeft < 0)
+                     {
+                         spotsLeft = Math.Abs(spotsLeft);
+                          status = "Waitlist";
+                     }
+                     if (!sectionText.Contains("Lab"))
+                     {
+                         sectionText += "    ";
+                     }
+                     SectionData section = new()
+                     {
+                         SectionNumber = sectionText,
+                         Credits = credit,
+                         ClassNumber = classNumberInt,
+                         SpotsLeft = spotsLeft,
+                         Status = status
+                     };
+
+                     currentCourse.Sections.Add(section);
+                 }
+                 catch (Exception)
+                 {
+                     // Handle errors
+                 }
+             }
+         }
+
+         return courses;
+     }
+
+ }
 }
