@@ -6,5 +6,12 @@
     /// </summary>
     public class Degree
     {
+        public string DegreeDescription { get; set; }
+
+        // Print the degree description paragraph to the console
+        public virtual void PrintDegreInfo()
+        {
+            Console.WriteLine(DegreeDescription);
+        }
     }
 }
