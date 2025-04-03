@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uT8TOzLNH8I=",
+  "dgSpecHash": "1KawNETJABk=",
   "success": true,
-  "projectFilePath": "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj",
+  "projectFilePath": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tyler\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "C:\\Users\\tyler\\.nuget\\packages\\selenium.support\\4.29.0\\selenium.support.4.29.0.nupkg.sha512",

@@ -146,11 +146,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj",
+      "projectUniqueName": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj",
       "projectName": "VirtualCounselor",
-      "projectPath": "C:\\cpts\\322\\VirtualCounselor\\VirtualCounselor.csproj",
+      "projectPath": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj",
       "packagesPath": "C:\\Users\\tyler\\.nuget\\packages\\",
-      "outputPath": "C:\\cpts\\322\\VirtualCounselor\\obj\\",
+      "outputPath": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
