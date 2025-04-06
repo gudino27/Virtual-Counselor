@@ -1,0 +1,534 @@
+﻿@page "/Transcript"
+@using OfficeOpenXml.Style
+@using OfficeOpenXml
+@using System.Drawing
+@using BlazorApp1.Services
+@inject IJSRuntime JS
+@inject CourseService CourseService
+@rendermode InteractiveServer
+
+<PageTitle>Academic Transcript</PageTitle>
+
+<h1>Academic Transcript</h1>
+
+<div class="mb-4">
+    <h3>Add Course</h3>
+    <div>
+        @*Options for selecting the year a course was taken*@
+        <select @bind="newYear" class="form-control mb-1">
+            <option value="">Select Year</option>
+            <option value="First Year">First Year</option>
+            <option value="Second Year">Second Year</option>
+            <option value="Third Year">Third Year</option>
+            <option value="Fourth Year">Fourth Year</option>
+            <option value="Fifth Year">Fifth Year</option>
+        </select>
+
+        @*Options for selecting the semester a class was taken*@
+        <select @bind="newSemester" class="form-control mb-1">
+            <option value="">Select Semester</option>
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+        </select>
+
+        <div style="position: relative;">
+            @*The entrybox for the name of the course*@
+            <input placeholder="Course Name" @bind="NewCourseName" @bind:event="oninput" class="form-control mb-1" />
+            @if (courseSuggestions.Any())
+            {
+                @*When there are course suggestions, turn the textbox to a list of suggestions*@
+                <ul class="list-group" style="position: absolute; z-index: 1000; width: 100%;">
+                    @foreach (var suggestion in courseSuggestions)
+                    {
+                        <li class="list-group-item list-group-item-action" style="cursor: pointer;" @onclick="() => SelectCourseSuggestion(suggestion)">
+                            @suggestion.CourseName
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+
+        @*Input for the credits a course is worth.*@
+        <input placeholder="Credits" @bind="newCredits" type="number" class="form-control mb-1" />
+
+        @*Options for grades*@
+        <select @bind="newGrade" class="form-control mb-1">
+            <option value="">Select Grade</option>
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="B-">B-</option>
+            <option value="C+">C+</option>
+            <option value="C">C</option>
+            <option value="C-">C-</option>
+            <option value="D+">D+</option>
+            <option value="D">D</option>
+            <option value="F">F</option>
+        </select>
+
+        @*The button to confirm data entered*@
+        <button class="btn btn-primary" @onclick="AddCourse">Add Course</button>
+
+        @*Upon recieving an error message, display it as an alert*@
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-warning">@errorMessage</div>
+        }
+
+    </div>
+</div>
+
+@*Table at the bottom of the screen listing all previously taken courses*@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Course</th>
+            <th>Credits</th>
+            <th>Grade</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in transcriptRecords)
+        {
+            <tr>
+                <td>@record.Year</td>
+                <td>@record.Semester</td>
+                <td>@record.CourseName</td>
+                <td>@record.Credits</td>
+                <td>@record.Grade</td>
+                <td>@record.Points</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p><strong>Total Credits:</strong> @studentRecord.GetTotalCredits()</p>
+<p><strong>GPA:</strong> @studentRecord.GetGPA()</p>
+<p><strong>Status:</strong> @studentRecord.GetGraduationStatus()</p>
+
+<button class="btn btn-success" @onclick="ExportToExcel">Export to Excel</button>
+
+@code {
+    public class Course
+    {
+        public string? Name { get; set; }
+        public int Credits { get; set; }
+        public string Grade { get; set; } = "";
+        public double GetGradePoints()
+        {
+            var gradePoints = new Dictionary<string, double>
+            {
+                {"A+", 4.0}, {"A", 4.0}, {"A-", 3.7},
+                {"B+", 3.3}, {"B", 3.0}, {"B-", 2.7},
+                {"C+", 2.3}, {"C", 2.0}, {"C-", 1.7},
+                {"D+", 1.3}, {"D", 1.0}, {"F", 0.0}
+            };
+            return gradePoints.ContainsKey(Grade) ? gradePoints[Grade] * Credits : 0;
+        }
+    }
+
+    public class Semester
+    {
+        public string Name { get; set; }
+        public List<Course> Courses { get; set; } = new List<Course>();
+
+        public Semester(string name)
+        {
+            Name = name;
+        }
+
+        public void AddCourse(string name, int credits, string grade)
+        {
+            Courses.Add(new Course { Name = name, Credits = credits, Grade = grade });
+        }
+
+        public int GetTotalCredits() => Courses.Sum(c => c.Credits);
+        public double GetTotalGradePoints() => Courses.Sum(c => c.GetGradePoints());
+        public double GetGPA() => Courses.Any() ? GetTotalGradePoints() / GetTotalCredits() : 0;
+    }
+
+    public class StudentRecord
+    {
+        public Dictionary<string, List<Semester>> AcademicRecord { get; set; } = new Dictionary<string, List<Semester>>
+        {
+            { "First Year", new List<Semester> { new Semester("Fall"), new Semester("Spring"), new Semester("Summer") } },
+            { "Second Year", new List<Semester> { new Semester("Fall"), new Semester("Spring"), new Semester("Summer") } },
+            { "Third Year", new List<Semester> { new Semester("Fall"), new Semester("Spring"), new Semester("Summer") } },
+            { "Fourth Year", new List<Semester> { new Semester("Fall"), new Semester("Spring"), new Semester("Summer") } },
+            { "Fifth Year", new List<Semester> { new Semester("Fall"), new Semester("Spring"), new Semester("Summer") } }
+        };
+
+        public void AddCourse(string year, string semester, string courseName, int credits, string grade)
+        {
+            if (AcademicRecord.ContainsKey(year))
+            {
+                var sem = AcademicRecord[year].Find(s => s.Name.Equals(semester, StringComparison.OrdinalIgnoreCase));
+                sem?.AddCourse(courseName, credits, grade);
+            }
+        }
+
+        public int GetTotalCredits() => AcademicRecord.Values.SelectMany(s => s).Sum(s => s.GetTotalCredits());
+        public double GetGPA()
+        {
+            int totalCredits = GetTotalCredits();
+            double totalGradePoints = AcademicRecord.Values.SelectMany(s => s).Sum(s => s.GetTotalGradePoints());
+            return totalCredits > 0 ? totalGradePoints / totalCredits : 0;
+        }
+        public string GetGraduationStatus() => GetTotalCredits() >= 120 ? "Graduated!" : $"Credits to graduate: {120 - GetTotalCredits()}";
+    }
+
+    // UI model for transcript records
+    public class TranscriptRecord
+    {
+        public string Year { get; set; } = "";
+        public string Semester { get; set; } = "";
+        public string CourseName { get; set; } = "";
+        public int Credits { get; set; }
+        public string Grade { get; set; } = "";
+        public double Points { get; set; }
+    }
+
+    // Autocomplete suggestion model
+    public class CourseSuggestion
+    {
+        public string CourseName { get; set; } = "";
+    }
+
+    // Comparer to remove duplicate course names
+    public class CourseSuggestionComparer : IEqualityComparer<CourseSuggestion>
+    {
+        public bool Equals(CourseSuggestion x, CourseSuggestion y) =>
+            x.CourseName.Equals(y.CourseName, StringComparison.OrdinalIgnoreCase);
+
+        public int GetHashCode(CourseSuggestion obj) =>
+            obj.CourseName.GetHashCode();
+    }
+
+    // Component fields
+    StudentRecord studentRecord = new StudentRecord();
+    List<TranscriptRecord> transcriptRecords = new List<TranscriptRecord>();
+
+    // Input variables for course addition
+    string? newYear;
+    string? newSemester;
+    int? newCredits;
+    string? newGrade;
+
+    // Autocomplete for course name
+    private string? newCourseNameField;
+    private string? NewCourseName
+    {
+        get => newCourseNameField;
+        set
+        {
+            if (newCourseNameField != value)
+            {
+                newCourseNameField = value;
+                UpdateCourseSuggestions();
+                StateHasChanged();
+            }
+        }
+    }
+    List<CourseSuggestion> courseSuggestions = new List<CourseSuggestion>();
+    List<CourseSuggestion> availableCourses = new List<CourseSuggestion>();
+
+    protected override void OnInitialized()
+    {
+        // Load scraped courses from CourseService (assumes GetAllCourseData returns List<CourseData>)
+        var scrapedCourses = CourseService.GetAllCourseData();
+        availableCourses = scrapedCourses
+            .Where(c => !string.IsNullOrEmpty(c.CourseName))
+            .Select(c => new CourseSuggestion { CourseName = c.CourseName })
+            .Distinct(new CourseSuggestionComparer())
+            .ToList();
+    }
+
+    void UpdateCourseSuggestions()
+    {
+        if (!string.IsNullOrWhiteSpace(NewCourseName))
+        {
+            var scrapedCourses = CourseService.GetAllCourseData();
+            courseSuggestions = scrapedCourses
+            .Where(c => c.CourseName.Contains(NewCourseName, StringComparison.OrdinalIgnoreCase))
+            .Select(c => new CourseSuggestion { CourseName = c.CourseName })
+            .Distinct(new CourseSuggestionComparer())
+            .ToList();
+
+        }
+        else
+        {
+            courseSuggestions.Clear();
+        }
+        StateHasChanged();
+    }
+
+    void SelectCourseSuggestion(CourseSuggestion suggestion)
+    {
+        NewCourseName = suggestion.CourseName;
+        courseSuggestions.Clear();
+    }
+    string? errorMessage = null;
+
+    void AddCourse()
+    {
+        if (string.IsNullOrEmpty(newYear))
+        {
+            errorMessage = "Please select a year.";
+            return;
+        }
+        else if (string.IsNullOrWhiteSpace(newSemester))
+        {
+            errorMessage = "Please select a semester.";
+            return;
+        }
+        else if (string.IsNullOrWhiteSpace(NewCourseName))
+        {
+            errorMessage = "Please enter a course name.";
+            return;
+        }
+        else if (newCredits == null || newCredits <= 0)
+        {
+            errorMessage = "Please enter valid credits.";
+            return;
+        }
+        else if (string.IsNullOrWhiteSpace(newGrade))
+        {
+            errorMessage = "Please select a grade.";
+            return;
+        }
+        else
+        {
+        errorMessage = null; 
+        }
+        //this the last part of it to work on for the random person that just clicks enter without the above filled out
+        studentRecord.AddCourse(newYear, newSemester, NewCourseName, newCredits ?? 0, newGrade);
+        transcriptRecords.Clear();
+        foreach (var yearEntry in studentRecord.AcademicRecord)
+        {
+            foreach (var sem in yearEntry.Value)
+            {
+                foreach (var course in sem.Courses)
+                {
+                    transcriptRecords.Add(new TranscriptRecord
+                        {
+                            Year = yearEntry.Key,
+                            Semester = sem.Name,
+                            CourseName = course.Name ?? "",
+                            Credits = course.Credits,
+                            Grade = course.Grade,
+                            Points = course.GetGradePoints()
+                        });
+                }
+            }
+        }
+    }
+
+    async Task ExportToExcel()
+    {
+        // EPPlus non-commercial license
+        ExcelPackage.License.SetNonCommercialPersonal("virtualCounselor");
+
+        using var package = new ExcelPackage();
+        var ws = package.Workbook.Worksheets.Add("Transcript");
+
+        // Build year blocks for each academic year.
+        BuildYearBlock(ws, "FIRST YEAR", 1, studentRecord);
+        BuildYearBlock(ws, "SECOND YEAR", 9, studentRecord);
+        BuildYearBlock(ws, "THIRD YEAR", 17, studentRecord);
+        BuildYearBlock(ws, "FOURTH YEAR", 25, studentRecord);
+        BuildYearBlock(ws, "FIFTH YEAR", 33, studentRecord);
+
+        // Example formula for credits-to-graduate (adjust as needed)
+        ws.Cells[41, 1, 41, 12].Merge = false;
+        ws.Cells[41, 1].Formula =
+            "=IF(SUM(B8,B16,B24,B32,B40)>=120,\"Graduated!\",\"Credits to graduate: \" & (120-SUM(B8,B16,B24,B32,B40)))";
+        ws.Cells[41, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+        ws.Cells[41, 1].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+        ws.Row(41).Height = 20;
+
+        ws.Cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+        ws.Cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+        ws.Cells[ws.Dimension.Address].AutoFitColumns();
+        ws.Column(3).Width = 20;
+        ws.Column(7).Width = 20;
+        ws.Column(11).Width = 20;
+
+        var fileBytes = package.GetAsByteArray();
+        var base64Excel = Convert.ToBase64String(fileBytes);
+        await JS.InvokeVoidAsync("saveAsFile", "Transcript.xlsx", base64Excel);
+    }
+
+    private void BuildYearBlock(ExcelWorksheet ws, string yearLabel, int yearHeaderRow, StudentRecord record)
+    {
+        int rowYearHeader = yearHeaderRow;
+        int rowHeader = rowYearHeader + 1;
+        int rowDataStart = rowYearHeader + 2;
+        int rowDataEnd = rowYearHeader + 6;
+        int rowTotals = rowYearHeader + 7;
+
+        string key = yearLabel switch
+        {
+            "FIRST YEAR" => "First Year",
+            "SECOND YEAR" => "Second Year",
+            "THIRD YEAR" => "Third Year",
+            "FOURTH YEAR" => "Fourth Year",
+            "FIFTH YEAR" => "Fifth Year",
+            _ => yearLabel
+        };
+
+        if (!record.AcademicRecord.TryGetValue(key, out var semesters))
+            semesters = new List<Semester>();
+
+        Semester fallSem = semesters.FirstOrDefault(s => s.Name.Equals("Fall", StringComparison.OrdinalIgnoreCase)) ?? new Semester("Fall");
+        Semester springSem = semesters.FirstOrDefault(s => s.Name.Equals("Spring", StringComparison.OrdinalIgnoreCase)) ?? new Semester("Spring");
+        Semester summerSem = semesters.FirstOrDefault(s => s.Name.Equals("Summer", StringComparison.OrdinalIgnoreCase)) ?? new Semester("Summer");
+
+        ws.Cells[rowYearHeader, 1, rowYearHeader, 12].Merge = true;
+        ws.Cells[rowYearHeader, 1].Value = yearLabel;
+        ws.Cells[rowYearHeader, 1].Style.Fill.PatternType = ExcelFillStyle.Solid;
+        ws.Cells[rowYearHeader, 1].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
+        ws.Cells[rowYearHeader, 1].Style.Font.Bold = true;
+        ws.Cells[rowYearHeader, 1, rowYearHeader, 12].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        ws.Row(rowYearHeader).Height = 20;
+
+        ws.Cells[rowHeader, 1].Value = "FALL";
+        ws.Cells[rowHeader, 2].Value = "Credits";
+        ws.Cells[rowHeader, 3].Value = "Grade";
+        ws.Cells[rowHeader, 4].Value = "Points";
+
+        ws.Cells[rowHeader, 5].Value = "SPRING";
+        ws.Cells[rowHeader, 6].Value = "Credits";
+        ws.Cells[rowHeader, 7].Value = "Grade";
+        ws.Cells[rowHeader, 8].Value = "Points";
+
+        ws.Cells[rowHeader, 9].Value = "SUMMER";
+        ws.Cells[rowHeader, 10].Value = "Credits";
+        ws.Cells[rowHeader, 11].Value = "Grade";
+        ws.Cells[rowHeader, 12].Value = "Points";
+
+        using (var rng = ws.Cells[rowHeader, 1, rowHeader, 12])
+        {
+            rng.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            rng.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(253, 233, 217));
+            rng.Style.Font.Bold = true;
+            rng.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            rng.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            rng.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+        }
+        ws.Cells[rowHeader, 4].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        ws.Cells[rowHeader, 8].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        ws.Cells[rowHeader, 12].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+
+        for (int i = 0; i < 5; i++)
+        {
+            int r = rowDataStart + i;
+            if (i < fallSem.Courses.Count)
+            {
+                var course = fallSem.Courses[i];
+                ws.Cells[r, 1].Value = course.Name;
+                ws.Cells[r, 2].Value = course.Credits;
+                ws.Cells[r, 3].Value = course.Grade;
+                ws.Cells[r, 4].Value = course.GetGradePoints();
+            }
+            else
+            {
+                ws.Cells[r, 1, r, 4].Value = "";
+            }
+            using (var rng = ws.Cells[r, 1, r, 12])
+            {
+                rng.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                rng.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                rng.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                rng.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            }
+            ws.Cells[r, 4].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            int r = rowDataStart + i;
+            if (i < springSem.Courses.Count)
+            {
+                var course = springSem.Courses[i];
+                ws.Cells[r, 5].Value = course.Name;
+                ws.Cells[r, 6].Value = course.Credits;
+                ws.Cells[r, 7].Value = course.Grade;
+                ws.Cells[r, 8].Value = course.GetGradePoints();
+            }
+            else
+            {
+                ws.Cells[r, 5, r, 8].Value = "";
+            }
+            ws.Cells[r, 8].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            int r = rowDataStart + i;
+            if (i < summerSem.Courses.Count)
+            {
+                var course = summerSem.Courses[i];
+                ws.Cells[r, 9].Value = course.Name;
+                ws.Cells[r, 10].Value = course.Credits;
+                ws.Cells[r, 11].Value = course.Grade;
+                ws.Cells[r, 12].Value = course.GetGradePoints();
+            }
+            else
+            {
+                ws.Cells[r, 9, r, 12].Value = "";
+            }
+            ws.Cells[r, 12].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        }
+
+        ws.Cells[rowTotals, 1].Value = "TOTAL CREDITS";
+        ws.Cells[rowTotals, 2].Formula = $"SUM(B{rowDataStart}:B{rowDataEnd})";
+        ws.Cells[rowTotals, 3].Formula =
+            $"=\"credits achieved: \" & SUM(IF(ISNUMBER(MATCH(C{rowDataStart}:C{rowDataEnd}, {{\"A+\",\"A\",\"A-\",\"B+\",\"B\",\"B-\",\"C+\",\"C\"}},0)), B{rowDataStart}:B{rowDataEnd} ,0))";
+        ws.Cells[rowTotals, 3].Calculate();
+        ws.Cells[rowTotals, 4].Formula =
+            $"IFERROR(ROUND(SUM(D{rowDataStart}:D{rowDataEnd})/SUM(B{rowDataStart}:B{rowDataEnd}),2),\"\")";
+
+        ws.Cells[rowTotals, 5].Value = "TOTAL CREDITS";
+        ws.Cells[rowTotals, 6].Formula = $"SUM(F{rowDataStart}:F{rowDataEnd})";
+        ws.Cells[rowTotals, 7].Formula =
+            $"=\"credits achieved: \" & SUM(IF(ISNUMBER(MATCH(G{rowDataStart}:G{rowDataEnd},{{\"A+\",\"A\",\"A-\",\"B+\",\"B\",\"B-\",\"C+\",\"C\"}},0)),F{rowDataStart}:F{rowDataEnd},0))";
+        ws.Cells[rowTotals, 7].Calculate();
+        ws.Cells[rowTotals, 8].Formula =
+            $"IFERROR(ROUND(SUM(H{rowDataStart}:H{rowDataEnd})/SUM(F{rowDataStart}:F{rowDataEnd}),2),\"\")";
+
+        ws.Cells[rowTotals, 9].Value = "TOTAL CREDITS";
+        ws.Cells[rowTotals, 10].Formula = $"SUM(J{rowDataStart}:J{rowDataEnd})";
+        ws.Cells[rowTotals, 11].Formula =
+            $"=\"credits achieved: \" & SUM(IF(ISNUMBER(MATCH(K{rowDataStart}:K{rowDataEnd},{{\"A+\",\"A\",\"A-\",\"B+\",\"B\",\"B-\",\"C+\",\"C\"}},0)),J{rowDataStart}:J{rowDataEnd},0))";
+        ws.Cells[rowTotals, 11].Calculate();
+        ws.Cells[rowTotals, 12].Formula =
+            $"IFERROR(ROUND(SUM(L{rowDataStart}:L{rowDataEnd})/SUM(J{rowDataStart}:J{rowDataEnd}),2),\"\")";
+
+        using (var rng = ws.Cells[rowTotals, 1, rowTotals, 12])
+        {
+            rng.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            rng.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(221, 235, 247));
+            rng.Style.Font.Bold = true;
+            rng.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            rng.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            rng.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+        }
+        ws.Cells[rowTotals, 4].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        ws.Cells[rowTotals, 8].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+        ws.Cells[rowTotals, 12].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+    }
+}
+<script>
+    window.saveAsFile = function(filename, bytesBase64) {
+        var link = document.createElement('a');
+        link.download = filename;
+        link.href = "data:application/octet-stream;base64," + bytesBase64;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
