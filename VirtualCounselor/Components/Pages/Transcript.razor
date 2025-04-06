@@ -108,18 +108,24 @@
     </tbody>
 </table>
 
+@*Summary stats for entrie college career tracked at the bottom*@
 <p><strong>Total Credits:</strong> @studentRecord.GetTotalCredits()</p>
 <p><strong>GPA:</strong> @studentRecord.GetGPA()</p>
 <p><strong>Status:</strong> @studentRecord.GetGraduationStatus()</p>
 
+@*Button to export data to spreadsheet*@
 <button class="btn btn-success" @onclick="ExportToExcel">Export to Excel</button>
 
 @code {
+    /// <summary>
+    /// Storage class stores info on a particular course.
+    /// </summary>
     public class Course
     {
         public string? Name { get; set; }
         public int Credits { get; set; }
         public string Grade { get; set; } = "";
+
         public double GetGradePoints()
         {
             var gradePoints = new Dictionary<string, double>
@@ -133,6 +139,10 @@
         }
     }
 
+    /// <summary>
+    /// Class to represent a semester.
+    /// Contains a list of courses in that semester and the name fo that semester.
+    /// </summary>
     public class Semester
     {
         public string Name { get; set; }
@@ -143,16 +153,46 @@
             Name = name;
         }
 
+        /// <summary>
+        /// Adds to the Semester's course list.
+        /// </summary>
+        /// <param name="name">name of the course.</param>
+        /// <param name="credits">how many credits the course is.</param>
+        /// <param name="grade">the letter grade revieved.</param>
         public void AddCourse(string name, int credits, string grade)
         {
             Courses.Add(new Course { Name = name, Credits = credits, Grade = grade });
         }
 
+        /// <summary>
+        /// Adds up all credits taken that semester.
+        /// </summary>
+        /// <returns>total credits taken in the semester summed.</returns>
         public int GetTotalCredits() => Courses.Sum(c => c.Credits);
+
+        /// <summary>
+        /// Adds up total gradepoints earned.
+        /// </summary>
+        /// <returns>total gradepoints earned.</returns>
         public double GetTotalGradePoints() => Courses.Sum(c => c.GetGradePoints());
-        public double GetGPA() => Courses.Any() ? GetTotalGradePoints() / GetTotalCredits() : 0;
+
+        /// <summary>
+        /// Calculates total GPA for semester.
+        /// </summary>
+        /// <returns>the calculation of the GPA when its valid.</returns>
+        public double GetGPA(){
+            if(Courses.Any() && GetTotalCredits() != 0){
+                return GetTotalGradePoints() / GetTotalCredits();
+            }
+            else{
+                return 0;
+            }
+        }
     }
 
+    /// <summary>
+    /// Storage class that keeps all of the students data for all semesters.
+    /// </summary>
     public class StudentRecord
     {
         public Dictionary<string, List<Semester>> AcademicRecord { get; set; } = new Dictionary<string, List<Semester>>
