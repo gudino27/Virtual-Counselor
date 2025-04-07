@@ -15,7 +15,7 @@ some of the work we did not finish is on the courses we could not get the descr 
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
 
- *[ courses scrape](https://github.com/gudino27/Virtual-Counselor/issues/19)
+ * [ courses scrape](https://github.com/gudino27/Virtual-Counselor/issues/19)
  * [Transcript](https://github.com/gudino27/Virtual-Counselor/issues/8)
  * [degree Requirments](https://github.com/gudino27/Virtual-Counselor/issues/20)
  * 
