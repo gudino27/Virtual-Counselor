@@ -1,5 +1,5 @@
 # Sprint x Report 
-Video Link: 
+Video Link: https://youtu.be/jpjnIRihn4k
 ## What's New (User Facing)
  * Made the courses load in hour time through parallel as well as making it work with the UI
  * Made the Transcript page as a premade excel sheet so that the user can have it as well as as see there GPA and how many credits they need for graduation 
