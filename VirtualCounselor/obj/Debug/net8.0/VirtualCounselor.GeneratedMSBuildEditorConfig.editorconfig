@@ -9,69 +9,69 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = VirtualCounselor
 build_property.RootNamespace = VirtualCounselor
-build_property.ProjectDir = C:\Users\tyler\Source\Repos\Virtual-Counselor\VirtualCounselor\
+build_property.ProjectDir = C:\Users\tyler\source\repos\Virtual-Counselor\VirtualCounselor\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\tyler\Source\Repos\Virtual-Counselor\VirtualCounselor
+build_property.MSBuildProjectDirectory = C:\Users\tyler\source\repos\Virtual-Counselor\VirtualCounselor
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/App.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Layout/NavBar.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Layout/NavBar.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2QmFyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Objects/DegreeRequirementsIndividualCourse.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Objects/DegreeRequirementsIndividualCourse.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xPYmplY3RzXERlZ3JlZVJlcXVpcmVtZW50c0luZGl2aWR1YWxDb3Vyc2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Objects/DegreeSearchResult.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Objects/DegreeSearchResult.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xPYmplY3RzXERlZ3JlZVNlYXJjaFJlc3VsdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Pages/CourseSearch.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Pages/CourseSearch.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3Vyc2VTZWFyY2gucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Pages/DegreeDetails.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Pages/DegreeDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZWdyZWVEZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Pages/DegreeRequirements.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Pages/DegreeRequirements.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZWdyZWVSZXF1aXJlbWVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Pages/DegreeSearch.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Pages/DegreeSearch.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZWdyZWVTZWFyY2gucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Pages/Error.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Pages/Home.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Pages/Transcript.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Pages/Transcript.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUcmFuc2NyaXB0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Routes.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/_Imports.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tyler/Source/Repos/Virtual-Counselor/VirtualCounselor/Components/Layout/MainLayout.razor]
+[C:/Users/tyler/source/repos/Virtual-Counselor/VirtualCounselor/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-v0ewxw5517

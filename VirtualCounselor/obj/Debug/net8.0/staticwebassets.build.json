@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IIIOnJg7/iPluNmaLQf2GvBE3Jrbsctt4CiBiB4Ljg8=",
+  "Hash": "uhttsWQJAVoa0wbi86LL5Ynv4pSvM6yKUU1JOVYBEU8=",
   "Source": "VirtualCounselor",
   "BasePath": "_content/VirtualCounselor",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "da95v2qkru",
-      "Integrity": "u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=",
+      "Fingerprint": "8g08hluszq",
+      "Integrity": "uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app.css"
@@ -145,6 +145,51 @@
   ],
   "Endpoints": [
     {
+      "Route": "app.8g08hluszq.css",
+      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2592"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 07 Apr 2025 05:10:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8g08hluszq"
+        },
+        {
+          "Name": "label",
+          "Value": "app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM="
+        }
+      ]
+    },
+    {
       "Route": "app.css",
       "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "Selectors": [],
@@ -155,7 +200,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2591"
+          "Value": "2592"
         },
         {
           "Name": "Content-Type",
@@ -163,11 +208,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""
+          "Value": "\"uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Mon, 07 Apr 2025 05:10:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -177,52 +222,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="
-        }
-      ]
-    },
-    {
-      "Route": "app.da95v2qkru.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2591"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "da95v2qkru"
-        },
-        {
-          "Name": "label",
-          "Value": "app.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="
+          "Value": "sha256-uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM="
         }
       ]
     },
@@ -495,7 +495,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 08:28:55 GMT"
+          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -532,7 +532,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 08:28:55 GMT"
+          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -577,7 +577,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 08:28:55 GMT"
+          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -622,7 +622,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 08:28:55 GMT"
+          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
         },
         {
           "Name": "Cache-Control",
