@@ -1,1 +1,67 @@
+# Visual Studio
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Bb]uild[Ll]og.*
+*.log
+
+# Razor specific
+Generated_Code/
+
+# Blazor specific
+wwwroot/css/
+wwwroot/js/
+wwwroot/lib/
+
+# Others
+*.cache
+*.dbmdl
+*.pdb
+*.mdb
+*.pidb
+
+# ASP.NET
+App_Data/
+App_Code/
+App_Browsers/
+App_GlobalResources/
+App_LocalResources/
+App_Themes/
+App_WebReferences/
+
+# Publish
+*.publish.xml
+*.pubxml
+*.publishproj
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+.nuget/
+
+# User-specific files
+*.swp
+*.sln.ide
+.idea/
+*.vscode/
+
+# Rider
+.idea/
+*.DotSettings.user
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Selenium WebDriver
+selenium-server-standalone-*.jar
+
