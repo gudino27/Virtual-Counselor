@@ -20,7 +20,7 @@ namespace VirtualCounselor
     {
         public string? CourseName { get; set; }
         public string? Title { get; set; }
-        public List<SectionData> Sections { get; set; } = [];
+        public List<SectionData> Sections { get; set; } = new List<SectionData>();
     }
 
     public class SectionData
@@ -66,6 +66,14 @@ namespace VirtualCounselor
     partial class Sprint4
     {
         static ChromeDriver? mainDriver;
+        private readonly CourseManager courseManager;
+        private readonly DegreeManager degreeManager;
+
+        public Sprint4(CourseManager courseManager, DegreeManager degreeManager)
+        {
+            this.courseManager = courseManager;
+            this.degreeManager = degreeManager;
+        }
 
         static void Main()
         {
@@ -82,21 +90,21 @@ namespace VirtualCounselor
             service.HideCommandPromptWindow = true;
             service.EnableVerboseLogging = false;
             var campuses = new Dictionary<int, string>
-         {
-             { 1, "Everett" },
-             { 2, "Global" },
-             { 3, "Pullman" },
-             { 4, "Spokane" },
-             { 5, "Tri-Cities" },
-             { 6, "Vancouver" }
-         };
+             {
+                 { 1, "Everett" },
+                 { 2, "Global" },
+                 { 3, "Pullman" },
+                 { 4, "Spokane" },
+                 { 5, "Tri-Cities" },
+                 { 6, "Vancouver" }
+             };
 
             var terms = new Dictionary<string, string>
-         {
-             { "fall", "Fall 2025" },
-             { "spring", "Spring 2025" },
-             { "summer", "Summer 2025" }
-         };
+             {
+                 { "fall", "Fall 2025" },
+                 { "spring", "Spring 2025" },
+                 { "summer", "Summer 2025" }
+             };
 
             using (mainDriver = new ChromeDriver(service, options))
             {
@@ -274,7 +282,7 @@ namespace VirtualCounselor
         static List<CourseData> ProcessCourseData(ChromeDriver driverInstance, string degree, string title)
         {
             Thread.Sleep(2000);
-            List<CourseData> courses = [];
+            List<CourseData> courses = new List<CourseData>();
             var allRows = driverInstance.FindElements(By.XPath("//table/tbody/tr"));
 
             if (allRows == null || allRows.Count == 0)

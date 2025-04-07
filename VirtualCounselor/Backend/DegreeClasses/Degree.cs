@@ -14,6 +14,14 @@ namespace VirtualCounselor
         // Tuple: (List of courses to choose from, isRequired)
         public List<(List<string> Options, bool IsRequired)> Requirements { get; set; } = new();
 
+        public string DegreeDescription { get; set; }
+
+        // Print the degree description paragraph to the console
+        public virtual void PrintDegreInfo()
+        {
+            Console.WriteLine(DegreeDescription);
+        }
+
         public void AddRequirement(List<string> options, bool isRequired = true)
         {
             Requirements.Add((options, isRequired));

@@ -12,11 +12,18 @@ namespace VirtualCounselor
         // The virtual conselor will contain the rest of the programs logic in itself so it can communicate with them (via function calls or events)
         private CourseManager courseManager = new CourseManager();
         private DegreeManager degreeManager = new DegreeManager();
-        private WebScraper webScraper = new WebScraper();
+        //private WebScraper webScraper = new WebScraper();
+        //private Sprint4 webScraper;
 
 
         private SmartSearch smartSearch;
         private List<string> takenCourses = new();
+
+        public CentralBackend()
+        {
+            //webScraper = new Sprint4(courseManager, degreeManager);
+            InitializeSystem();
+        }
 
         public CourseManager GetCourseManager() => courseManager;
         public DegreeManager GetDegreeManager() => degreeManager;
@@ -64,6 +71,8 @@ namespace VirtualCounselor
         {
             Console.WriteLine("Initializing system...");
             LoadMockData();
+            //webScraper.ScrapeData();
+            //webScraper.ScrapeCourses();
 
             // Log loaded courses for debugging purposes still
             var all = courseManager.GetAllCourses();
