@@ -18,7 +18,6 @@ Here are links to the issues that we completed in this sprint:
  * [ courses scrape](https://github.com/gudino27/Virtual-Counselor/issues/19)
  * [Transcript](https://github.com/gudino27/Virtual-Counselor/issues/8)
  * [degree Requirments](https://github.com/gudino27/Virtual-Counselor/issues/20)
- * 
  
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
@@ -43,12 +42,10 @@ Please review the following code files, which were actively developed during thi
 Here's what went well:
   * WebScrapeCourses
   * Transcript
-  * Item x
+  * Degree scrape
  
 Here's what we'd like to improve:
    * Item Linkage
-   * Item 2
-   * Item x
   
 Here are changes we plan to implement in the next sprint:
    * Course Scheduler
