@@ -12,13 +12,18 @@
         /// <summary>
         /// Method called to create a degree.
         /// </summary>
-        /// <param name="degreeName">the name of the degree</param>
+        /// <param name="degreeName">the name of the degree.</param>
         public static void AddDegree(string degreeName)
         {
             degreeList.Add(currentID, new Degree(degreeName, currentID));
             currentID++;
         }
 
+        /// <summary>
+        /// Takes an id and returns the degree associated.
+        /// </summary>
+        /// <param name="id">the id of the degree.</param>
+        /// <returns>the degree object.</returns>
         public static Degree GetDegreeByID(int id)
         {
             if (degreeList.ContainsKey(id))
@@ -31,6 +36,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets list of all degrees.
+        /// </summary>
+        /// <returns>list of degree objects.</returns>
         public static List<Degree> GetDegreeList()
         {
             List<Degree> degrees = new List<Degree>();

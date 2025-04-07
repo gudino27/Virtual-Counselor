@@ -1,7 +1,12 @@
 using VirtualCounselor.Components;
+using BlazorApp1.Services;
 using VirtualCounselor;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMemoryCache();
+builder.Services.AddHostedService<CourseDataBackgroundService>();
+builder.Services.AddSingleton<CourseService>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

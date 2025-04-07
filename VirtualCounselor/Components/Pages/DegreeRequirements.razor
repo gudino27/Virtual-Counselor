@@ -6,13 +6,13 @@ Current major: @degreeName
 
 
 @foreach (var course in degreeCourses){
-	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
+	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2 credits=@course.Item3></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
 }
 
 Current minor: @minorName
 
 @foreach (var course in minorCourses){
-	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
+	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2 credits=@course.Item3></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
 }
 
 
@@ -24,22 +24,22 @@ Current minor: @minorName
 	// This is the list of courses required to be taken for a degree
 	// Temporarily declared here however will get its data from degree manager later
 	// structure is (name,taken?)
-	private List<(string, bool)> degreeCourses = new List<(string, bool)>
+	private List<(string, bool, int)> degreeCourses = new List<(string, bool, int)>
 	{
-		("test1",false),
-		("test2",true),
-		("test3",false)
+		("test1",false,3),
+		("test2",true,4),
+		("test3",false,3)
 	};
 
 	// Repeated code for the minor section. will most likely condense into a single looped set of code in order
 	// to allow for as many majors as you'd like
 	private string minorName = "test minor";
 
-	private List<(string, bool)> minorCourses = new List<(string, bool)>
+	private List<(string, bool, int)> minorCourses = new List<(string, bool, int)>
 	{
-		("test1", true),
-		("test4",true),
-		("test5",false)
+		("test1", true,4),
+		("test4",true,3),
+		("test5",false,3)
 	};
 
 }

@@ -1,10 +1,12 @@
 ﻿<div class="DegreeRequirementsIndividualCourse">
 	@courseName
 	<input type="checkbox" @bind="isCompleted" /> taken
+	@credits credits
 </div>
 
 
 @code {
 	[Parameter] public string courseName { get; set; }
 	[Parameter] public bool isCompleted { get; set; }
+	[Parameter] public int credits { get; set; }
 }
