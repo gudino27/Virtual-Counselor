@@ -14,8 +14,10 @@ namespace BlazorApp1.Services
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using HtmlAgilityPack;
 
 
     public class Campus
@@ -50,7 +52,37 @@ namespace BlazorApp1.Services
         public string? Time { get; set; }
         public string? Location { get; set; }
         public string? Instructor { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
         public List<string> CourseDetails { get; set; } = new List<string>();
+        public List<CourseDescriptionDetails> CourseDescriptionDetails { get; set; } = new List<CourseDescriptionDetails>();
+
+    }
+    public class CourseDescriptionDetails
+    {
+
+        public string CourseDescription { get; set; } = string.Empty;
+        public string CoursePrerequisite { get; set; } = string.Empty;
+        public string CourseCredit { get; set; } = string.Empty;
+        public string SpecialCourseFee { get; set; } = string.Empty;
+        public string ConsentRequired { get; set; } = string.Empty;
+        public string CrosslistedCourses { get; set; } = string.Empty;
+        public string ConjointCourses { get; set; } = string.Empty;
+        public string UCORE { get; set; } = string.Empty;
+        public string GraduateCapstone { get; set; } = string.Empty;
+        public string GERCode { get; set; } = string.Empty;
+        public string WritingInTheMajor { get; set; } = string.Empty;
+        public string Cooperative { get; set; } = string.Empty;
+        public List<string> MeetingsInfo { get; set; } = new List<string>();
+        public List<string> Instructors { get; set; } = new List<string>();
+        public string InstructionMode { get; set; } = string.Empty;
+        public string EnrollmentLimit { get; set; } = string.Empty;
+        public string CurrentEnrollment { get; set; } = string.Empty;
+        public string Comment { get; set; } = string.Empty;
+        public string StartDate { get; set; } = string.Empty;
+        public string EndDate { get; set; } = string.Empty;
+        public string Footnotes { get; set; } = string.Empty;
+
     }
     public class CampusData
     {
@@ -319,7 +351,7 @@ namespace BlazorApp1.Services
             }
             // Console.WriteLine($"Expected subjects count: {expectedSubjects.Count}");
 
-            int partitionCount = Math.Min(20, rowCount);
+            int partitionCount = Math.Min(30, rowCount);
             int basePartitionSize = rowCount / partitionCount;
             int remainder = rowCount % partitionCount;
             var partitions = new List<(int start, int end)>();
@@ -353,7 +385,7 @@ namespace BlazorApp1.Services
                 courseService.HideCommandPromptWindow = true;
                 courseService.EnableVerboseLogging = false;
 
-                using var driver = new ChromeDriver(courseService, courseOptions);
+                using var driver = new ChromeDriver(courseService, courseOptions,TimeSpan.FromSeconds(120));
                 driver.Navigate().GoToUrl("https://schedules.wsu.edu");
                 Thread.Sleep(10000);
                 ClickEvent(campus, term, driver);
@@ -464,6 +496,18 @@ namespace BlazorApp1.Services
                     {
                         //Console.WriteLine($"*   Section: {section.SectionNumber}, Credits: {section.Credits}, Class Number: {section.ClassNumber},Status: {section.Status}, Spots Left: {section.SpotsLeft}");
                         //Console.WriteLine($"    *   Days: {section.Days}, Time: {section.Time}, Location: {section.Location}, Instructor: {section.Instructor}");
+                        /*
+                         foreach (var detail in section.CourseDescriptionDetails)
+                        {
+                            int maxWidth =80;
+                            string wrappedDescription = WrapText(detail.CourseDescription, maxWidth);
+                            Console.WriteLine($"        *Course Description: {detail.CourseDescription}, Course PreRecs: {detail.CoursePrerequisite}, Credits: {detail.CourseCredit}");
+                            Console.WriteLine($"        *Special Fee: {detail.SpecialCourseFee}, Consent: {detail.ConsentRequired}, Crosslisted: {detail.CrosslistedCourses}, Conjoint: {detail.ConjointCourses}");
+                            Console.WriteLine($"        *UCORE: {detail.UCORE}, , GER: {detail.GERCode}, Writing: {detail.WritingInTheMajor}");
+                            Console.WriteLine($"        *Cooperative: {detail.Cooperative}, Instr. Mode: {detail.InstructionMode}");
+                            Console.WriteLine($"        *Comment: {detail.Comment}, Footnotes: {detail.Footnotes}");
+                        }
+                         */
                         if (section.CourseDetails.Any())
                         {
                             foreach (var detail in section.CourseDetails)
@@ -477,16 +521,16 @@ namespace BlazorApp1.Services
             //Console.WriteLine($"Total courses processed: {processedSubjects.Count()}");
             // Console.WriteLine($"Missing numbers: {expectedSubjects.Count - processedSubjects.Count}");
             Thread.Sleep(5000);
-            // Add the scraped courses to the campus and term
             var allScrapedCourses = results.Values.SelectMany(courses => courses).ToList();
             AddCourseData(campus, term, term, allScrapedCourses);
         }
         static List<CourseData> ProcessCourseData(ChromeDriver driverInstance, string degree, string title)
         {
-            Thread.Sleep(7000);
-            List<CourseData> courses = [];
-            var allRows = driverInstance.FindElements(By.XPath("//table/tbody/tr"));
+            Thread.Sleep(5000);
+            List<CourseData> courses = new List<CourseData>();
+            Dictionary<string, SectionData> sectionMap = new Dictionary<string, SectionData>();
 
+            var allRows = driverInstance.FindElements(By.XPath("//table/tbody/tr"));
             if (allRows == null || allRows.Count == 0)
             {
                 return courses;
@@ -494,124 +538,319 @@ namespace BlazorApp1.Services
 
             CourseData? currentCourse = null;
 
-            foreach (var row in allRows)
+            // First try block: Process sections class number all that good stuff and store mapping by class number as it is special.
+            try
             {
-                string rowClass = row.GetAttribute("class") ?? "";
-
-                if (!rowClass.Contains("sectionlistdivider"))
+                foreach (var row in allRows)
                 {
-                    string headerText = row.Text.Trim();
-                    if (headerText.StartsWith(degree))
+                    string rowClass = row.GetAttribute("class") ?? "";
+                    if (!rowClass.Contains("sectionlistdivider"))
                     {
-                        if (rowClass.Contains("comment-text"))
+                        string headerText = row.Text.Trim();
+                        if (headerText.StartsWith(degree))
                         {
-                            continue;
-                        }
-                        else
-                        {
+                            if (rowClass.Contains("comment-text"))
+                                continue;
                             currentCourse = new CourseData { CourseName = headerText, Title = title };
                             courses.Add(currentCourse);
                         }
+                    }
+                    else if (currentCourse != null)
+                    {
+                        try
+                        {
+                            var sectionCell = row.FindElement(By.XPath(".//td[@class='sched_sec']"));
+                            string sectionText = sectionCell.Text.Trim();
 
+                            var numberCell = row.FindElement(By.XPath(".//td[@class='sched_sln']"));
+                            string classNumberText = numberCell.Text.Trim();
+
+                            var maxEnrolledCell = row.FindElement(By.XPath(".//td[@class='sched_limit']"));
+                            string maxEnrolledText = maxEnrolledCell.Text.Trim();
+                            var enrolledCell = row.FindElement(By.XPath(".//td[@class='sched_enrl']"));
+                            string enrolledText = enrolledCell.Text.Trim();
+                            var creditCell = row.FindElement(By.XPath(".//td[@class='sched_cr']"));
+                            string credit = creditCell.Text.Trim();
+                            var daysCell = row.FindElement(By.XPath(".//td[@class='sched_days']"));
+                            string fullText = daysCell.Text.Trim();
+                            var locationCell = row.FindElement(By.XPath(".//td[@class='sched_loc']"));
+                            string location = locationCell.Text.Trim();
+                            var instructorCell = row.FindElement(By.XPath(".//td[@class='sched_instructor']"));
+                            string instructor = instructorCell.Text.Trim();
+
+                            _ = int.TryParse(classNumberText, out int classNumberInt);
+                            _ = int.TryParse(maxEnrolledText, out int maxEnrolledInt);
+                            _ = int.TryParse(enrolledText, out int enrolledInt);
+                            int spotsLeft = maxEnrolledInt - enrolledInt;
+                            string status = "";
+                            if (spotsLeft > 0)
+                                status = "Open";
+                            else if (spotsLeft == 0)
+                                status = "Full";
+                            else { spotsLeft = Math.Abs(spotsLeft); status = "Waitlist"; }
+
+                            if (!sectionText.Contains("Lab"))
+                                sectionText += "    ";
+                            classNumberText = classNumberInt.ToString().PadLeft(5, '0');
+
+                            string daysText = "";
+                            string timeText = "";
+                            if (string.IsNullOrWhiteSpace(fullText) || fullText.Equals("ARRGT", StringComparison.OrdinalIgnoreCase))
+                            {
+                                daysText = "ARRGT";
+                                timeText = "";
+                            }
+                            else if (fullText.Contains(' '))
+                            {
+                                int spaceIndex = fullText.IndexOf(' ');
+                                daysText = fullText.Substring(0, spaceIndex);
+                                timeText = fullText.Substring(spaceIndex + 1);
+                            }
+                            else
+                            {
+                                daysText = fullText;
+                                timeText = "";
+                            }
+
+                            SectionData section = new SectionData()
+                            {
+                                SectionNumber = sectionText,
+                                Credits = credit,
+                                ClassNumber = classNumberText,
+                                SpotsLeft = spotsLeft,
+                                Status = status,
+                                Days = daysText,
+                                Time = timeText,
+                                Location = location,
+                                Instructor = instructor
+                            };
+
+                            // each classNumberText is unique to its section number and course name
+                            sectionMap[classNumberText] = section;
+                            currentCourse.Sections.Add(section);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Error processing basic section info: " + ex.Message);
+                        }
                     }
                 }
-                else if (currentCourse != null)
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in first phase: " + ex.Message);
+            }
+
+            // Second try block: For  class number, click the corresponding section button,
+            // click it, extract details, attach them to the correct SectionData, then navigate back
+            try
+            {
+                foreach (string key in sectionMap.Keys.ToList())
                 {
                     try
                     {
-                        var sectionCell = row.FindElement(By.XPath(".//td[@class='sched_sec']"));
-                        string sectionText = sectionCell.Text.Trim();
-                        var numberCell = row.FindElement(By.XPath(".//td[@class='sched_sln']"));
-                        string classNumberText = numberCell.Text.Trim();
-                        var maxEnrolledCell = row.FindElement(By.XPath(".//td[@class='sched_limit']"));
-                        string maxEnrolledText = maxEnrolledCell.Text.Trim();
-                        var enrolledCell = row.FindElement(By.XPath(".//td[@class='sched_enrl']"));
-                        string enrolledText = enrolledCell.Text.Trim();
-                        var creditCell = row.FindElement(By.XPath(".//td[@class='sched_cr']"));
-                        string credit = creditCell.Text.Trim();
-                        var dayscell = row.FindElement(By.XPath(".//td[@class='sched_days']"));
-                        string fullText = dayscell.Text.Trim();
+                        var sectionNumberElement = driverInstance.FindElement(
+                            By.XPath($"//td[@class='sched_sln' and normalize-space(text())='{key}']"));
+                        var sectionRow = sectionNumberElement.FindElement(By.XPath("./ancestor::tr"));
+                        var button = sectionRow.FindElement(By.XPath(".//td[@class='sched_sec']/a"));
 
+                        button.Click();
+                        Thread.Sleep(5000);
 
-                        var locationCell = row.FindElement(By.XPath(".//td[@class='sched_loc']"));
-                        string location = locationCell.Text.Trim();
-                        var instructorCell = row.FindElement(By.XPath(".//td[@class='sched_instructor']"));
-                        string instructor = instructorCell.Text.Trim();
-                        _ = int.TryParse(classNumberText, out int classNumberInt);
-                        _ = int.TryParse(maxEnrolledText, out int maxEnrolledInt);
-                        _ = int.TryParse(enrolledText, out int enrolledInt);
-                        int spotsLeft = maxEnrolledInt - enrolledInt;
-                        string status = "";
-                        if (spotsLeft > 0)
-                        {
-                            status = "Open";
-                        }
-                        else if (spotsLeft == 0)
-                        {
-                            status = "Full";
-                        }
-                        else if (spotsLeft < 0)
-                        {
-                            spotsLeft = Math.Abs(spotsLeft);
-                            status = "Waitlist";
-                        }
-                        if (!sectionText.Contains("Lab"))
-                        {
-                            sectionText += "    ";
-                        }
-                        classNumberText = classNumberInt.ToString().PadLeft(5, '0');
-                        string daysText = "";
-                        string timeText = "";
+                        var extraDetailsObj = LoadCourseDescriptionDetails(driverInstance);
+                        List<string> extraDetailsList = ConvertDetailsToStringList(extraDetailsObj);
 
-                        if (string.IsNullOrWhiteSpace(fullText) || fullText.Equals("ARRGT", StringComparison.OrdinalIgnoreCase))
+                        if (sectionMap.ContainsKey(key))
                         {
-                            // Handle  no set schedule
-                            daysText = "ARRGT";
-                            timeText = "";
-                        }
-                        else if (fullText.Contains(' '))
-                        {
-                            int spaceIndex = fullText.IndexOf(' ');
-                            daysText = fullText.Substring(0, spaceIndex);
-                            timeText = fullText.Substring(spaceIndex + 1);
-                        }
-                        else
-                        {
-                            // treats the whole thing as days if random thing shows up
-                            daysText = fullText;
-                            timeText = "";
-                        }
-                        SectionData section = new()
-                        {
-                            SectionNumber = sectionText,
-                            Credits = credit,
-                            ClassNumber = classNumberText,
-                            SpotsLeft = spotsLeft,
-                            Status = status,
-                            Days = daysText,
-                            Time = timeText,
-                            Location = location,
-                            Instructor = instructor
+                            sectionMap[key].CourseDescriptionDetails.Add(extraDetailsObj);
+                            //Console.WriteLine($"DEBUG: Added extra details to class number {key}. Count now: {sectionMap[key].CourseDescriptionDetails.Count}");
 
-                        };
-                        CourseData course = new()
-                        {
-                            Title = title
-                        };
-                        currentCourse.Sections.Add(section);
+                        }
+
+                        driverInstance.Navigate().Back();
+                        Thread.Sleep(7000);
                     }
-                    catch (Exception)
+                    catch (Exception ex2)
                     {
-                        // Handle errors
+                        Console.WriteLine("Error processing extra details for class number " + key + ": " + ex2.Message);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in second try block: " + ex.Message);
             }
 
             return courses;
         }
+        public static CourseDescriptionDetails LoadCourseDescriptionDetails(ChromeDriver driverInstance)
+        {
+            CourseDescriptionDetails details = new CourseDescriptionDetails();
+            try
+            {
+                Thread.Sleep(5000);
+                var dlElement = driverInstance.FindElement(By.XPath("/html/body/div[1]/div[3]/div/div[2]/main/div[4]/div/div/dl"));
+                string? detailsHtml = dlElement.GetAttribute("outerHTML");
+                if(string.IsNullOrEmpty(detailsHtml))
+                {
+                    Console.WriteLine("No details found.");
+                    return details;
+                }
+                var doc = new HtmlDocument();
+                doc.LoadHtml(detailsHtml);
+
+                var dtNodes = doc.DocumentNode.SelectNodes("//dt");
+                if (dtNodes != null)
+                {
+                    foreach (var dt in dtNodes)
+                    {
+                        var dd = dt.SelectSingleNode("following-sibling::dd[1]");
+                        string key = dt.InnerText.Trim();
+                        string value = dd != null ? dd.InnerText.Trim() : string.Empty;
+
+                        switch (key)
+                        {
+                            case "Course Description":
+                                details.CourseDescription = value;
+                                break;
+                            case "Course Prerequisite":
+                                details.CoursePrerequisite = value;
+                                break;
+                            case "Course Credit":
+                                details.CourseCredit = value;
+                                break;
+                            case "Special Course Fee":
+                                details.SpecialCourseFee = value;
+                                break;
+                            case "Consent required:":
+                                details.ConsentRequired = value;
+                                break;
+                            case "Crosslisted Courses":
+                                details.CrosslistedCourses = value;
+                                break;
+                            case "Conjoint Courses":
+                                details.ConjointCourses = value;
+                                break;
+                            case "UCORE":
+                                details.UCORE = value;
+                                break;
+                            case "[GRADCAPS] Graduate Capstone":
+                                details.GraduateCapstone = value;
+                                break;
+                            case "GER Code":
+                                details.GERCode = value;
+                                break;
+                            case "Writing in the Major":
+                                details.WritingInTheMajor = value;
+                                break;
+                            case "Cooperative":
+                                details.Cooperative = value;
+                                break;
+                            case "Meetings Info":
+                                details.MeetingsInfo.Add(value);
+                                break;
+                            case "Instructor(s)":
+                                details.Instructors.Add(value);
+                                break;
+                            case "Instruction Mode":
+                                details.InstructionMode = value;
+                                break;
+                            case "Enrollment Limit":
+                                details.EnrollmentLimit = value;
+                                break;
+                            case "Current Enrollment":
+                                details.CurrentEnrollment = value;
+                                break;
+                            case "Comment":
+                                details.Comment = value;
+                                break;
+                            case "Start Date":
+                                details.StartDate = value;
+                                break;
+                            case "End Date":
+                                details.EndDate = value;
+                                break;
+                            case "Footnotes":
+                                details.Footnotes = value;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading course details: {ex.Message}");
+            }
+            return details;
+        }
+        public static List<string> ConvertDetailsToStringList(CourseDescriptionDetails details)
+        {
+            var list = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(details.CourseDescription))
+                list.Add(details.CourseDescription);
+            if (!string.IsNullOrWhiteSpace(details.CoursePrerequisite))
+                list.Add(details.CoursePrerequisite);
+            if (!string.IsNullOrWhiteSpace(details.CourseCredit))
+                list.Add(details.CourseCredit);
+            if (!string.IsNullOrWhiteSpace(details.SpecialCourseFee))
+                list.Add(details.SpecialCourseFee);
+            if (!string.IsNullOrWhiteSpace(details.ConsentRequired))
+                list.Add(details.ConsentRequired);
+            if (!string.IsNullOrWhiteSpace(details.CrosslistedCourses))
+                list.Add(details.CrosslistedCourses);
+            if (!string.IsNullOrWhiteSpace(details.ConjointCourses))
+                list.Add(details.ConjointCourses);
+            if (!string.IsNullOrWhiteSpace(details.UCORE))
+                list.Add(details.UCORE);
+            if (!string.IsNullOrWhiteSpace(details.GraduateCapstone))
+                list.Add(details.GraduateCapstone);
+            if (!string.IsNullOrWhiteSpace(details.GERCode))
+                list.Add(details.GERCode);
+            if (!string.IsNullOrWhiteSpace(details.WritingInTheMajor))
+                list.Add(details.WritingInTheMajor);
+            if (!string.IsNullOrWhiteSpace(details.Cooperative))
+                list.Add(details.Cooperative);
+            if (!string.IsNullOrWhiteSpace(details.InstructionMode))
+                list.Add(details.InstructionMode);
+            if (!string.IsNullOrWhiteSpace(details.EnrollmentLimit))
+                list.Add(details.EnrollmentLimit);
+            if (!string.IsNullOrWhiteSpace(details.CurrentEnrollment))
+                list.Add(details.CurrentEnrollment);
+            if (!string.IsNullOrWhiteSpace(details.Comment))
+                list.Add(details.Comment);
+            if (!string.IsNullOrWhiteSpace(details.StartDate))
+                list.Add(details.StartDate);
+            if (!string.IsNullOrWhiteSpace(details.EndDate))
+                list.Add(details.EndDate);
+            if (!string.IsNullOrWhiteSpace(details.Footnotes))
+                list.Add(details.Footnotes);
+
+            return list;
+        }
+        public static string WrapText(string text, int maxLineWidth)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            var words = text.Split(' ');
+            var sb = new StringBuilder();
+
+            int currentLineLength = 0;
+            foreach (var word in words)
+            {
+                if (currentLineLength + word.Length + 1 > maxLineWidth)
+                {
+                    sb.AppendLine();
+                    currentLineLength = 9; 
+                }
+                sb.Append(word + " ");
+                currentLineLength += word.Length + 1;
+            }
+            return sb.ToString();
+        }
 
     }
-}
-
- }
 }
