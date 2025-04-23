@@ -609,7 +609,6 @@
 
             var minor = new Minor { DegreeDescription = minorName };
 
-            // grab all inner‐divs without a class (your content paragraphs)
             var blocks = doc.DocumentNode
                 .SelectNodes("//div[not(@class)]")
                 ?.Select(d => d.InnerText.Trim())
@@ -653,7 +652,6 @@
                 {
                     major.Header = rawHeader;
                     major.CreditRequirement = int.Parse(m.Groups["cr"].Value);
-                    // store the bare name if you still need it
                     major.DegreeDescription = m.Groups["name"].Value.Trim();
                 }
                 else
@@ -674,7 +672,6 @@
                     major.Description = "";
                 }
 
-                // 4) now your existing sequence parsing:
                 var tableRows = driver.FindElements(By.CssSelector("table.degree_sequence_list > tr"));
                 foreach (var row in tableRows)
                 {
@@ -738,7 +735,6 @@
                 Console.WriteLine($"Error processing dynamic degree page: {ex.Message}");
                 Console.ResetColor();
 
-                // Try to extract what we can from the page source
                 try
                 {
                     var htmlDoc = new HtmlDocument();
