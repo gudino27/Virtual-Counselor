@@ -8,6 +8,11 @@
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
 
+    /// <summary>
+    /// This class is designed to be run as a seperate service to the website itself.
+    /// It handles starting the course scraper and then retrieving the data it finds to then update the cahce
+    /// for the front end to pull from.
+    /// </summary>
     public class CourseDataBackgroundService : BackgroundService
     {
         private readonly ILogger<CourseDataBackgroundService> _logger;
@@ -30,7 +35,7 @@
             {
                 // Run the initial thing when the app starts
                 _logger.LogInformation("Initial course data load starting.");
-                await Task.Run(() => Sprint4.Runall(), stoppingToken);
+                await Task.Run(() => Sprint4.RunAll(), stoppingToken);
                 UpdateCache();
                 var courses = Sprint4.CampusesList
                             .SelectMany(c => c.Terms)
@@ -51,6 +56,7 @@
                     _logger.LogInformation("Course data refreshed.");
                 }
             }
+            // Stop looping when canceled
             catch (TaskCanceledException)
             {
             }

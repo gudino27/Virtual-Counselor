@@ -10,7 +10,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-
+    /// <summary>
+    /// Storage class to represent a Campus.
+    /// Ties an ID to each of the 6 WSU locations and gives each a list of terms.
+    /// </summary>
     public class Campus
     {
         public int Id { get; set; }
@@ -45,6 +48,7 @@
         public string? Instructor { get; set; }
         public List<string> CourseDetails { get; set; } = new List<string>();
     }
+
     public class CampusData
     {
         public int Id { get; set; }
@@ -79,13 +83,15 @@
 
     partial class Sprint4
     {
-        static ChromeDriver? mainDriver;
+        private static ChromeDriver? mainDriver;
         public static List<Campus> CampusesList { get; set; } = new List<Campus>();
+
         static void Main()
         {
-            Runall();
+            RunAll();
         }
-        public static void Runall()
+
+        public static void RunAll()
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             var options = new ChromeOptions();
@@ -100,29 +106,32 @@
             service.SuppressInitialDiagnosticInformation = true;
             service.HideCommandPromptWindow = true;
             service.EnableVerboseLogging = false;
+
             var campuses = new Dictionary<int, string>
-    {
-        { 1, "Everett" },
-        { 2, "Global" },
-        { 3, "Pullman" },
-        { 4, "Spokane" },
-        { 5, "Tri-Cities" },
-        { 6, "Vancouver" }
-    };
+            {
+                { 1, "Everett" },
+                { 2, "Global" },
+                { 3, "Pullman" },
+                { 4, "Spokane" },
+                { 5, "Tri-Cities" },
+                { 6, "Vancouver" }
+            };
 
             var terms = new Dictionary<int, string>
-    {
-        { 1, "Fall 2025" },
-        { 2, "Spring 2025" },
-        { 3, "Summer 2025" }
-    };
+            {
+                { 1, "Fall 2025" },
+                { 2, "Spring 2025" },
+                { 3, "Summer 2025" }
+            };
 
             using (mainDriver = new ChromeDriver(service, options))
             {
                 mainDriver.Navigate().GoToUrl("https://schedules.wsu.edu");
-
+                // LOOPS RUN ONCE FOR TESTING
+                // i <= 6
                 for (int i = 1; i <= 1; i++)
                 {
+                    // j <= 3
                     for (int j = 1; j <= 1; j++)
                     {
                         Console.WriteLine($"{campuses[i]} {terms[j]}");
@@ -131,15 +140,16 @@
                         CourseLoadParallel(campuses[i], terms[j]);
                         mainDriver.Navigate().Back();
                     }
-
                 }
-
             }
+
+            //Stop watch to see how long it takes the webdriver to execute.
             watch.Stop();
             var elapsedminutes = watch.ElapsedMilliseconds / 60000;
             var reminderelapsedseconds = (watch.ElapsedMilliseconds % 60000) / 1000;
             Console.WriteLine($"Time elapsed: {elapsedminutes} minutes and {reminderelapsedseconds} seconds");         
         }
+
         public static void AddCourseData(string campusName, string termCode, string termDescription, List<CourseData> scrapedCourses)
         {
             Campus? campus = CampusesList.FirstOrDefault(c =>
@@ -183,21 +193,21 @@
             service.HideCommandPromptWindow = true;
             service.EnableVerboseLogging = false;
             var campuses = new Dictionary<int, string>
-    {
-        { 1, "Everett" },
-        { 2, "Global" },
-        { 3, "Pullman" },
-        { 4, "Spokane" },
-        { 5, "Tri-Cities" },
-        { 6, "Vancouver" }
-    };
+            {
+                { 1, "Everett" },
+                { 2, "Global" },
+                { 3, "Pullman" },
+                { 4, "Spokane" },
+                { 5, "Tri-Cities" },
+                { 6, "Vancouver" }
+            };
 
             var terms = new Dictionary<int, string>
-    {
-        { 1, "Fall 2025" },
-        { 2, "Spring 2025" },
-        { 3, "Summer 2025" }
-    };
+            {
+                { 1, "Fall 2025" },
+                { 2, "Spring 2025" },
+                { 3, "Summer 2025" }
+            };
 
             using (mainDriver = new ChromeDriver(service, options))
             {

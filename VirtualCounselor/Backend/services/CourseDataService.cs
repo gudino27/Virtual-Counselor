@@ -1,5 +1,8 @@
 ﻿namespace BlazorApp1.Services
 {
+    /// <summary>
+    /// This class serves as the access point for the front end to access stored courses in the cache.
+    /// </summary>
     public class CourseService
     {
         
