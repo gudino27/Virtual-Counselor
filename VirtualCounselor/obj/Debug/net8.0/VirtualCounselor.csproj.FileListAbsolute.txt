@@ -98,3 +98,4 @@ C:\Users\tyler\Source\Repos\Virtual-Counselor\VirtualCounselor\bin\Debug\net8.0\
 C:\Users\tyler\Source\Repos\Virtual-Counselor\VirtualCounselor\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\tyler\Source\Repos\Virtual-Counselor\VirtualCounselor\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
 C:\Users\tyler\Source\Repos\Virtual-Counselor\VirtualCounselor\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\tyler\Source\Repos\Virtual-Counselor\VirtualCounselor\bin\Debug\net8.0\HtmlAgilityPack.NetCore.dll

@@ -155,6 +155,10 @@
               "target": "Package",
               "version": "[8.0.1, )"
             },
+            "HtmlAgilityPack.NetCore": {
+              "target": "Package",
+              "version": "[1.5.0.1, )"
+            },
             "OfficeOpenXml.Core.ExcelPackage": {
               "target": "Package",
               "version": "[1.0.0, )"

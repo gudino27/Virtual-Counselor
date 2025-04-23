@@ -123,6 +123,26 @@
           }
         }
       },
+      "HtmlAgilityPack.NetCore/1.5.0.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Linq": "4.1.0",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Xml.XPath": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/HtmlAgilityPack.NetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/HtmlAgilityPack.NetCore.dll": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -1837,6 +1857,19 @@
         "lib/netstandard1.0/ExcelNumberFormat.xml",
         "lib/netstandard2.0/ExcelNumberFormat.dll",
         "lib/netstandard2.0/ExcelNumberFormat.xml"
+      ]
+    },
+    "HtmlAgilityPack.NetCore/1.5.0.1": {
+      "sha512": "UaLQtf8QMM1cxUDPMMBcrgX3A/56P+y4mHidgWaoiieaEG9eyODVRIKt6cQtBZaHLOVX3abGdMGVk2RnlWUAOw==",
+      "type": "package",
+      "path": "htmlagilitypack.netcore/1.5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlagilitypack.netcore.1.5.0.1.nupkg.sha512",
+        "htmlagilitypack.netcore.nuspec",
+        "lib/net45/HtmlAgilityPack.NetCore.dll",
+        "lib/netstandard1.3/HtmlAgilityPack.NetCore.dll"
       ]
     },
     "Microsoft.Extensions.Configuration/8.0.0": {
@@ -5539,6 +5572,7 @@
       "ClosedXML >= 0.104.2",
       "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
       "EPPlus >= 8.0.1",
+      "HtmlAgilityPack.NetCore >= 1.5.0.1",
       "OfficeOpenXml.Core.ExcelPackage >= 1.0.0",
       "Selenium.Support >= 4.29.0",
       "Selenium.WebDriver >= 4.29.0",
@@ -5607,6 +5641,10 @@
           "EPPlus": {
             "target": "Package",
             "version": "[8.0.1, )"
+          },
+          "HtmlAgilityPack.NetCore": {
+            "target": "Package",
+            "version": "[1.5.0.1, )"
           },
           "OfficeOpenXml.Core.ExcelPackage": {
             "target": "Package",

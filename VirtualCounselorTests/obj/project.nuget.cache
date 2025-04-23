@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3j3Fx5XBUyw=",
+  "dgSpecHash": "jWDzdhOo4rg=",
   "success": true,
   "projectFilePath": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselorTests\\VirtualCounselorTests.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\tyler\\.nuget\\packages\\epplus\\8.0.1\\epplus.8.0.1.nupkg.sha512",
     "C:\\Users\\tyler\\.nuget\\packages\\epplus.interfaces\\8.0.0\\epplus.interfaces.8.0.0.nupkg.sha512",
     "C:\\Users\\tyler\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",
+    "C:\\Users\\tyler\\.nuget\\packages\\htmlagilitypack.netcore\\1.5.0.1\\htmlagilitypack.netcore.1.5.0.1.nupkg.sha512",
     "C:\\Users\\tyler\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
     "C:\\Users\\tyler\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\tyler\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
