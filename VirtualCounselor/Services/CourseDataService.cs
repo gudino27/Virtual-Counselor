@@ -12,7 +12,7 @@ namespace BlazorApp1.Services
         // This copies data from CourseScrape.CampusesList into a property or returns it directly.
     public List<Campus> GetAllCampuses()
         {
-            // Ensure CourseScrape.Runall() is called at least once in your application’s startup 
+            // Ensure CourseScrape.Runall() is called at least once in startup 
             // so that CampusesList is populated.
             return CourseScrape.CampusesList;
         }
