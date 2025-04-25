@@ -1,23 +1,23 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "Id": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
       "PackagePath": "staticwebassets\\VirtualCounselor.q5wzg8ueh1.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Id": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "Id": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {

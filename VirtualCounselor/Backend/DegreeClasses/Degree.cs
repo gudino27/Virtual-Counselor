@@ -25,5 +25,16 @@
         {
             get { return id; }
         }
+
+        public List<(Course, bool)> Courses
+        {
+            get { return requiredCourses; }
+        }
+
+        // Method to add a test course to the degree course list
+        public void AddTestCourse(string name, int numID)
+        {
+            this.requiredCourses.Add((new Course(name, numID), false));
+        }
     }
 }

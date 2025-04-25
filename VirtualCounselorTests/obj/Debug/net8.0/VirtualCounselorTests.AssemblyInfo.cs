@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VirtualCounselorTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14f71e1f6ce3e9f0306bf445d8fa4d0810ac1fe2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf0838bf56612094855780929656c5e3b046fb89")]
 [assembly: System.Reflection.AssemblyProductAttribute("VirtualCounselorTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VirtualCounselorTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

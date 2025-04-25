@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uhttsWQJAVoa0wbi86LL5Ynv4pSvM6yKUU1JOVYBEU8=",
+  "Hash": "4k0vxDr1tFUEY6p8R5KKHdqRAt/HQP3E/sCRajLvWa0=",
   "Source": "VirtualCounselor",
   "BasePath": "_content/VirtualCounselor",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "VirtualCounselor\\wwwroot",
       "Source": "VirtualCounselor",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
+      "Identity": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/VirtualCounselor",
       "RelativePath": "VirtualCounselor#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -35,13 +35,13 @@
       "Integrity": "cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css"
+      "OriginalItemSpec": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "Identity": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/VirtualCounselor",
       "RelativePath": "VirtualCounselor#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -56,13 +56,13 @@
       "Integrity": "cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css"
+      "OriginalItemSpec": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Identity": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
       "RelativePath": "app#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -80,10 +80,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
       "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -101,10 +101,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
       "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -122,10 +122,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "Identity": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "SourceId": "VirtualCounselor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "ContentRoot": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
       "BasePath": "_content/VirtualCounselor",
       "RelativePath": "favicon#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -146,7 +146,7 @@
   "Endpoints": [
     {
       "Route": "app.8g08hluszq.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -167,7 +167,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 05:10:14 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -191,7 +191,7 @@
     },
     {
       "Route": "app.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -212,7 +212,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 05:10:14 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -228,7 +228,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -249,7 +249,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -273,7 +273,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -294,7 +294,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -310,7 +310,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -331,7 +331,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -355,7 +355,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -376,7 +376,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -392,7 +392,7 @@
     },
     {
       "Route": "favicon.ifv42okdf2.png",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -413,7 +413,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -437,7 +437,7 @@
     },
     {
       "Route": "favicon.png",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -458,7 +458,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -474,7 +474,7 @@
     },
     {
       "Route": "VirtualCounselor.bundle.scp.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -495,7 +495,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -511,7 +511,7 @@
     },
     {
       "Route": "VirtualCounselor.q5wzg8ueh1.bundle.scp.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -532,7 +532,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -556,7 +556,7 @@
     },
     {
       "Route": "VirtualCounselor.q5wzg8ueh1.styles.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -577,7 +577,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -601,7 +601,7 @@
     },
     {
       "Route": "VirtualCounselor.styles.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
+      "AssetFile": "G:\\WSU Stuff\\CPTS 322\\VirtualCounselorFinal\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -622,7 +622,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 05:08:25 GMT"
+          "Value": "Fri, 25 Apr 2025 09:23:44 GMT"
         },
         {
           "Name": "Cache-Control",

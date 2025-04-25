@@ -3,19 +3,68 @@
 @rendermode InteractiveServer
 <h3>Degrees</h3>
 
+<input placeholder="Course Name" @bind="NewCourseName" class="form-control mb-1" />
+
+@*The button to confirm data entered*@
+<button class="btn btn-primary" @onclick="SearchDegree">Search Degree</button>
+
 <div class="scrollable-list" style="max-height: 400px; overflow-y: scroll;">
-	@foreach (var deg in degrees)
-	{
-		<VirtualCounselor.Components.Objects.DegreeSearchResult degree="deg" onClick="NavToDetailsPage"></VirtualCounselor.Components.Objects.DegreeSearchResult>
-	}
+    @if (search)
+    {
+        @foreach (var deg in degrees)
+        {
+            if (deg.Name.Contains(newCourseNameField))
+            {
+                <VirtualCounselor.Components.Objects.DegreeSearchResult degree="deg" onClick="NavToDetailsPage"></VirtualCounselor.Components.Objects.DegreeSearchResult>
+            }
+        }
+    }
+    else
+    {
+        @foreach (var deg in degrees)
+        {
+            <VirtualCounselor.Components.Objects.DegreeSearchResult degree="deg" onClick="NavToDetailsPage"></VirtualCounselor.Components.Objects.DegreeSearchResult>
+        }
+    }
 </div>
 
+
 @code {
-	private List<Degree> degrees = DegreeManager.GetDegreeList();
+    private List<Degree> degrees = DegreeManager.GetDegreeList();
+    private bool search = false;
+
+    // Autocomplete for course name
+    private string? newCourseNameField;
+    private string? NewCourseName
+    {
+        get => newCourseNameField;
+        set
+        {
+            if (newCourseNameField != value)
+            {
+                newCourseNameField = value;
+                StateHasChanged();
+            }
+        }
+    }
+
+    // Function to search for a specified degree
+    private void SearchDegree()
+    {
+        search = true;
+    }
 
 	private void NavToDetailsPage(Degree degree)
 	{
 		Console.WriteLine("test");
+        search = false;
+
+        
+        // Test Courses
+        degree.AddTestCourse("Test1", 111);
+        degree.AddTestCourse("Test2", 222);
+        
+
 		navigation.NavigateTo($"/DegreeDetails/{degree.Id.ToString()}");
 	}
 }

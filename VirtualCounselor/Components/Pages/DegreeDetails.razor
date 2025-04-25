@@ -2,7 +2,20 @@
 @inject NavigationManager navigation
 @rendermode InteractiveServer
 
-<h2>test degree: @degree.Name</h2> <button Size="ButtonSize.Large" @onclick="GoBack"> Return </button>
+<h2>Degree: @degree.Name</h2>
+
+<h3>Required Courses: </h3>
+
+<div class="scrollable-list" style="max-height: 400px; overflow-y: scroll;">
+	@foreach (var course in degree.Courses)
+	{
+		<l>Name: </l>@course.Item1.Name <l> ID: </l> @course.Item1.Id
+		<p> </p>
+	}
+
+</div>
+
+<button Size="ButtonSize.Large" @onclick="GoBack"> Return </button>
 
 
 @code {
