@@ -1,0 +1,73 @@
+﻿@page "/degrees"
+@using System.Text.RegularExpressions
+@using System.Net    
+@using BlazorApp1.Services
+@inject CartService Cart
+@inject DegreeService DegreeService
+@inject IJSRuntime JS
+
+<h1>Available Degrees</h1>
+
+@* pull your majors/minors from your DegreeDataService *@
+@foreach (var major in DegreeService.GetAllMajors())
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@major.Header</h5>
+            <ul>
+                @foreach (var line in major.StructuredOutput)
+                {
+                    <li>
+                        @((MarkupString)RenderLineWithFootnotes(line, major.Footnotes))
+                    </li>
+                }
+            </ul>
+            <h3>@major.DegreeDescription (@major.TotalCredits credits)</h3>
+
+            <table class="table">
+                <thead>
+                    <tr><th>Course</th><th>Credits</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var cr in major.CourseRequirements)
+                    {
+                        <tr>
+                            <td>@cr.Name</td>
+                            <td>@cr.Credits</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@code {
+    string RenderLineWithFootnotes(string line, Dictionary<string, string> fn)
+    {
+        return Regex.Replace(line, @"<sup>(\d+)</sup>", m =>
+        {
+            var key = m.Groups[1].Value;
+            var note = fn.ContainsKey(key) ? fn[key] : "";
+            return
+      $"<a href=\"#\" tabindex=\"0\" class=\"text-decoration-none\" " +
+      $"data-bs-toggle=\"popover\" data-bs-trigger=\"hover focus\" " +
+      $"title=\"Footnote {key}\" data-bs-content=\"{WebUtility.HtmlEncode(note)}\">" +
+      $"<sup>{key}</sup></a>";
+        });
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+
+                // bootstrap popover initializer, assumes you have bootstrap.js registered
+                await JS.InvokeVoidAsync("bootstrap.Popover", ".card [data-bs-toggle=popover]");
+            }
+            catch { }
+        }
+    }
+}

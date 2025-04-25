@@ -1,11 +1,9 @@
-﻿@page "/Transcript"
+@page "/Transcript"
 @using OfficeOpenXml.Style
-@using OfficeOpenXml
 @using System.Drawing
 @using BlazorApp1.Services
 @inject IJSRuntime JS
 @inject CourseService CourseService
-@rendermode InteractiveServer
 
 <PageTitle>Academic Transcript</PageTitle>
 
@@ -14,7 +12,6 @@
 <div class="mb-4">
     <h3>Add Course</h3>
     <div>
-        @*Options for selecting the year a course was taken*@
         <select @bind="newYear" class="form-control mb-1">
             <option value="">Select Year</option>
             <option value="First Year">First Year</option>
@@ -24,7 +21,6 @@
             <option value="Fifth Year">Fifth Year</option>
         </select>
 
-        @*Options for selecting the semester a class was taken*@
         <select @bind="newSemester" class="form-control mb-1">
             <option value="">Select Semester</option>
             <option value="Fall">Fall</option>
@@ -33,11 +29,9 @@
         </select>
 
         <div style="position: relative;">
-            @*The entrybox for the name of the course*@
             <input placeholder="Course Name" @bind="NewCourseName" @bind:event="oninput" class="form-control mb-1" />
             @if (courseSuggestions.Any())
             {
-                @*When there are course suggestions, turn the textbox to a list of suggestions*@
                 <ul class="list-group" style="position: absolute; z-index: 1000; width: 100%;">
                     @foreach (var suggestion in courseSuggestions)
                     {
@@ -49,10 +43,8 @@
             }
         </div>
 
-        @*Input for the credits a course is worth.*@
         <input placeholder="Credits" @bind="newCredits" type="number" class="form-control mb-1" />
 
-        @*Options for grades*@
         <select @bind="newGrade" class="form-control mb-1">
             <option value="">Select Grade</option>
             <option value="A+">A+</option>
@@ -67,12 +59,9 @@
             <option value="D+">D+</option>
             <option value="D">D</option>
             <option value="F">F</option>
+            <option value="Not-Taken">Not-Taken</option>
         </select>
-
-        @*The button to confirm data entered*@
         <button class="btn btn-primary" @onclick="AddCourse">Add Course</button>
-
-        @*Upon recieving an error message, display it as an alert*@
         @if (!string.IsNullOrEmpty(errorMessage))
         {
             <div class="alert alert-warning">@errorMessage</div>
@@ -81,7 +70,6 @@
     </div>
 </div>
 
-@*Table at the bottom of the screen listing all previously taken courses*@
 <table class="table table-striped">
     <thead>
         <tr>
@@ -108,24 +96,18 @@
     </tbody>
 </table>
 
-@*Summary stats for entrie college career tracked at the bottom*@
 <p><strong>Total Credits:</strong> @studentRecord.GetTotalCredits()</p>
 <p><strong>GPA:</strong> @studentRecord.GetGPA()</p>
 <p><strong>Status:</strong> @studentRecord.GetGraduationStatus()</p>
 
-@*Button to export data to spreadsheet*@
 <button class="btn btn-success" @onclick="ExportToExcel">Export to Excel</button>
 
 @code {
-    /// <summary>
-    /// Storage class stores info on a particular course.
-    /// </summary>
     public class Course
     {
         public string? Name { get; set; }
         public int Credits { get; set; }
         public string Grade { get; set; } = "";
-
         public double GetGradePoints()
         {
             var gradePoints = new Dictionary<string, double>
@@ -133,16 +115,13 @@
                 {"A+", 4.0}, {"A", 4.0}, {"A-", 3.7},
                 {"B+", 3.3}, {"B", 3.0}, {"B-", 2.7},
                 {"C+", 2.3}, {"C", 2.0}, {"C-", 1.7},
-                {"D+", 1.3}, {"D", 1.0}, {"F", 0.0}
+				{"D+", 1.3}, {"D", 1.0}, {"F", 0.0},
+				{"Not-Taken", 0.0}
             };
             return gradePoints.ContainsKey(Grade) ? gradePoints[Grade] * Credits : 0;
         }
     }
 
-    /// <summary>
-    /// Class to represent a semester.
-    /// Contains a list of courses in that semester and the name fo that semester.
-    /// </summary>
     public class Semester
     {
         public string Name { get; set; }
@@ -153,46 +132,16 @@
             Name = name;
         }
 
-        /// <summary>
-        /// Adds to the Semester's course list.
-        /// </summary>
-        /// <param name="name">name of the course.</param>
-        /// <param name="credits">how many credits the course is.</param>
-        /// <param name="grade">the letter grade revieved.</param>
         public void AddCourse(string name, int credits, string grade)
         {
             Courses.Add(new Course { Name = name, Credits = credits, Grade = grade });
         }
 
-        /// <summary>
-        /// Adds up all credits taken that semester.
-        /// </summary>
-        /// <returns>total credits taken in the semester summed.</returns>
         public int GetTotalCredits() => Courses.Sum(c => c.Credits);
-
-        /// <summary>
-        /// Adds up total gradepoints earned.
-        /// </summary>
-        /// <returns>total gradepoints earned.</returns>
         public double GetTotalGradePoints() => Courses.Sum(c => c.GetGradePoints());
-
-        /// <summary>
-        /// Calculates total GPA for semester.
-        /// </summary>
-        /// <returns>the calculation of the GPA when its valid.</returns>
-        public double GetGPA(){
-            if(Courses.Any() && GetTotalCredits() != 0){
-                return GetTotalGradePoints() / GetTotalCredits();
-            }
-            else{
-                return 0;
-            }
-        }
+        public double GetGPA() => Courses.Any() ? GetTotalGradePoints() / GetTotalCredits() : 0;
     }
 
-    /// <summary>
-    /// Storage class that keeps all of the students data for all semesters.
-    /// </summary>
     public class StudentRecord
     {
         public Dictionary<string, List<Semester>> AcademicRecord { get; set; } = new Dictionary<string, List<Semester>>
@@ -221,6 +170,36 @@
             return totalCredits > 0 ? totalGradePoints / totalCredits : 0;
         }
         public string GetGraduationStatus() => GetTotalCredits() >= 120 ? "Graduated!" : $"Credits to graduate: {120 - GetTotalCredits()}";
+		// Check if a course has been completed
+		// (i.e., not "Not-Taken" and exists in the academic record)
+        public bool HasCompleted(string courseName)
+        {
+            return AcademicRecord.Values
+                .SelectMany(year => year)
+                .SelectMany(sem => sem.Courses)
+                .Any(c =>
+                    c.Name.Equals(courseName, StringComparison.OrdinalIgnoreCase)
+                    && !string.Equals(c.Grade, "Not-Taken", StringComparison.OrdinalIgnoreCase)
+                );
+        }
+
+        // Add or update a grade for a course
+        public void SetGrade(string courseName, int credits, string grade)
+        {
+            // remove any existing entries for that course
+            foreach (var semList in AcademicRecord.Values)
+                foreach (var sem in semList)
+                    sem.Courses.RemoveAll(c => c.Name.Equals(courseName, StringComparison.OrdinalIgnoreCase));
+
+            // if they actually took it, re-add it
+            if (!string.Equals(grade, "Not-Taken", StringComparison.OrdinalIgnoreCase))
+            {
+                // for simplicity, toss into “First Year/Fall”—you can adapt to let them pick year/term
+                AcademicRecord["First Year"]
+                    .First(s => s.Name == "Fall")
+                    .AddCourse(courseName, credits, grade);
+            }
+        }
     }
 
     // UI model for transcript records
@@ -317,37 +296,34 @@
 
     void AddCourse()
     {
-        if (string.IsNullOrEmpty(newYear))
+        if (string.IsNullOrWhiteSpace(newYear) || string.IsNullOrWhiteSpace(newSemester) || string.IsNullOrWhiteSpace(NewCourseName)|| newCredits==null||newCredits<=0||string.IsNullOrWhiteSpace(newGrade))
         {
-            errorMessage = "Please select a year.";
-            return;
-        }
-        else if (string.IsNullOrWhiteSpace(newSemester))
-        {
-            errorMessage = "Please select a semester.";
-            return;
-        }
-        else if (string.IsNullOrWhiteSpace(NewCourseName))
-        {
-            errorMessage = "Please enter a course name.";
-            return;
-        }
-        else if (newCredits == null || newCredits <= 0)
-        {
-            errorMessage = "Please enter valid credits.";
-            return;
-        }
-        else if (string.IsNullOrWhiteSpace(newGrade))
-        {
-            errorMessage = "Please select a grade.";
-            return;
+            if (string.IsNullOrEmpty(newYear))
+            {
+                errorMessage = "Please select a year.";
+            }
+            else if (string.IsNullOrWhiteSpace(newSemester))
+            {
+                errorMessage = "Please select a semester.";
+            }
+            else if (string.IsNullOrWhiteSpace(NewCourseName))
+            {
+                errorMessage = "Please enter a course name.";
+            }
+            else if (newCredits == null || newCredits <= 0)
+            {
+                errorMessage = "Please enter valid credits.";
+            }
+            else if (string.IsNullOrWhiteSpace(newGrade))
+            {
+                errorMessage = "Please select a grade.";
+            }
         }
         else
         {
         errorMessage = null; 
         }
-        //this the last part of it to work on for the random person that just clicks enter without the above filled out
-        studentRecord.AddCourse(newYear, newSemester, NewCourseName, newCredits ?? 0, newGrade);
+    studentRecord.AddCourse(newYear, newSemester, NewCourseName, newCredits ?? 0, newGrade);
         transcriptRecords.Clear();
         foreach (var yearEntry in studentRecord.AcademicRecord)
         {

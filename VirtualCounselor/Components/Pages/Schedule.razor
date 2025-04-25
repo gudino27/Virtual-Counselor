@@ -1,0 +1,923 @@
+@page "/Schedule"
+@inject IJSRuntime JSRuntime
+@using BlazorApp1.Services
+@inject CourseService DataService
+
+<h3>Course Scheduler</h3>
+
+<div class="scheduler-container">
+    <div class="selection-panel">
+        <!-- Campus & Term Selectors -->
+        <div class="form-group">
+            <label>Campus:</label>
+            <select class="form-control" @bind="SelectedCampus">
+                @foreach (var campus in AvailableCampuses)
+                {
+                    <option value="@campus">@campus</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Term:</label>
+            <select class="form-control" @bind="SelectedTerm">
+                @foreach (var term in AvailableTerms)
+                {
+                    <option value="@term">@term</option>
+                }
+            </select>
+        </div>
+        <button class="btn btn-primary" @onclick="LoadCourses">Load Courses</button>
+
+        <hr />
+
+        <!-- Search Controls -->
+        <div class="search-container mt-3">
+            <input class="form-control" placeholder="Search courses..." 
+                   @bind-value="SearchQuery" 
+                   @bind-value:event="oninput" 
+                   @onkeyup="FilterCourses" />
+
+            <div class="search-results mt-2">
+                @if (FilteredCourses.Any())
+                {
+                    <ul class="list-group">
+                        @foreach (var course in FilteredCourses.Take(10)) @* Limited to 10 courses *@
+                        {
+                            <li class="list-group-item course-item" @onclick="() => SelectCourse(course)">
+                                <div class="course-name">@course.CourseName</div>
+                                <div class="course-title small text-muted">@course.Title</div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else if (!string.IsNullOrEmpty(SearchQuery))
+                {
+                    <div class="no-results">No courses found matching "@SearchQuery"</div>
+                }
+            </div>
+        </div>
+
+        <!-- Selected Course Details -->
+        @if (SelectedCourse != null)
+        {
+            <div class="selected-course mt-3">
+                <h5>@SelectedCourse.CourseName</h5>
+                <div class="course-title mb-2 small">@SelectedCourse.Title</div>
+
+                <div class="sections-list">
+                    @foreach (var sec in SelectedCourse.Sections)
+                    {
+                        <div class="section-item @(IsScheduleConflict(sec) ? "conflict-warning" : "")" @onclick="() => ShowSectionDetail(sec)">
+                            <div class="section-code">Section @sec.SectionNumber</div>
+                            <div class="section-details">
+                                <span class="section-time">@FormatTime(sec)</span>
+                                <span class="section-status @GetStatusClass(sec.Status)">@sec.Status</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- Credit Summary -->
+        <div class="credit-summary mt-3">
+            <h5>Credit Summary</h5>
+            <div class="credit-total">Total Credits: @TotalCredits</div>
+            <div class="course-count">Courses: @ScheduledSections.Count</div>
+        </div>
+
+        <!-- Scheduled Courses List -->
+        <div class="scheduled-courses mt-3">
+            <h5>My Schedule</h5>
+            @foreach (var scheduled in ScheduledSections)
+            {
+                <div class="scheduled-course-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>@scheduled.Course.CourseName</span>
+                        <button class="btn btn-sm btn-outline-danger" @onclick="() => RemoveSection(scheduled)">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    <div class="small text-muted">@FormatDaysTime(scheduled)</div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="schedule-panel">
+        <div class="weekly-schedule">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th class="time-header">Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var startHour = 7; // 7 AM
+                        var endHour = 23;  // 11 PM
+                        
+                        for (int hour = startHour; hour < endHour; hour++)
+                        {
+                            <tr class="hour-row">
+                                <td class="time-cell">@FormatHour(hour)</td>
+                                @for (int day = 0; day < 5; day++)
+                                {
+                                    <td class="day-cell" id="cell-@day-@hour"></td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+        @foreach (var scheduled in ScheduledSections)
+        {
+            @if (scheduled.Days.Any() && scheduled.StartTime.Hours >= startHour && scheduled.StartTime.Hours < endHour)
+            {
+                foreach (var day in scheduled.Days)
+                {
+                    int dayIndex = GetDayIndex(day);
+                    if (dayIndex >= 0)
+                    {
+                        <div class="course-block @GetCourseColorClass(scheduled)"
+                             style="@GetCoursePositionStyle(scheduled, dayIndex)">
+                            <div class="course-block-header">@scheduled.Course.CourseName</div>
+                            <div class="course-block-time">
+                                @scheduled.StartTime.ToString("h:mm tt") - @scheduled.EndTime.ToString("h:mm tt")
+                            </div>
+                            <div class="course-block-location">@scheduled.Section.Location</div>
+                        </div>
+                    }
+                }
+            }
+        }
+    </div>
+</div>
+
+<!-- Section Detail Modal -->
+@if (DisplayedSection != null)
+{
+    <div class="section-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@(SelectedCourse?.CourseName) Section @DisplayedSection.SectionNumber</h5>
+                <button type="button" class="close-button" @onclick="@(() => DisplayedSection = null)">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="section-basic-info">
+                    <div class="info-row">
+                        <span class="label">Class Number:</span>
+                        <span class="value">@DisplayedSection.ClassNumber</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Credits:</span>
+                        <span class="value">
+                            @if (DisplayedSection.Credits == "V")
+                            {
+                                <input type="number" min="1" max="18" @bind="VariableCredits" class="credit-input" />
+                            }
+                            else
+                            {
+                                @DisplayedSection.Credits
+                            }
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Time:</span>
+                        <span class="value">@GetAccurateTime(DisplayedSection)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Location:</span>
+                        <span class="value">@DisplayedSection.Location</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Instructor:</span>
+                        <span class="value">@DisplayedSection.Instructor</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Status:</span>
+                        <span class="value @GetStatusClass(DisplayedSection.Status)">
+                            @DisplayedSection.Status (@DisplayedSection.SpotsLeft spots @(DisplayedSection.Status == "Waitlist" ? "on waitlist" : "left"))
+                        </span>
+                    </div>
+                </div>
+
+                @if (GetCourseDescriptionDetails(DisplayedSection) != null)
+                {
+                    var details = GetCourseDescriptionDetails(DisplayedSection);
+                    <div class="section-extra-details">
+                        <h5>Course Details</h5>
+                        @if (!string.IsNullOrEmpty(details.CourseDescription))
+                        {
+                            <div class="detail-item">
+                                <div class="detail-label">Description:</div>
+                                <div class="detail-value">@details.CourseDescription</div>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(details.CoursePrerequisite))
+                        {
+                            <div class="detail-item">
+                                <div class="detail-label">Prerequisites:</div>
+                                <div class="detail-value">@details.CoursePrerequisite</div>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(details.UCORE))
+                        {
+                            <div class="detail-item">
+                                <div class="detail-label">UCORE:</div>
+                                <div class="detail-value">@details.UCORE</div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <div class="modal-actions">
+                    @if (IsScheduleConflict(DisplayedSection))
+                    {
+                        <div class="conflict-alert mb-2">
+                            This section conflicts with your current schedule
+                        </div>
+                    }
+                    <button class="btn @(IsScheduleConflict(DisplayedSection) ? "btn-warning" : "btn-success")" 
+                            @onclick="() => AddSection(DisplayedSection)">
+                        @(IsScheduleConflict(DisplayedSection) ? "Add Despite Conflict" : "Add to Schedule")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .scheduler-container {
+        display: flex;
+        gap: 20px;
+        height: calc(100vh - 150px);
+        overflow: hidden;
+    }
+
+    .selection-panel {
+        flex: 0 0 320px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+    .schedule-panel {
+        flex: 1;
+        position: relative;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+
+    .weekly-schedule {
+        width: 100%;
+    }
+
+    .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .schedule-table th, .schedule-table td {
+        border: 1px solid #ddd;
+        padding: 0;
+        text-align: center;
+        height: 60px;
+    }
+
+    .schedule-table th {
+        background-color: #f8f9fa;
+        padding: 8px 4px;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    .time-header {
+        width: 80px;
+    }
+
+    .time-cell {
+        padding: 5px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+    .day-cell {
+        position: relative;
+    }
+
+    .course-block {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        z-index: 10;
+        border-radius: 4px;
+        padding: 5px;
+        overflow: hidden;
+        font-size: 0.85rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+
+    .course-block-header {
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .course-block-time, .course-block-location {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .course-color-1 { background-color: #cfc; border: 1px solid #090; }
+    .course-color-2 { background-color: #ccf; border: 1px solid #009; }
+    .course-color-3 { background-color: #fcc; border: 1px solid #900; }
+    .course-color-4 { background-color: #ffc; border: 1px solid #990; }
+    .course-color-5 { background-color: #fcf; border: 1px solid #909; }
+    .course-color-6 { background-color: #cff; border: 1px solid #099; }
+
+    .course-item {
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .course-item:hover {
+        background-color: #f0f0f0;
+    }
+
+    .course-name {
+        font-weight: 500;
+    }
+
+    .section-item {
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .section-item:hover {
+        background-color: #f5f5f5;
+    }
+
+    .conflict-warning {
+        border-left: 4px solid orange;
+    }
+
+    .status-open { color: green; }
+    .status-full { color: red; }
+    .status-waitlist { color: orange; }
+
+    .section-detail-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background-color: white;
+        width: 90%;
+        max-width: 600px;
+        max-height: 90vh;
+        border-radius: 4px;
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .close-button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .info-row {
+        display: flex;
+        padding: 5px 0;
+    }
+
+    .label {
+        font-weight: bold;
+        width: 100px;
+    }
+
+    .detail-item {
+        margin-bottom: 10px;
+    }
+
+    .detail-label {
+        font-weight: bold;
+    }
+
+    .detail-value {
+        margin-left: 10px;
+    }
+
+    .modal-actions {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .conflict-alert {
+        color: red;
+    }
+
+    .credit-input {
+        width: 60px;
+    }
+
+    .scheduled-course-item {
+        padding: 8px;
+        margin-bottom: 8px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        border-left: 4px solid #6c757d;
+    }
+</style>
+
+@code {
+    List<string> AvailableCampuses = new() { "Everett", "Global", "Pullman", "Spokane", "Tri-Cities", "Vancouver" };
+    List<string> AvailableTerms = new() { "Fall 2025", "Spring 2025", "Summer 2025" };
+
+    string SelectedCampus { get; set; } = "Pullman";
+    string SelectedTerm { get; set; } = "Fall 2025";
+
+    List<CourseData> AllLoadedCourses = new();
+    string SearchQuery { get; set; } = "";
+    CourseData SelectedCourse { get; set; }
+    SectionData DisplayedSection { get; set; }
+
+    List<ScheduledSection> ScheduledSections = new();
+    int VariableCredits { get; set; } = 3;
+    
+    // Class to hold scheduled sections with additional info
+    class ScheduledSection
+    {
+        public SectionData Section { get; set; }
+        public CourseData Course { get; set; }
+        public int Credits { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public List<string> Days { get; set; } = new List<string>();
+        public int ColorIndex { get; set; } // For distinguishing courses visually
+    }
+
+    int TotalCredits => ScheduledSections.Sum(s => s.Credits);
+    
+    IEnumerable<CourseData> FilteredCourses => 
+        string.IsNullOrWhiteSpace(SearchQuery)
+            ? new List<CourseData>() // Don't show any courses when search is empty
+            : AllLoadedCourses.Where(c => !string.IsNullOrWhiteSpace(c.CourseName) &&
+                                    (c.CourseName.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                                     (!string.IsNullOrWhiteSpace(c.Title) && 
+                                      c.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))))
+                            .Take(10); // Limit to 10 results
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        LoadCourses(); // Load courses on initial load
+    }
+
+    void LoadCourses()
+    {
+        AllLoadedCourses.Clear();
+        
+        // Get courses for the selected campus and term
+        var campusCourses = DataService.GetCourses(SelectedCampus, SelectedTerm);
+        AllLoadedCourses.AddRange(campusCourses);
+        
+        // For Summer term, include Global campus courses if not already selected
+        if (SelectedTerm == "Summer 2025" && SelectedCampus != "Global")
+        {
+            var globalCourses = DataService.GetCourses("Global", SelectedTerm);
+            AllLoadedCourses.AddRange(globalCourses);
+        }
+    }
+
+    void FilterCourses()
+    {
+        // This is handled by the filtered property automatically
+        StateHasChanged();
+    }
+
+    void SelectCourse(CourseData course)
+    {
+        SelectedCourse = course;
+        DisplayedSection = null;
+    }
+
+    void ShowSectionDetail(SectionData sec)
+    {
+        DisplayedSection = sec;
+        
+        // Set default credits based on course details
+        if (sec.Credits == "V")
+        {
+            var details = GetCourseDescriptionDetails(sec);
+            if (details != null && !string.IsNullOrEmpty(details.CourseCredit))
+            {
+                // Parse credit range from description
+                var creditText = details.CourseCredit;
+                if (creditText.Contains("1-"))
+                {
+                    VariableCredits = 3; // Default to mid-range
+                }
+                else
+                {
+                    VariableCredits = 3; // Fallback default
+                }
+            }
+            else
+            {
+                VariableCredits = 3;
+            }
+        }
+    }
+
+    async Task AddSection(SectionData sec)
+    {
+        // Check if section is already in schedule
+        var existingSection = ScheduledSections.FirstOrDefault(s => 
+            s.Section.ClassNumber == sec.ClassNumber);
+            
+        if (existingSection != null)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "This section is already in your schedule.");
+            return;
+        }
+
+        // Confirm if full or waitlisted
+        if (sec.Status == "Full" || sec.Status == "Waitlist")
+        {
+            var msg = sec.Status == "Full"
+                ? "This class is full. Add it anyway?"
+                : $"This class is waitlisted. You are number {sec.SpotsLeft} on the waitlist. Add it anyway?";
+            bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", msg);
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+        // Confirm if there's a time conflict
+        if (IsScheduleConflict(sec))
+        {
+            bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", 
+                "This section conflicts with your current schedule. Add it anyway?");
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+        // Add to schedule
+        var courseCredits = sec.Credits == "V" ? VariableCredits : 
+            int.TryParse(sec.Credits, out int cr) ? cr : 0;
+            
+        var scheduledSection = new ScheduledSection
+        {
+            Section = sec,
+            Course = SelectedCourse,
+            Credits = courseCredits,
+            ColorIndex = ScheduledSections.Count % 6 + 1 // Cycle through 6 colors
+        };
+        
+        // Parse meeting times
+        ParseScheduleTimes(scheduledSection);
+        
+        ScheduledSections.Add(scheduledSection);
+        DisplayedSection = null; // Close modal
+        
+        await JSRuntime.InvokeVoidAsync("alert", "Section added to schedule!");
+    }
+
+    void RemoveSection(ScheduledSection section)
+    {
+        ScheduledSections.Remove(section);
+    }
+
+    void ParseScheduleTimes(ScheduledSection scheduled)
+    {
+        // Initialize the Days list
+        scheduled.Days = new List<string>();
+        
+        // First try to get accurate times from CourseDescriptionDetails
+        var details = GetCourseDescriptionDetails(scheduled.Section);
+        if (details != null && details.Meetings.Any())
+        {
+            var meeting = details.Meetings.First(); // Using first meeting for simplicity
+            
+            if (!string.IsNullOrEmpty(meeting.Days))
+            {
+                // Parse the days string and add each day
+                ParseDaysString(meeting.Days, scheduled.Days);
+            }
+
+            if (!string.IsNullOrEmpty(meeting.Time))
+            {
+                var timeParts = meeting.Time.Split('-');
+                if (timeParts.Length == 2)
+                {
+                    ParseTimeString(timeParts[0].Trim(), out TimeSpan startTime);
+                    ParseTimeString(timeParts[1].Trim(), out TimeSpan endTime);
+                    
+                    scheduled.StartTime = startTime;
+                    scheduled.EndTime = endTime;
+                    return;
+                }
+            }
+        }
+        
+        // Fallback to main section data
+        if (!string.IsNullOrEmpty(scheduled.Section.Days))
+        {
+            // Parse the days and add them to the scheduled section
+            ParseDaysString(scheduled.Section.Days, scheduled.Days);
+        }
+        
+        if (!string.IsNullOrEmpty(scheduled.Section.Time))
+        {
+            var timeParts = scheduled.Section.Time.Split('-');
+            if (timeParts.Length == 2)
+            {
+                ParseTimeString(timeParts[0].Trim(), out TimeSpan startTime);
+                ParseTimeString(timeParts[1].Trim(), out TimeSpan endTime);
+                
+                scheduled.StartTime = startTime;
+                scheduled.EndTime = endTime;
+            }
+        }
+    }
+
+    // Helper method to parse day codes
+    private void ParseDaysString(string daysString, List<string> daysList)
+    {
+        if (string.IsNullOrEmpty(daysString))
+            return;
+            
+        // Handle "ARRG" or similar
+        if (daysString.Contains("ARRG") || daysString.Contains("TBA") || daysString.Contains("ARRGT"))
+        {
+            return; // No specific days for arranged sections
+        }
+        
+        // Split by commas if present
+        var dayParts = daysString.Split(',');
+        
+        foreach (var part in dayParts)
+        {
+            string day = part.Trim();
+            
+            // Handle multi-character day codes
+            if (day == "TH")
+            {
+                daysList.Add("TH");
+            }
+            else if (day == "TU")
+            {
+                daysList.Add("TU");
+            }
+            else if (day.Length > 1)
+            {
+                // For other multi-character codes, add each character as a separate day
+                foreach (char c in day)
+                {
+                    if (c=='M')
+                    {
+                        daysList.Add("M");
+                    }
+                    else if (c == 'W')
+                    {
+                        // Add TU for Tuesday
+                        daysList.Add("W");
+                    }
+                    else if (c=='F')
+                    {
+                    daysList.Add("F");
+                    }
+                    
+                }
+            }
+            else if (day.Length == 1)
+            {
+                // Single character day code
+                char c = day[0];
+                if ("MWFS".Contains(c))
+                {
+                    daysList.Add(c.ToString());
+                }
+                
+                
+            }
+        }
+    }
+
+    bool ParseTimeString(string timeStr, out TimeSpan result)
+    {
+        result = TimeSpan.Zero;
+        
+        // Handle military time format (e.g., "14:30")
+        if (timeStr.Contains(':') && !timeStr.Contains("AM") && !timeStr.Contains("PM"))
+        {
+            var parts = timeStr.Split(':');
+            if (parts.Length == 2 && int.TryParse(parts[0], out int hour) && int.TryParse(parts[1], out int minute))
+            {
+                result = new TimeSpan(hour, minute, 0);
+                return true;
+            }
+            return false;
+        }
+        
+        // Handle standard AM/PM format
+        DateTime parsedTime;
+        if (DateTime.TryParse(timeStr, out parsedTime))
+        {
+            result = parsedTime.TimeOfDay;
+            return true;
+        }
+        
+        return false;
+    }
+
+    string GetAccurateTime(SectionData section)
+    {
+        var details = GetCourseDescriptionDetails(section);
+        if (details != null && details.Meetings.Any())
+        {
+            return string.Join(", ", details.Meetings.Select(m => $"{m.Days} {m.Time}"));
+        }
+        
+        return $"{section.Days} {section.Time}";
+    }
+
+    CourseDescriptionDetails GetCourseDescriptionDetails(SectionData section)
+    {
+        if (section.CourseDescriptionDetails != null && section.CourseDescriptionDetails.Any())
+        {
+            return section.CourseDescriptionDetails.First();
+        }
+        return null;
+    }
+
+    string FormatTime(SectionData sec)
+    {
+        if (string.IsNullOrWhiteSpace(sec.Days) || string.IsNullOrWhiteSpace(sec.Time))
+        {
+            return "ARRANGED";
+        }
+        return $"{sec.Days} {sec.Time}";
+    }
+
+string FormatDaysTime(ScheduledSection scheduled)
+{
+    if (scheduled.Days.Count == 0)
+    {
+        return "ARRANGED";
+    }
+    
+    string daysText = string.Join(", ", scheduled.Days);
+    
+    // Check if TimeSpan values are valid before formatting
+    string timeText = "";
+    try {
+        timeText = $"{FormatTimeSpan(scheduled.StartTime)} - {FormatTimeSpan(scheduled.EndTime)}";
+    }
+    catch {
+        timeText = "Time not specified";
+    }
+    
+    return $"{daysText} {timeText}";
+}
+
+
+private string FormatTimeSpan(TimeSpan ts)
+{
+    try {
+        return DateTime.Today.Add(ts).ToString("h:mm tt");
+    }
+    catch {
+        return "??:??";
+    }
+}
+
+    string FormatHour(int hour)
+    {
+        return new DateTime(2000, 1, 1, hour, 0, 0).ToString("h:mm tt");
+    }
+
+    string GetStatusClass(string status)
+    {
+        return status?.ToLower() switch
+        {
+            "open" => "status-open",
+            "full" => "status-full",
+            "waitlist" => "status-waitlist",
+            _ => ""
+        };
+    }
+
+    string GetCourseColorClass(ScheduledSection scheduled)
+    {
+        return $"course-color-{scheduled.ColorIndex}";
+    }
+
+    int GetDayIndex(string day)
+    {
+        return day switch
+        {
+            "M" => 0,    // Monday
+            "TU" => 1,   // Tuesday
+            "W" => 2,    // Wednesday
+            "TH" => 3,   // Thursday
+            "F" => 4,    // Friday
+            _ => -1      // Unknown
+        };
+    }
+
+    string GetCoursePositionStyle(ScheduledSection scheduled, int dayIndex)
+    {
+        // Calculate position and height based on time
+        double startHour = scheduled.StartTime.TotalHours;
+        double endHour = scheduled.EndTime.TotalHours;
+        
+
+        double startOffset = (startHour - 7) * 60; // Convert to minutes
+        double height = (endHour - startHour) * 60; // Height in minutes
+        
+        return $"top: {startOffset}px; height: {height}px;";
+    }
+
+    bool IsScheduleConflict(SectionData section)
+{
+    if (string.IsNullOrWhiteSpace(section.Days) || string.IsNullOrWhiteSpace(section.Time))
+    {
+        return false; // ARRANGED sections don't conflict
+    }
+
+    // Create a temporary scheduled section for comparison
+    var tempSection = new ScheduledSection
+    {
+        Section = section,
+        Course = SelectedCourse
+    };
+    
+    // Parse the section's schedule times
+    ParseScheduleTimes(tempSection);
+    
+    // Check for conflicts with existing scheduled sections
+    foreach (var scheduled in ScheduledSections)
+    {
+        // Skip if no days or times (arranged sections)
+        if (scheduled.Days.Count == 0 || tempSection.Days.Count == 0)
+            continue;
+            
+        // Check for day overlap
+        bool sharedDay = scheduled.Days.Intersect(tempSection.Days).Any();
+        if (!sharedDay) 
+            continue;
+            
+        // Check for time overlap
+        bool timeOverlap = !(scheduled.EndTime <= tempSection.StartTime || scheduled.StartTime >= tempSection.EndTime);
+        if (timeOverlap)
+            return true;
+    }
+    
+    return false;
+}
+        
+        
+}

@@ -1,3 +1,8 @@
+a, .bg-light {
+      
+    background-color: darkgray;
+    color: #a9a9a9;
+}
 html, body {
     font-family: 'Cascadia Code';
     background-color: darkgray

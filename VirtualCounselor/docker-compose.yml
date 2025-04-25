@@ -1,0 +1,50 @@
+#version: "3.9"
+
+services:
+  app:
+    build: .
+    image: jgudino27/virtual-counselor
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    expose:
+      - "5000"
+    tmpfs:
+      - /dev/shm:size=10g
+    networks:
+      - webnet
+    volumes:
+      - ./keys:/app/keys
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - app
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs:/etc/certs:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - webnet
+
+
+    
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    depends_on:
+      - nginx
+    user: root
+    volumes:
+      - /home/ubuntu/.cloudflared/config.yml:/home/nonroot/.cloudflared/config.yml:ro
+      - /home/ubuntu/.cloudflared/cert.pem:/home/nonroot/.cloudflared/cert.pem:ro
+      - /home/ubuntu/.cloudflared/6a3ca8ad-9ff7-49ed-8633-deb8bcc79a7c.json:/home/nonroot/.cloudflared/6a3ca8ad-9ff7-49ed-8633-deb8bcc79a7c.json:ro
+    command: tunnel --config /home/nonroot/.cloudflared/config.yml run virtual-counselor
+    restart: unless-stopped
+    networks:
+      - webnet
+      
+networks:
+  webnet:
+    driver: bridge
+
+
