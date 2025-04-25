@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)selenium.webdriver.chromedriver\135.0.7049.4200\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('$(NuGetPackageRoot)selenium.webdriver.chromedriver\135.0.7049.4200\build\Selenium.WebDriver.ChromeDriver.targets')" />
+    <Import Project="$(NuGetPackageRoot)selenium.webdriver\4.30.0\buildTransitive\Selenium.WebDriver.targets" Condition="Exists('$(NuGetPackageRoot)selenium.webdriver\4.30.0\buildTransitive\Selenium.WebDriver.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.visualstudio.azure.containers.tools.targets\1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.visualstudio.azure.containers.tools.targets\1.21.0\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" />
+  </ImportGroup>
+</Project>

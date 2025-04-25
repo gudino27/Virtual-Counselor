@@ -123,24 +123,17 @@
           }
         }
       },
-      "HtmlAgilityPack.NetCore/1.5.0.1": {
+      "HtmlAgilityPack/1.12.0": {
         "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Linq": "4.1.0",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Text.RegularExpressions": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Xml.XPath": "4.0.1"
-        },
         "compile": {
-          "lib/netstandard1.3/HtmlAgilityPack.NetCore.dll": {}
+          "lib/net8.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/netstandard1.3/HtmlAgilityPack.NetCore.dll": {}
+          "lib/net8.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
         }
       },
       "Microsoft.Extensions.Configuration/8.0.0": {
@@ -330,6 +323,13 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props": {},
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets": {}
+        }
+      },
       "Microsoft.Win32.Primitives/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -476,10 +476,10 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Selenium.Support/4.29.0": {
+      "Selenium.Support/4.30.0": {
         "type": "package",
         "dependencies": {
-          "Selenium.WebDriver": "4.29.0"
+          "Selenium.WebDriver": "4.30.0"
         },
         "compile": {
           "lib/netstandard2.0/WebDriver.Support.dll": {
@@ -492,7 +492,7 @@
           }
         }
       },
-      "Selenium.WebDriver/4.29.0": {
+      "Selenium.WebDriver/4.30.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/WebDriver.dll": {
@@ -508,7 +508,7 @@
           "buildTransitive/Selenium.WebDriver.targets": {}
         }
       },
-      "Selenium.WebDriver.ChromeDriver/134.0.6998.8800": {
+      "Selenium.WebDriver.ChromeDriver/135.0.7049.4200": {
         "type": "package",
         "build": {
           "build/Selenium.WebDriver.ChromeDriver.targets": {}
@@ -1859,17 +1859,49 @@
         "lib/netstandard2.0/ExcelNumberFormat.xml"
       ]
     },
-    "HtmlAgilityPack.NetCore/1.5.0.1": {
-      "sha512": "UaLQtf8QMM1cxUDPMMBcrgX3A/56P+y4mHidgWaoiieaEG9eyODVRIKt6cQtBZaHLOVX3abGdMGVk2RnlWUAOw==",
+    "HtmlAgilityPack/1.12.0": {
+      "sha512": "VHtVZmfoYhQyA/POvZRLuTpCz1zhzIDrdYRJIRV73e9wKAzjW71biYNOHOWx8MxEX3TE4TWVfx1QDRoZcj2AWw==",
       "type": "package",
-      "path": "htmlagilitypack.netcore/1.5.0.1",
+      "path": "htmlagilitypack/1.12.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "htmlagilitypack.netcore.1.5.0.1.nupkg.sha512",
-        "htmlagilitypack.netcore.nuspec",
-        "lib/net45/HtmlAgilityPack.NetCore.dll",
-        "lib/netstandard1.3/HtmlAgilityPack.NetCore.dll"
+        "htmlagilitypack.1.12.0.nupkg.sha512",
+        "htmlagilitypack.nuspec",
+        "lib/Net35/HtmlAgilityPack.dll",
+        "lib/Net35/HtmlAgilityPack.pdb",
+        "lib/Net35/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.XML",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/net8.0/HtmlAgilityPack.deps.json",
+        "lib/net8.0/HtmlAgilityPack.dll",
+        "lib/net8.0/HtmlAgilityPack.pdb",
+        "lib/net8.0/HtmlAgilityPack.xml",
+        "lib/netstandard2.0/HtmlAgilityPack.deps.json",
+        "lib/netstandard2.0/HtmlAgilityPack.dll",
+        "lib/netstandard2.0/HtmlAgilityPack.pdb",
+        "lib/netstandard2.0/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.XML",
+        "lib/uap10.0/HtmlAgilityPack.dll",
+        "lib/uap10.0/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.pri",
+        "readme.md"
       ]
     },
     "Microsoft.Extensions.Configuration/8.0.0": {
@@ -2158,6 +2190,86 @@
         "runtime.json"
       ]
     },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {
+      "sha512": "8NudeHOE56YsY59HYY89akRMup8Ho+7Y3cADTGjajjWroXVU9RQai2nA6PfteB8AuzmRHZ5NZQB2BnWhQEul5g==",
+      "type": "package",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.21.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "EULA.md",
+        "ThirdPartyNotices.txt",
+        "build/Container.props",
+        "build/Container.targets",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets",
+        "build/Rules/GeneralBrowseObject.xaml",
+        "build/Rules/cs-CZ/GeneralBrowseObject.xaml",
+        "build/Rules/de-DE/GeneralBrowseObject.xaml",
+        "build/Rules/es-ES/GeneralBrowseObject.xaml",
+        "build/Rules/fr-FR/GeneralBrowseObject.xaml",
+        "build/Rules/it-IT/GeneralBrowseObject.xaml",
+        "build/Rules/ja-JP/GeneralBrowseObject.xaml",
+        "build/Rules/ko-KR/GeneralBrowseObject.xaml",
+        "build/Rules/pl-PL/GeneralBrowseObject.xaml",
+        "build/Rules/pt-BR/GeneralBrowseObject.xaml",
+        "build/Rules/ru-RU/GeneralBrowseObject.xaml",
+        "build/Rules/tr-TR/GeneralBrowseObject.xaml",
+        "build/Rules/zh-CN/GeneralBrowseObject.xaml",
+        "build/Rules/zh-TW/GeneralBrowseObject.xaml",
+        "build/ToolsTarget.props",
+        "build/ToolsTarget.targets",
+        "icon.png",
+        "microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512",
+        "microsoft.visualstudio.azure.containers.tools.targets.nuspec",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Common.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Shared.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Tasks.dll",
+        "tools/Newtonsoft.Json.dll",
+        "tools/System.Security.Principal.Windows.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll"
+      ]
+    },
     "Microsoft.Win32.Primitives/4.0.1": {
       "sha512": "fQnBHO9DgcmkC9dYSJoBqo6sH1VJwJprUHh8F3hbcRlxiQiBUuTntdk8tUwV490OqC2kQUrinGwZyQHTieuXRA==",
       "type": "package",
@@ -2308,24 +2420,24 @@
         "runtime.native.system.security.cryptography.nuspec"
       ]
     },
-    "Selenium.Support/4.29.0": {
-      "sha512": "Edeldo2R/H4mfh1CW1YNr8g8ASnF/5d9YlvBKtAW93dMImnzaQ47eHbMjoJp4kU4CeyQ22UA300d7VFutzddmw==",
+    "Selenium.Support/4.30.0": {
+      "sha512": "mpUvloTX1Nj7JdCZUSlLRIxcVBoPFAirLoqAEfO246f0nuxp8ibtEHGTBfRvJGReO0nbvqfOKyVW3fU6a/z7kw==",
       "type": "package",
-      "path": "selenium.support/4.29.0",
+      "path": "selenium.support/4.30.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.png",
         "lib/netstandard2.0/WebDriver.Support.dll",
         "lib/netstandard2.0/WebDriver.Support.xml",
-        "selenium.support.4.29.0.nupkg.sha512",
+        "selenium.support.4.30.0.nupkg.sha512",
         "selenium.support.nuspec"
       ]
     },
-    "Selenium.WebDriver/4.29.0": {
-      "sha512": "bxUeeyGPoPFqqZX/RQAmcuE8fvdi08ep9519rFpONfC/rmBemezfCbbwDKPLE0xkb/cW1asH5WbDYLXs5giVeg==",
+    "Selenium.WebDriver/4.30.0": {
+      "sha512": "POEESh6f408SNst9kT+mf4g9zVahIWXjo+/8qkjUt8dNRllD+am2Fdj30j5b54kpRIx5Nz2b08AREYvaOyQQMA==",
       "type": "package",
-      "path": "selenium.webdriver/4.29.0",
+      "path": "selenium.webdriver/4.30.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2340,14 +2452,14 @@
         "manager/linux/selenium-manager",
         "manager/macos/selenium-manager",
         "manager/windows/selenium-manager.exe",
-        "selenium.webdriver.4.29.0.nupkg.sha512",
+        "selenium.webdriver.4.30.0.nupkg.sha512",
         "selenium.webdriver.nuspec"
       ]
     },
-    "Selenium.WebDriver.ChromeDriver/134.0.6998.8800": {
-      "sha512": "LKvQL2yVI+ZsCXUMuLnLbFPjQBIYUjXqwUERprpuZyttZo9wY8dOp1Qto4P7XV23jGYxSW+5I5CeuOQHIT3wNg==",
+    "Selenium.WebDriver.ChromeDriver/135.0.7049.4200": {
+      "sha512": "jesl02IzPvgOTrlIZ9HWtKwdfbt5lkrtXo/9upGf1iDqptzttztgeFYN6a0/PHLZgVx8uK8aXaU+xYy0UKbz4w==",
       "type": "package",
-      "path": "selenium.webdriver.chromedriver/134.0.6998.8800",
+      "path": "selenium.webdriver.chromedriver/135.0.7049.4200",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2364,7 +2476,7 @@
         "driver/win32/LICENSE.chromedriver",
         "driver/win32/chromedriver.exe",
         "nupkg-icon.png",
-        "selenium.webdriver.chromedriver.134.0.6998.8800.nupkg.sha512",
+        "selenium.webdriver.chromedriver.135.0.7049.4200.nupkg.sha512",
         "selenium.webdriver.chromedriver.nuspec"
       ]
     },
@@ -5572,11 +5684,12 @@
       "ClosedXML >= 0.104.2",
       "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
       "EPPlus >= 8.0.1",
-      "HtmlAgilityPack.NetCore >= 1.5.0.1",
+      "HtmlAgilityPack >= 1.12.0",
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.21.0",
       "OfficeOpenXml.Core.ExcelPackage >= 1.0.0",
-      "Selenium.Support >= 4.29.0",
-      "Selenium.WebDriver >= 4.29.0",
-      "Selenium.WebDriver.ChromeDriver >= 134.0.6998.8800"
+      "Selenium.Support >= 4.30.0",
+      "Selenium.WebDriver >= 4.30.0",
+      "Selenium.WebDriver.ChromeDriver >= 135.0.7049.4200"
     ]
   },
   "packageFolders": {
@@ -5586,11 +5699,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj",
-      "projectName": "VirtualCounselor",
-      "projectPath": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\VirtualCounselor.csproj",
+      "projectUniqueName": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\BlazorApp1.csproj",
+      "projectName": "BlazorApp1",
+      "projectPath": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\BlazorApp1.csproj",
       "packagesPath": "C:\\Users\\tyler\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\",
+      "outputPath": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5642,9 +5755,13 @@
             "target": "Package",
             "version": "[8.0.1, )"
           },
-          "HtmlAgilityPack.NetCore": {
+          "HtmlAgilityPack": {
             "target": "Package",
-            "version": "[1.5.0.1, )"
+            "version": "[1.12.0, )"
+          },
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+            "target": "Package",
+            "version": "[1.21.0, )"
           },
           "OfficeOpenXml.Core.ExcelPackage": {
             "target": "Package",
@@ -5652,15 +5769,15 @@
           },
           "Selenium.Support": {
             "target": "Package",
-            "version": "[4.29.0, )"
+            "version": "[4.30.0, )"
           },
           "Selenium.WebDriver": {
             "target": "Package",
-            "version": "[4.29.0, )"
+            "version": "[4.30.0, )"
           },
           "Selenium.WebDriver.ChromeDriver": {
             "target": "Package",
-            "version": "[134.0.6998.8800, )"
+            "version": "[135.0.7049.4200, )"
           }
         },
         "imports": [

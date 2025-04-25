@@ -1,1 +1,0 @@
-https://github.com/gudino27/BlazorApp1/blob/master/Components/Pages/Transcript.razor

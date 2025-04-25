@@ -1,28 +1,28 @@
 {
   "Version": 1,
-  "Hash": "MtNmEi8BUKFgF6k48m7YRVWjX+oleIgwcxEdk1KT4s8=",
-  "Source": "VirtualCounselor",
-  "BasePath": "_content/VirtualCounselor",
+  "Hash": "ySNtAq9S48yKlNbtchH8fEM9yUGwr1Khlx5RSuYCjNQ=",
+  "Source": "BlazorApp1",
+  "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "VirtualCounselor\\wwwroot",
-      "Source": "VirtualCounselor",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
-      "BasePath": "_content/VirtualCounselor",
+      "Name": "BlazorApp1\\wwwroot",
+      "Source": "BlazorApp1",
+      "ContentRoot": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
-      "SourceId": "VirtualCounselor",
+      "Identity": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "VirtualCounselor#[.{fingerprint}]?.styles.css",
+      "ContentRoot": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "BlazorApp1#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Primary",
@@ -31,19 +31,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "q5wzg8ueh1",
-      "Integrity": "cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=",
+      "Fingerprint": "dd0k9zaesm",
+      "Integrity": "4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css"
+      "OriginalItemSpec": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
-      "SourceId": "VirtualCounselor",
+      "Identity": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/VirtualCounselor",
-      "RelativePath": "VirtualCounselor#[.{fingerprint}]!.bundle.scp.css",
+      "ContentRoot": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "BlazorApp1#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Primary",
@@ -52,18 +52,18 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "q5wzg8ueh1",
-      "Integrity": "cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=",
+      "Fingerprint": "dd0k9zaesm",
+      "Integrity": "4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
-      "SourceId": "VirtualCounselor",
+      "Identity": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
-      "BasePath": "_content/VirtualCounselor",
+      "ContentRoot": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
       "RelativePath": "app#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -73,18 +73,18 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8g08hluszq",
-      "Integrity": "uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM=",
+      "Fingerprint": "hvichc182c",
+      "Integrity": "c6RQfuyNeFvPQ3PxUbrsN/H/quCBiqJbFaMD5OOgtaI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
-      "SourceId": "VirtualCounselor",
+      "Identity": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
-      "BasePath": "_content/VirtualCounselor",
+      "ContentRoot": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -101,11 +101,11 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
-      "SourceId": "VirtualCounselor",
+      "Identity": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
-      "BasePath": "_content/VirtualCounselor",
+      "ContentRoot": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -122,11 +122,11 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
-      "SourceId": "VirtualCounselor",
+      "Identity": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
-      "BasePath": "_content/VirtualCounselor",
+      "ContentRoot": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
       "RelativePath": "favicon#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -145,53 +145,8 @@
   ],
   "Endpoints": [
     {
-      "Route": "app.8g08hluszq.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2592"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 21 Apr 2025 02:54:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8g08hluszq"
-        },
-        {
-          "Name": "label",
-          "Value": "app.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM="
-        }
-      ]
-    },
-    {
       "Route": "app.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -200,7 +155,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2592"
+          "Value": "2673"
         },
         {
           "Name": "Content-Type",
@@ -208,11 +163,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM=\""
+          "Value": "\"c6RQfuyNeFvPQ3PxUbrsN/H/quCBiqJbFaMD5OOgtaI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 21 Apr 2025 02:54:17 GMT"
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -222,13 +177,222 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-uEa51CCN2HD+9DX+ihri+4T/as3iaTtUtHj/gu703xM="
+          "Value": "sha256-c6RQfuyNeFvPQ3PxUbrsN/H/quCBiqJbFaMD5OOgtaI="
+        }
+      ]
+    },
+    {
+      "Route": "app.hvichc182c.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2673"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"c6RQfuyNeFvPQ3PxUbrsN/H/quCBiqJbFaMD5OOgtaI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hvichc182c"
+        },
+        {
+          "Name": "label",
+          "Value": "app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-c6RQfuyNeFvPQ3PxUbrsN/H/quCBiqJbFaMD5OOgtaI="
+        }
+      ]
+    },
+    {
+      "Route": "BlazorApp1.bundle.scp.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2185"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Apr 2025 16:18:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo="
+        }
+      ]
+    },
+    {
+      "Route": "BlazorApp1.dd0k9zaesm.bundle.scp.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2185"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Apr 2025 16:18:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dd0k9zaesm"
+        },
+        {
+          "Name": "label",
+          "Value": "BlazorApp1.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo="
+        }
+      ]
+    },
+    {
+      "Route": "BlazorApp1.dd0k9zaesm.styles.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2185"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Apr 2025 16:18:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dd0k9zaesm"
+        },
+        {
+          "Name": "label",
+          "Value": "BlazorApp1.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo="
+        }
+      ]
+    },
+    {
+      "Route": "BlazorApp1.styles.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2185"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Apr 2025 16:18:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4XOLAtWH6Qx5y1kwWaE95QLtnhqgkgra7FGEjzuQUmo="
         }
       ]
     },
     {
       "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -249,7 +413,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -273,7 +437,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -294,7 +458,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -310,7 +474,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -331,7 +495,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -355,7 +519,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -376,7 +540,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -392,7 +556,7 @@
     },
     {
       "Route": "favicon.ifv42okdf2.png",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -413,7 +577,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -437,7 +601,7 @@
     },
     {
       "Route": "favicon.png",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
+      "AssetFile": "C:\\Users\\tyler\\source\\repos\\Virtual-Counselor\\VirtualCounselor\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -458,7 +622,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 05:28:11 GMT"
+          "Value": "Fri, 25 Apr 2025 16:05:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -469,170 +633,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
-        }
-      ]
-    },
-    {
-      "Route": "VirtualCounselor.bundle.scp.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2191"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 21 Apr 2025 02:54:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY="
-        }
-      ]
-    },
-    {
-      "Route": "VirtualCounselor.q5wzg8ueh1.bundle.scp.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\VirtualCounselor.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2191"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 21 Apr 2025 02:54:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "q5wzg8ueh1"
-        },
-        {
-          "Name": "label",
-          "Value": "VirtualCounselor.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY="
-        }
-      ]
-    },
-    {
-      "Route": "VirtualCounselor.q5wzg8ueh1.styles.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2191"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 21 Apr 2025 02:54:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "q5wzg8ueh1"
-        },
-        {
-          "Name": "label",
-          "Value": "VirtualCounselor.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY="
-        }
-      ]
-    },
-    {
-      "Route": "VirtualCounselor.styles.css",
-      "AssetFile": "C:\\Users\\tyler\\Source\\Repos\\Virtual-Counselor\\VirtualCounselor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\VirtualCounselor.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2191"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 21 Apr 2025 02:54:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-cuKmapwswI3nBY7XYGOjkLxBYHrATxcDwILoWBrbDUY="
         }
       ]
     }
