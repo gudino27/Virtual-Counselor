@@ -7,7 +7,7 @@ namespace BlazorApp1.Services
     public class CartService
     {
         public List<CartItem> Items { get; private set; } = new List<CartItem>();
-        private readonly List<CartItem> _items = new List<CartItem>(); // Fix: Use a private field to store items
+        private readonly List<CartItem> _items = new List<CartItem>(); 
 
         public CartService()
         {
