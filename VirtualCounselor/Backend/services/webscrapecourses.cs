@@ -101,21 +101,21 @@
             service.HideCommandPromptWindow = true;
             service.EnableVerboseLogging = false;
             var campuses = new Dictionary<int, string>
-    {
-        { 1, "Everett" },
-        { 2, "Global" },
-        { 3, "Pullman" },
-        { 4, "Spokane" },
-        { 5, "Tri-Cities" },
-        { 6, "Vancouver" }
-    };
+            {
+                { 1, "Everett" },
+                { 2, "Global" },
+                { 3, "Pullman" },
+                { 4, "Spokane" },
+                { 5, "Tri-Cities" },
+                { 6, "Vancouver" }
+            };
 
-            var terms = new Dictionary<int, string>
-    {
-        { 1, "Fall 2025" },
-        { 2, "Spring 2025" },
-        { 3, "Summer 2025" }
-    };
+                    var terms = new Dictionary<int, string>
+            {
+                { 1, "Fall 2025" },
+                { 2, "Spring 2025" },
+                { 3, "Summer 2025" }
+            };
 
             using (mainDriver = new ChromeDriver(service, options))
             {
@@ -183,21 +183,21 @@
             service.HideCommandPromptWindow = true;
             service.EnableVerboseLogging = false;
             var campuses = new Dictionary<int, string>
-    {
-        { 1, "Everett" },
-        { 2, "Global" },
-        { 3, "Pullman" },
-        { 4, "Spokane" },
-        { 5, "Tri-Cities" },
-        { 6, "Vancouver" }
-    };
+            {
+                { 1, "Everett" },
+                { 2, "Global" },
+                { 3, "Pullman" },
+                { 4, "Spokane" },
+                { 5, "Tri-Cities" },
+                { 6, "Vancouver" }
+            };
 
-            var terms = new Dictionary<int, string>
-    {
-        { 1, "Fall 2025" },
-        { 2, "Spring 2025" },
-        { 3, "Summer 2025" }
-    };
+                    var terms = new Dictionary<int, string>
+            {
+                { 1, "Fall 2025" },
+                { 2, "Spring 2025" },
+                { 3, "Summer 2025" }
+            };
 
             using (mainDriver = new ChromeDriver(service, options))
             {
@@ -264,7 +264,11 @@
                         {
                             if (link.Text.Contains(term, StringComparison.OrdinalIgnoreCase))
                             {
-                                wait.Until(d => link.FindElement(By.TagName("a"))).Click();
+                                // wait.Until(d => link.FindElement(By.TagName("a"))).Click();
+                                //var clickableLink = wait.Until(d => link.FindElement(By.TagName("a")));
+                                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(clickableLink));
+                                var clickableLink = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(link.FindElement(By.TagName("a"))));
+                                clickableLink.Click();
 
                                 Thread.Sleep(10000);
                                 return;

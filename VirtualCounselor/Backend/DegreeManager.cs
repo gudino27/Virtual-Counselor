@@ -1,22 +1,21 @@
 ﻿namespace VirtualCounselor
 {
     /// <summary>
-    /// DegreeManager will handle all of the data parsed by the PDF reader (or webscraper I can't remember?).
+    /// DegreeManager will handle all of the degree data parsed by the PDF reader (or webscraper I can't remember?).
     /// It will store all info on each degree read in by having a list of Degrees.
     /// </summary>
     public static class DegreeManager
     {
-        private static int currentID = 0;
-        private static Dictionary<int, Degree> degreeList = new Dictionary<int, Degree>();
+        private static readonly Dictionary<int, Degree> degreeList
+           = new Dictionary<int, Degree>();
+        private static int currentID = 1;
 
-        /// <summary>
-        /// Method called to create a degree.
-        /// </summary>
-        /// <param name="degreeName">the name of the degree.</param>
-        public static void AddDegree(string degreeName)
+        /// <summary>Adds a new degree (name) and returns it.</summary>
+        public static Degree AddDegree(string degreeName)
         {
-            degreeList.Add(currentID, new Degree(degreeName, currentID));
-            currentID++;
+            var deg = new Degree(degreeName, currentID++);
+            degreeList[deg.Id] = deg;
+            return deg;
         }
 
         /// <summary>
@@ -36,18 +35,8 @@
             }
         }
 
-        /// <summary>
-        /// Gets list of all degrees.
-        /// </summary>
-        /// <returns>list of degree objects.</returns>
+        /// <summary>All degrees loaded so far.</summary>
         public static List<Degree> GetDegreeList()
-        {
-            List<Degree> degrees = new List<Degree>();
-            foreach (var degree in degreeList.Values)
-            {
-                degrees.Add(degree);
-            }
-            return degrees;
-        }
+            => new List<Degree>(degreeList.Values);
     }
 }

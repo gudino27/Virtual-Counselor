@@ -1,45 +1,124 @@
-﻿@page "/DegreeRequirements"
+﻿@inject SmartSearch SmartSearchInstance
+
+@page "/DegreeRequirements"
+@using VirtualCounselor.Backend
 @rendermode InteractiveServer
+
 <h1>Degree Requirements</h1>
 
-Current major: @degreeName
+<label>Choose Major:</label>
+<DegreeSearch OnDegreePicked="LoadMajor" />
 
-
-@foreach (var course in degreeCourses){
-	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2 credits=@course.Item3></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
+<p><strong>Major:</strong> @currentMajorName</p>
+@foreach (var (course, taken) in majorCourses)
+{
+  <DegreeRequirementsIndividualCourse
+      CourseName="@(course.CourseCode)"
+      Taken="taken"
+      Credits="@(course.Credits)" />
 }
 
-Current minor: @minorName
-
-@foreach (var course in minorCourses){
-	<VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse courseName=@course.Item1 isCompleted=@course.Item2 credits=@course.Item3></VirtualCounselor.Components.Objects.DegreeRequirementsIndividualCourse>
+<!-- Smart Search for Major -->
+@if (!string.IsNullOrWhiteSpace(currentMajorName) && currentMajorName != "(none)")
+{
+    <hr />
+    <label>Search Courses for Major:</label>
+        < input class="form-control mb-2"
+          placeholder="Search courses..."
+          value="@majorSearchQuery"
+          @oninput="OnMajorSearchInput" />
+    @if (majorSearchResults.Any())
+    {
+        <ul class="list-group">
+            @foreach (var course in majorSearchResults)
+            {
+                <li class="list-group-item">
+                    <strong>@course.CourseCode</strong> - @course.Title (@course.Credits credits)
+                </li>
+            }
+        </ul>
+    }
 }
 
+<hr />
 
+<label>Choose Minor:</label>
+<DegreeSearch OnDegreePicked="LoadMinor" />
+
+<p><strong>Minor:</strong> @currentMinorName</p>
+@foreach (var (course, taken) in minorCourses)
+{
+  <DegreeRequirementsIndividualCourse
+      CourseName="@(course.CourseCode)"
+      Taken="taken"
+      Credits="@(course.Credits)" />
+}
+
+<!-- Smart Search for Minor -->
+@if (!string.IsNullOrWhiteSpace(currentMinorName) && currentMinorName != "(none)")
+{
+    <hr />
+    <label>Search Courses for Minor:</label>
+       < input class="form-control mb-2"
+           placeholder="Search courses..."
+           value="@minorSearchQuery"
+           @oninput="OnMinorSearchInput" />
+    @if (minorSearchResults.Any())
+    {
+        <ul class="list-group">
+            @foreach (var course in minorSearchResults)
+            {
+                <li class="list-group-item">
+                    <strong>@course.CourseCode</strong> - @course.Title (@course.Credits credits)
+                </li>
+            }
+        </ul>
+    }
+}
 
 @code {
-	// Temporary title for degree. will be replaced with a call to degree manager later
-	private string degreeName = "test degree";
+  private string currentMajorName = "(none)";
+  private List<(Course course, bool taken)> majorCourses = new();
+  private string currentMinorName = "(none)";
+  private List<(Course course, bool taken)> minorCourses = new();
 
-	// This is the list of courses required to be taken for a degree
-	// Temporarily declared here however will get its data from degree manager later
-	// structure is (name,taken?)
-	private List<(string, bool, int)> degreeCourses = new List<(string, bool, int)>
-	{
-		("test1",false,3),
-		("test2",true,4),
-		("test3",false,3)
-	};
+    private string majorSearchQuery = "";
+    private List<Course> majorSearchResults = new();
 
-	// Repeated code for the minor section. will most likely condense into a single looped set of code in order
-	// to allow for as many majors as you'd like
-	private string minorName = "test minor";
+    private string minorSearchQuery = "";
+    private List<Course> minorSearchResults = new();
 
-	private List<(string, bool, int)> minorCourses = new List<(string, bool, int)>
-	{
-		("test1", true,4),
-		("test4",true,3),
-		("test5",false,3)
-	};
+  private void LoadMajor(Degree d)
+  {
+    currentMajorName = d.Name;
+    majorCourses     = d.GetRequiredCourses();
+    // majorSearchQuery = "";
+    // majorSearchResults.Clear();
+  }
 
+  private void LoadMinor(Degree d)
+  {
+    currentMinorName = d.Name;
+    minorCourses     = d.GetRequiredCourses();
+    // minorSearchQuery = "";
+    // minorSearchResults.Clear();
+  }
+
+    private void OnMajorSearchInput(ChangeEventArgs e)
+    {
+        majorSearchQuery = e.Value?.ToString() ?? "";
+        if (!string.IsNullOrWhiteSpace(majorSearchQuery))
+            majorSearchResults = SmartSearchInstance.SearchCourses(majorSearchQuery);
+        else
+            majorSearchResults.Clear();
+    }
+
+    private void OnMinorSearchInput(ChangeEventArgs e)
+    {
+        minorSearchQuery = e.Value?.ToString() ?? "";
+        if (!string.IsNullOrWhiteSpace(minorSearchQuery))
+            minorSearchResults = SmartSearchInstance.SearchCourses(minorSearchQuery);
+        else
+            minorSearchResults.Clear();
+    }
 }

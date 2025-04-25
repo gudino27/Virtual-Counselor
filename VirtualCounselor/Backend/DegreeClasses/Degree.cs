@@ -1,18 +1,19 @@
 ﻿namespace VirtualCounselor
 {
     /// <summary>
-    /// Storage class designed to hold all info on any given degree.
+    /// Storage class designed to hold all info (its name, id, and required course) on any given degree.
     /// This includes information like course requirements.
     /// </summary>
     public class Degree
     {
         private string name = string.Empty;
         private int id = -1;
-        private List<(Course,bool)> requiredCourses = new List<(Course, bool)>();
+        private readonly List<(Course course, bool taken)> requiredCourses
+            = new List<(Course, bool)>();
 
         public Degree(string newName, int newId)
         {
-            this.name = newName;
+            this.name = newName ?? throw new ArgumentNullException(nameof(newName));
             this.id = newId;
         }
 
@@ -25,5 +26,16 @@
         {
             get { return id; }
         }
+
+        /// <summary>Add a required course (taken flag optional).</summary>
+        public void AddRequiredCourse(Course course, bool isTaken = false)
+        {
+            if (course == null) throw new ArgumentNullException(nameof(course));
+            requiredCourses.Add((course, isTaken));
+        }
+
+        /// <summary>Returns (Course, takenFlag) for this degree.</summary>
+        public List<(Course course, bool taken)> GetRequiredCourses()
+            => requiredCourses.ToList();
     }
 }

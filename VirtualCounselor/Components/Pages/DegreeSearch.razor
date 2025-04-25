@@ -1,21 +1,69 @@
-﻿@page "/DegreeSearch"
-@inject NavigationManager navigation;
-@rendermode InteractiveServer
-<h3>Degrees</h3>
+﻿@inject DegreeService DegreeService
 
-<div class="scrollable-list" style="max-height: 400px; overflow-y: scroll;">
-	@foreach (var deg in degrees)
-	{
-		<VirtualCounselor.Components.Objects.DegreeSearchResult degree="deg" onClick="NavToDetailsPage"></VirtualCounselor.Components.Objects.DegreeSearchResult>
-	}
-</div>
+@using VirtualCounselor.Backend
+
+<input class="form-control"
+placeholder="Search degrees…"
+value="@searchTerm"
+@oninput="OnInput" />
+
+@if (isLoading)
+{
+    <div>Loading...</div>
+}
+else if (filteredDegrees.Any())
+{
+    <ul class="list-group position-absolute" style="z-index:1000; width:100%;">
+        @foreach (var d in filteredDegrees)
+        {
+            <li class="list-group-item list-group-item-action"
+                @onclick="() => Pick(d)">
+                @d.Name
+            </li>
+        }
+    </ul>
+}
 
 @code {
-	private List<Degree> degrees = DegreeManager.GetDegreeList();
+    private string searchTerm = "";
+    private List<Degree> allDegrees = new();
+    private List<Degree> filteredDegrees = new();
+    private List<Degree> degrees = new();
+    private bool isLoading = true;
 
-	private void NavToDetailsPage(Degree degree)
-	{
-		Console.WriteLine("test");
-		navigation.NavigateTo($"/DegreeDetails/{degree.Id.ToString()}");
-	}
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+
+        // Load all degrees asynchronously
+        await Task.Run(() =>
+        {
+            allDegrees = DegreeManager.GetDegreeList();
+            degrees = DegreeService.GetAllMajors();
+        });
+
+        Console.WriteLine($"Degrees loaded in UI: {degrees.Count}");
+        isLoading = false;
+    }
+
+    private void OnInput(ChangeEventArgs e)
+    {
+        searchTerm = e.Value?.ToString() ?? "";
+        if (string.IsNullOrWhiteSpace(searchTerm))
+            filteredDegrees.Clear();
+        else
+            filteredDegrees = allDegrees
+              .Where(d => d.Name
+                           .Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+              .ToList();
+    }
+
+    private void Pick(Degree d)
+    {
+        OnDegreePicked.InvokeAsync(d);
+        searchTerm = "";
+        filteredDegrees.Clear();
+    }
+
+    [Parameter] public EventCallback<Degree> OnDegreePicked { get; set; }
 }
