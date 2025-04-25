@@ -12,6 +12,11 @@ html, body {
     text-decoration: none;
 }
 
+.navbar .navbar-brand{
+    color: white;
+    font-weight: bolder;
+}
+
 .navbar .nav-link.active {
     font-weight: bold;
     color: gold !important;
@@ -22,8 +27,8 @@ a, .btn-link {
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
+    color: white;
+    background-color: maroon;
     border-color: crimson;
 }
 
