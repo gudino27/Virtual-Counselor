@@ -1,11 +1,20 @@
-a, .bg-light {
-      
-    background-color: darkgray;
-    color: #a9a9a9;
-}
 html, body {
-    font-family: 'Cascadia Code';
-    background-color: darkgray
+    font-family: 'Times New Roman';
+    background-color: darkgray;
+}
+
+.navbar{
+    background-color: maroon;
+}
+
+.navbar .nav-link{
+    color: white;
+    text-decoration: none;
+}
+
+.navbar .nav-link.active {
+    font-weight: bold;
+    color: gold !important;
 }
 
 a, .btn-link {
