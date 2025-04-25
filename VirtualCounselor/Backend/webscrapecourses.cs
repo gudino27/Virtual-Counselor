@@ -73,7 +73,7 @@ namespace BlazorApp1.Services
         public string GERCode { get; set; } = string.Empty;
         public string WritingInTheMajor { get; set; } = string.Empty;
         public string Cooperative { get; set; } = string.Empty;
-        public List<string> MeetingsInfo { get; set; } = new List<string>();
+        public List<MeetingInfo> Meetings { get; set; } = new();
         public List<string> Instructors { get; set; } = new List<string>();
         public string InstructionMode { get; set; } = string.Empty;
         public string EnrollmentLimit { get; set; } = string.Empty;
@@ -83,6 +83,12 @@ namespace BlazorApp1.Services
         public string EndDate { get; set; } = string.Empty;
         public string Footnotes { get; set; } = string.Empty;
 
+    }
+    public class MeetingInfo
+    {
+        public string Days { get; set; } = string.Empty;
+        public string Time { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
     }
     public class CampusData
     {
@@ -131,7 +137,8 @@ namespace BlazorApp1.Services
             options.AddArgument("--log-level=3");
             options.AddArgument("--disable-gpu");
             options.AddArgument("--disable-logging");
-
+	    options.AddArgument("--no-sandbox"); // Important for Docker environments
+	    options.AddArgument("--disable-dev-shm-usage");
             var service = ChromeDriverService.CreateDefaultService();
             service.SuppressInitialDiagnosticInformation = true;
             service.HideCommandPromptWindow = true;
@@ -157,9 +164,9 @@ namespace BlazorApp1.Services
             {
                 mainDriver.Navigate().GoToUrl("https://schedules.wsu.edu");
 
-                for (int i = 1; i <= 1; i++)
+                for (int i = 1; i <= 6; i++)
                 {
-                    for (int j = 1; j <= 1; j++)
+                    for (int j = 1; j <= 3; j++)
                     {
                         Console.WriteLine($"{campuses[i]} {terms[j]}");
                         ClickEvent(campuses[i], terms[j], mainDriver);
@@ -203,17 +210,16 @@ namespace BlazorApp1.Services
             DateTime march5 = new DateTime(2025, 3, 5);
             DateTime june1 = new DateTime(2025, 6, 1);
 
-
-
             var watch = System.Diagnostics.Stopwatch.StartNew();
             var options = new ChromeOptions();
+	    options.AddArgument("--no-sandbox"); // Important for Docker environments
+	    options.AddArgument("--disable-dev-shm-usage");
             options.AddArgument("--disable-usb");
             options.AddArgument("--disable-usb-discovery");
             options.AddArgument("--headless");
             options.AddArgument("--log-level=3");
             options.AddArgument("--disable-gpu");
             options.AddArgument("--disable-logging");
-
             var service = ChromeDriverService.CreateDefaultService();
             service.SuppressInitialDiagnosticInformation = true;
             service.HideCommandPromptWindow = true;
@@ -321,21 +327,21 @@ namespace BlazorApp1.Services
                 throw new InvalidOperationException("The mainDriver is not initialized.");
             }
 
-            var wait = new WebDriverWait(mainDriver, TimeSpan.FromSeconds(20));
+            var wait = new WebDriverWait(mainDriver, TimeSpan.FromSeconds(40));
             string tableBodyXPath = "/html/body/div[1]/div[3]/div/div[2]/main/div[2]/div/div/div/table/tbody";
             string rowXPath = tableBodyXPath + "/tr";
 
             int rowCount = 0;
-            wait.Until(driver =>
-            {
-                var rows = driver.FindElements(By.XPath(rowXPath));
-                if (rows.Count > 0)
-                {
-                    rowCount = rows.Count;
-                    return true;
-                }
-                return false;
-            });
+              try
+    {
+        wait.Until(d => d.FindElements(By.XPath(rowXPath)).Count > 0);
+    }
+    catch (WebDriverTimeoutException)
+    {
+        Console.WriteLine($"⚠️ Timeout waiting for course rows on {campus} {term} at {mainDriver.Url}");
+        return;
+    }
+        	rowCount = mainDriver.FindElements(By.XPath(rowXPath)).Count;
             // Console.WriteLine($"Found {rowCount} rows in the zebra table.");
 
             var expectedSubjects = new HashSet<string>();
@@ -351,7 +357,7 @@ namespace BlazorApp1.Services
             }
             // Console.WriteLine($"Expected subjects count: {expectedSubjects.Count}");
 
-            int partitionCount = Math.Min(30, rowCount);
+            int partitionCount = Math.Min(5, rowCount);
             int basePartitionSize = rowCount / partitionCount;
             int remainder = rowCount % partitionCount;
             var partitions = new List<(int start, int end)>();
@@ -373,12 +379,15 @@ namespace BlazorApp1.Services
             var tasks = partitions.Select(partition => Task.Run(() =>
             {
                 var courseOptions = new ChromeOptions();
+		courseOptions.AddArgument("--no-sandbox"); // Important for Docker environments
+		courseOptions.AddArgument("--disable-dev-shm-usage");
                 courseOptions.AddArgument("--disable-usb");
                 courseOptions.AddArgument("--disable-usb-discovery");
                 courseOptions.AddArgument("--headless");
                 courseOptions.AddArgument("--log-level=3");
                 courseOptions.AddArgument("--disable-gpu");
                 courseOptions.AddArgument("--disable-logging");
+
 
                 var courseService = ChromeDriverService.CreateDefaultService();
                 courseService.SuppressInitialDiagnosticInformation = true;
@@ -403,7 +412,18 @@ namespace BlazorApp1.Services
                         string subjectTitleText = subjectTitle.Text.Trim();
 
                         wait.Until(d => subjectElement.Displayed);
+			IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                        js.ExecuteScript("arguments[0].scrollIntoView({block: 'center'});",subjectElement);
+                        wait.Until(d => subjectElement.Displayed);
+                        try
+                        {
                         subjectElement.Click();
+                        }
+                        catch
+                        {
+                        Console.WriteLine("button click fail trying java");
+                        js.ExecuteScript("arguments[0].click();",subjectElement);
+                        }
                         wait.Until(d => d.FindElements(By.XPath("//table/tbody/tr")).Count > 0);
                         var courseData = ProcessCourseData(driver, subjectText, subjectTitleText);
 
@@ -435,12 +455,15 @@ namespace BlazorApp1.Services
             {
                 Console.WriteLine($"Retrying missing subjects: {string.Join(", ", missingSubjects)}");
                 var courseOptions = new ChromeOptions();
+		courseOptions.AddArgument("--no-sandbox"); // Important for Docker environments
+		courseOptions.AddArgument("--disable-dev-shm-usage");
                 courseOptions.AddArgument("--disable-usb");
                 courseOptions.AddArgument("--disable-usb-discovery");
                 courseOptions.AddArgument("--headless");
                 courseOptions.AddArgument("--log-level=3");
                 courseOptions.AddArgument("--disable-gpu");
                 courseOptions.AddArgument("--disable-logging");
+
 
                 var courseService = ChromeDriverService.CreateDefaultService();
                 courseService.SuppressInitialDiagnosticInformation = true;
@@ -461,7 +484,18 @@ namespace BlazorApp1.Services
                         var subjectTitle = rowElement.FindElement(By.XPath("./td[3]"));
                         string subjectTitleText = subjectTitle.Text.Trim();
                         var subjectElement = rowElement.FindElement(By.XPath("./td[2]/a"));
+        		IJavaScriptExecutor js = (IJavaScriptExecutor)missingDriver;
+                        js.ExecuteScript("arguments[0].scrollIntoView({block: 'center'});",subjectElement);
+                        wait.Until(d => subjectElement.Displayed);
+                        try
+                        {
                         subjectElement.Click();
+                        }
+                        catch
+                        {
+                        Console.WriteLine("button click fail trying java");
+                        js.ExecuteScript("arguments[0].click();",subjectElement);
+                        }
                         wait.Until(d => d.FindElements(By.XPath("//table/tbody/tr")).Count > 0);
                         var courseData = ProcessCourseData(missingDriver, subject, subjectTitleText);
                         if (courseData.Count > 0)
@@ -486,17 +520,17 @@ namespace BlazorApp1.Services
 
             foreach (var kvp in results.OrderBy(kvp => kvp.Key, StringComparer.OrdinalIgnoreCase))
             {
-                //Console.WriteLine($"\n===========================================================  Subject: {kvp.Key}  ===========================================================");
+                Console.WriteLine($"\n===========================================================  Subject: {kvp.Key}  ===========================================================");
 
                 foreach (var course in kvp.Value.OrderBy(c => c.CourseName))  // Sort courses by name
                 {
-                    //Console.WriteLine($"{course.CourseName}");
+                    Console.WriteLine($"{course.CourseName}");
 
                     foreach (var section in course.Sections.OrderBy(s => s.SectionNumber))  // Sort sections numerically
                     {
                         //Console.WriteLine($"*   Section: {section.SectionNumber}, Credits: {section.Credits}, Class Number: {section.ClassNumber},Status: {section.Status}, Spots Left: {section.SpotsLeft}");
                         //Console.WriteLine($"    *   Days: {section.Days}, Time: {section.Time}, Location: {section.Location}, Instructor: {section.Instructor}");
-                        /*
+                        
                          foreach (var detail in section.CourseDescriptionDetails)
                         {
                             int maxWidth =80;
@@ -506,8 +540,12 @@ namespace BlazorApp1.Services
                             Console.WriteLine($"        *UCORE: {detail.UCORE}, , GER: {detail.GERCode}, Writing: {detail.WritingInTheMajor}");
                             Console.WriteLine($"        *Cooperative: {detail.Cooperative}, Instr. Mode: {detail.InstructionMode}");
                             Console.WriteLine($"        *Comment: {detail.Comment}, Footnotes: {detail.Footnotes}");
+                            foreach (var m in detail.Meetings)
+                            {
+                                Console.WriteLine($"    Days: {m.Days}, Time: {m.Time},Location: {m.Location}");
+                            }
                         }
-                         */
+                         
                         if (section.CourseDetails.Any())
                         {
                             foreach (var detail in section.CourseDetails)
@@ -625,7 +663,7 @@ namespace BlazorApp1.Services
                                 Instructor = instructor
                             };
 
-                            // each classNumberText is unique to its section number and course name
+                            // each classNumberText is unique to its section.
                             sectionMap[classNumberText] = section;
                             currentCourse.Sections.Add(section);
                         }
@@ -642,20 +680,32 @@ namespace BlazorApp1.Services
             }
 
             // Second try block: For  class number, click the corresponding section button,
-            // click it, extract details, attach them to the correct SectionData, then navigate back
+            // click it, extract details, attach them to the correct SectionData, then navigate back.
             try
             {
                 foreach (string key in sectionMap.Keys.ToList())
                 {
                     try
-                    {
-                        var sectionNumberElement = driverInstance.FindElement(
-                            By.XPath($"//td[@class='sched_sln' and normalize-space(text())='{key}']"));
-                        var sectionRow = sectionNumberElement.FindElement(By.XPath("./ancestor::tr"));
-                        var button = sectionRow.FindElement(By.XPath(".//td[@class='sched_sec']/a"));
+    {
+        var sectionNumberElement = driverInstance.FindElement(
+            By.XPath($"//td[@class='sched_sln' and normalize-space(text())='{key}']"));
+        var sectionRow = sectionNumberElement.FindElement(By.XPath("./ancestor::tr"));
+        var button = sectionRow.FindElement(By.XPath(".//td[@class='sched_sec']/a"));
 
-                        button.Click();
-                        Thread.Sleep(5000);
+        // Use JavaScript to scroll to and click the button
+        IJavaScriptExecutor js = (IJavaScriptExecutor)driverInstance;
+        js.ExecuteScript("arguments[0].scrollIntoView({block: 'center'});", button);
+        Thread.Sleep(1000); // Wait for scrolling to complete
+        
+        try {
+            // Try clicking directly first
+            button.Click();
+        } catch {
+            // If that fails, use JavaScript to click
+            js.ExecuteScript("arguments[0].click();", button);
+        }
+        
+        Thread.Sleep(5000);
 
                         var extraDetailsObj = LoadCourseDescriptionDetails(driverInstance);
                         List<string> extraDetailsList = ConvertDetailsToStringList(extraDetailsObj);
@@ -663,7 +713,7 @@ namespace BlazorApp1.Services
                         if (sectionMap.ContainsKey(key))
                         {
                             sectionMap[key].CourseDescriptionDetails.Add(extraDetailsObj);
-                            //Console.WriteLine($"DEBUG: Added extra details to class number {key}. Count now: {sectionMap[key].CourseDescriptionDetails.Count}");
+                            Console.WriteLine($"DEBUG: Added extra details to class number {key}. Count now: {sectionMap[key].CourseDescriptionDetails.Count}");
 
                         }
 
@@ -689,15 +739,75 @@ namespace BlazorApp1.Services
             try
             {
                 Thread.Sleep(5000);
+                var wait = new WebDriverWait(driverInstance, TimeSpan.FromSeconds(10));
+                wait.Until(d => d.FindElements(By.CssSelector("li.sectionmeetingitem")).Any());
+                var items = driverInstance.FindElements(By.CssSelector("li.sectionmeetingitem"));
+                foreach (var item in items)
+                {
+                    var dtText = item.FindElement(By.CssSelector("span.sectionmeetingspanitem:nth-child(1)")).Text.Trim();
+                    var locText = item.FindElement(By.CssSelector("span.sectionmeetingspanitem:nth-child(2)")).Text.Trim();
+                    var parts = dtText.Split(' ');
+                    var daysPart = parts.ElementAtOrDefault(0) ?? string.Empty;
+                    var timeRaw = parts.ElementAtOrDefault(1) ?? string.Empty;
+                    string start12 = string.Empty, end12 = string.Empty;
+                    if (timeRaw.Contains('-'))
+                    {
+                        var timeParts = timeRaw.Split('-');
+                        var t0 = timeParts[0].Trim().Replace('.', ':');
+                        var t1 = timeParts[1].Trim().Replace('.', ':');
+
+                        // Add AM/PM designation if not present
+                        if (!t0.Contains("AM", StringComparison.OrdinalIgnoreCase) &&
+                            !t0.Contains("PM", StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Assume hours less than 12 are AM, 12 is PM
+                            double hour;
+                            if (double.TryParse(t0, out hour))
+                            {
+                                t0 = hour < 12 ? $"{t0} AM" : $"{t0} PM";
+                            }
+                        }
+
+                        if (!t1.Contains("AM", StringComparison.OrdinalIgnoreCase) &&
+                            !t1.Contains("PM", StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Assume hours less than 12 are AM, 12 and higher are PM
+                            double hour;
+                            if (double.TryParse(t1.Split(':')[0], out hour))
+                            {
+                                t1 = hour < 12 ? $"{t1} AM" : $"{t1} PM";
+                            }
+                        }
+
+                        DateTime startTime, endTime;
+                        if (DateTime.TryParse(t0, out startTime) && DateTime.TryParse(t1, out endTime))
+                        {
+                            start12 = startTime.ToString("h:mm tt");
+                            end12 = endTime.ToString("h:mm tt");
+                        }
+                        else
+                        {
+                            // Fallback for debugging
+                            Console.WriteLine($"Could not parse time: {timeRaw}, t0={t0}, t1={t1}");
+                        }
+                    }
+                    details.Meetings.Add(new MeetingInfo
+                    {
+                        Days = daysPart,
+                        Time = string.IsNullOrEmpty(start12) ? string.Empty : $"{start12} - {end12}",
+                        Location = locText
+                    });
+                }
                 var dlElement = driverInstance.FindElement(By.XPath("/html/body/div[1]/div[3]/div/div[2]/main/div[4]/div/div/dl"));
                 string? detailsHtml = dlElement.GetAttribute("outerHTML");
                 if(string.IsNullOrEmpty(detailsHtml))
                 {
-                    Console.WriteLine("No details found.");
+                    Console.WriteLine("/No details found.");
                     return details;
                 }
                 var doc = new HtmlDocument();
                 doc.LoadHtml(detailsHtml);
+
 
                 var dtNodes = doc.DocumentNode.SelectNodes("//dt");
                 if (dtNodes != null)
@@ -746,9 +856,6 @@ namespace BlazorApp1.Services
                             case "Cooperative":
                                 details.Cooperative = value;
                                 break;
-                            case "Meetings Info":
-                                details.MeetingsInfo.Add(value);
-                                break;
                             case "Instructor(s)":
                                 details.Instructors.Add(value);
                                 break;
@@ -774,6 +881,7 @@ namespace BlazorApp1.Services
                                 details.Footnotes = value;
                                 break;
                             default:
+                                // Ignore any unknown keys
                                 break;
                         }
                     }
@@ -785,7 +893,14 @@ namespace BlazorApp1.Services
             }
             return details;
         }
-        public static List<string> ConvertDetailsToStringList(CourseDescriptionDetails details)
+        public static string GetMeetingsInfoSummary( CourseDescriptionDetails details)
+            => details.Meetings.Any()
+                ? string.Join(", ", details.Meetings)
+                : string.Empty;
+    
+
+
+public static List<string> ConvertDetailsToStringList(CourseDescriptionDetails details)
         {
             var list = new List<string>();
 
@@ -827,6 +942,7 @@ namespace BlazorApp1.Services
                 list.Add(details.EndDate);
             if (!string.IsNullOrWhiteSpace(details.Footnotes))
                 list.Add(details.Footnotes);
+           
 
             return list;
         }
@@ -841,16 +957,18 @@ namespace BlazorApp1.Services
             int currentLineLength = 0;
             foreach (var word in words)
             {
+                // If adding this word would exceed the maximum line length, insert a newline.
                 if (currentLineLength + word.Length + 1 > maxLineWidth)
                 {
-                    sb.AppendLine();
-                    currentLineLength = 9; 
+                    sb.AppendLine(); // Add a newline
+                    //sb.Append("         "); // Indent wrapped lines if desired (match your printing indentation)
+                    currentLineLength = 9; // Reset, accounting for the indentation length
                 }
                 sb.Append(word + " ");
                 currentLineLength += word.Length + 1;
             }
             return sb.ToString();
         }
-
+	
     }
 }
